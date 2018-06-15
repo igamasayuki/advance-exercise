@@ -1,4 +1,4 @@
-package com.example.ecommerceD;
+package com.example.ec_201804d;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

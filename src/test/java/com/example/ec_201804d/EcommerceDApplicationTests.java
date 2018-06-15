@@ -1,4 +1,4 @@
-package com.example.ecommerceD;
+package com.example.ec_201804d;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
