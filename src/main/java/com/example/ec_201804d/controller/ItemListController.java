@@ -17,7 +17,7 @@ import com.example.ec_201804d.repository.ItemRepository;
  *
  */
 @Controller
-@RequestMapping("/itemList")
+@RequestMapping("/")
 public class ItemListController {
 
 	@Autowired
@@ -27,6 +27,13 @@ public class ItemListController {
 	public String list(Model model) {
 		List<Item> itemList = repository.findAll();
 		model.addAttribute("itemList",itemList);
+		return "/itemList";
+	}
+	
+	@RequestMapping("/findItem")
+	public String findItem(String word,Model model) {
+		List<Item> findItemList = repository.findByWord(word);
+		model.addAttribute("findItemList",findItemList);
 		return "/itemList";
 	}
 }
