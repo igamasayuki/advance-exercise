@@ -6,19 +6,19 @@ package com.example.ec_201804d.domain;
  */
 public class User {
 	/**id*/
-	long id;
+	private long id;
 	/**名前*/
-	String name;
+	private String name;
 	/**Eメールアドレス*/
-	String email;
+	private String email;
 	/** パスワード*/
-	String password;
+	private String password;
 	/** 郵便番号*/
-	String zipCode;
+	private String zipCode;
 	/**住所*/
-	String address;
+	private String address;
 	/** 電話番号*/
-	String telephone;
+	private String telephone;
 	public long getId() {
 		return id;
 	}

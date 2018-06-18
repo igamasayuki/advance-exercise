@@ -9,29 +9,29 @@ import java.util.List;
  */
 public class Order {
 	/**id*/
-	long id;
+	private long id;
 	/**注文番号*/
-	String orderNumber;
+	private String orderNumber;
 	/**ユーザーid*/
-	long userId;
+	private long userId;
 	/**注文ステータス*/
-	Integer status;
+	private Integer status;
 	/**注文品物一覧*/
-	List<OrderItem> orderItemList;
+	private List<OrderItem> orderItemList;
 	/**合計金額*/
-	Integer totalPrice;
+	private Integer totalPrice;
 	/**注文日*/
-	Date orderDate;
+	private Date orderDate;
 	/**お届け先名前*/
-	String deliveryName;
+	private String deliveryName;
 	/**お届け先Eメールアドレス*/
-	String deliveryEmail;
+	private String deliveryEmail;
 	/**お届け先郵便番号*/
-	String deliveryZipCode;
+	private String deliveryZipCode;
 	/**お届け先住所*/
-	String deliveryAddress;
+	private String deliveryAddress;
 	/**お届け先電話番号*/
-	String deliveryTel;
+	private String deliveryTel;
 	/**ユーザー*/
 	User user;
 	public long getId() {

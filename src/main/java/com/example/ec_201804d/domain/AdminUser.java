@@ -6,13 +6,13 @@ package com.example.ec_201804d.domain;
  */
 public class AdminUser {
 	/**id*/
-	long id;
+	private long id;
 	/**名前*/
-	String name;
+	private String name;
 	/**Eメールアドレス*/
-	String email;
+	private String email;
 	/** パスワード*/
-	String password;
+	private String password;
 	public long getId() {
 		return id;
 	}

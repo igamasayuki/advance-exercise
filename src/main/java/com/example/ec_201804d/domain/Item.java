@@ -6,17 +6,17 @@ package com.example.ec_201804d.domain;
  */
 public class Item {
 	/**id*/
-	long id;
+	private long id;
 	/**名前*/
-	String name;
+	private String name;
 	/**説明*/
-	String description;
+	private String description;
 	/**値段*/
-	Integer price;
+	private Integer price;
 	/** 画像URL*/
-	String imagePath;
+	private String imagePath;
 	/**削除フラグ*/
-	boolean deleted;
+	private boolean deleted;
 	public long getId() {
 		return id;
 	}

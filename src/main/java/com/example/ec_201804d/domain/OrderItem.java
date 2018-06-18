@@ -1,11 +1,16 @@
 package com.example.ec_201804d.domain;
 
 public class OrderItem {
-	long id;
-	long itemId;
-	Integer quantity;
-	long orderId;
-	Item item;
+	/**id*/
+	private long id;
+	/**品物id*/
+	private long itemId;
+	/**量*/
+	private Integer quantity;
+	/**注文id*/
+	private long orderId;
+	/**品物*/
+	private Item item;
 	public long getId() {
 		return id;
 	}
