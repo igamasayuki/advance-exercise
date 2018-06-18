@@ -50,7 +50,7 @@ public class RegisterAdminUserController {
 		}
 		
 		if(result.hasErrors()) {
-			return "registerAdminUser";
+			return "administerRegistration";
 		}
 		
 		BeanUtils.copyProperties(form,admin);

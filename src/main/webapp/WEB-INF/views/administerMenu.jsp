@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
+<jsp:include page="adminHeader.jsp"/><br>
 <div align ="center">
     <h2>管理者メニュー画面</h2>
         <a href="${pageContext.request.contextPath}/register">商品を登録</a><br><br>
