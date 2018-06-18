@@ -6,9 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>商品登録画面</title>
+<link rel="styleshhet" href="../css/bootstrap.css">
+<link rel="styleshhet" href="../css/style.css">
 </head>
 <body>
-<h1>商品登録画面</h1>
+<jsp:include page="adminHeader.jsp"/>
+<h3>商品登録画面</h3>
 <p>新規で登録したい商品の情報を入力してください。</p>
 <form:form modelAttribute="itemRegistrationForm" action="${pageContext.request.contextPath}/item_registration/register">
 	<form:label path="name">商品名:</form:label>

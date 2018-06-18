@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.ec_201804d.domain.Item;
+import com.example.ec_201804d.form.ItemRegistrationForm;
 import com.example.ec_201804d.repository.ItemRepository;
 
 @Controller
@@ -24,7 +25,7 @@ public class ItemRegistrationController {
 	
 	@RequestMapping(value="/show_view")
 	public String showInsertItemView() {
-		return "admin/insertItem";
+		return "insertItem";
 	}
 	
 	@RequestMapping(value="/register")
@@ -32,6 +33,6 @@ public class ItemRegistrationController {
 		Item item = new Item();
 		BeanUtils.copyProperties(form, item);
 		repository.insert(item);
-		return "item_list/show_view";
+		return "redirect:/itemList/viewItemList";
 	}
 }

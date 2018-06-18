@@ -1,4 +1,4 @@
-package com.example.ec_201804d.controller;
+package com.example.ec_201804d.form;
 
 public class ItemRegistrationForm {
 
