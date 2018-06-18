@@ -9,7 +9,7 @@ public class User {
 	long id;
 	/**名前*/
 	String name;
-	/**Eメール*/
+	/**Eメールアドレス*/
 	String email;
 	/** パスワード*/
 	String password;
