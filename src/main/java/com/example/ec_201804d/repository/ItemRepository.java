@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.ec_201804d.domain.Item;
@@ -38,10 +40,26 @@ public class ItemRepository {
 	 * @return 商品情報のリストを返します
 	 */
 	public List<Item> findAll(){
-		String sql ="SELECT id,name,description,price,imagepath,deleted FROM items";
+		String sql ="SELECT id,name,description,price,imagepath,deleted FROM items WHERE deleted IS FALSE";
 		
 		List<Item> itemList = template.query(sql, ITEM_ROW_MAPPER);
 		return itemList;
+	}
+	
+	/**
+	 * 商品検索を行うメソッド.
+	 * @param word 入力された単語
+	 * @return　該当する商品情報を返します
+	 */
+	public List<Item> findByWord(String word){
+		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word AND deleted IS FALSE";
+	
+		SqlParameterSource param = new MapSqlParameterSource().addValue("word","%" +  word + "%");
+		
+		List<Item> findItemList = template.query(sql, param,ITEM_ROW_MAPPER);
+		
+		return findItemList;
+	
 	}
 	
 	public void insert(Item item) {
