@@ -16,12 +16,17 @@
 <form:form modelAttribute="itemRegistrationForm" action="${pageContext.request.contextPath}/item_registration/register">
 	<form:label path="name">商品名:</form:label>
 	<form:input path="name"/><br>
+	<form:errors path="name" cssStyle="color:red" element="div"/><br>
 	<form:label path="price">価格　:</form:label>
 	<form:input path="price"/><br>
+	<form:errors path="price" cssStyle="color:red" element="div"/><br>
 	<form:label path="description">説明　:</form:label>
 	<form:textarea path="description" cols="40" rows="5"/><br>
+	<form:errors path="description" cssStyle="color:red" element="div"/><br>
 	画像　:
 	<input type="file" name="imagePath"><br>
+	<c:out value="※ファイルはjpegファイルを選択してください"/><br>
+	<form:errors path="imagePath" cssStyle="color:red" element="div"/><br>
 	<input type="submit" value="登録">
 </form:form>
 <a href="${pageContext.request.contextPath}/admin/adminmenu/show">管理者メニュー画面に戻る</a>

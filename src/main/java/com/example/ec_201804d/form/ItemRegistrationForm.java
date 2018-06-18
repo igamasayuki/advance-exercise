@@ -1,10 +1,19 @@
 package com.example.ec_201804d.form;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.lang.NonNull;
+
 public class ItemRegistrationForm {
 
+	@NotBlank(message="商品名を入力してください")
 	private String name;
-	private int price;
+	@NotNull(message="価格を入力してください")
+	private Integer price;
+	@NotBlank(message="説明を入力してください")
 	private String description;
+	@NotBlank(message="表示する商品画像を選択してください")
 	private String imagePath;
 
 	public String getName() {
@@ -15,11 +24,11 @@ public class ItemRegistrationForm {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
