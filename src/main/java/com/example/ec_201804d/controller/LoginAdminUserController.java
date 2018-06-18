@@ -14,8 +14,14 @@ public class LoginAdminUserController {
 		return new LoginForm();
 	}
 	
-	@RequestMapping(value="/adminLogin")
+	@RequestMapping(value="/viewAdminLogin")
 	public String viewLogin() {
-		return "admin/administerLogin";
+		return "administerLogin";
 	}
+	
+	@RequestMapping(value="/AdminLogin")
+	public String adminLogin(){
+		return "administerMenu";
+	}
+	
 }
