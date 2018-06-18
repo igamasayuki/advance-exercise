@@ -13,8 +13,11 @@
 <body>
 <div align="center">
   <h2>ログイン</h2> 
-  <form:form modelAttribute="loginAdminForm" action="${pageContext.request.contextPath}/kakiki/adminUserMenu">
+  <form:form modelAttribute="loginAdminForm" action="${pageContext.request.contextPath}/adminLogin/fromLogintoMenu">
+  	<form:errors path="mailAddress" cssStyle="color:red"/><br>
   	名前:<form:input path="mailAddress"/><br>
+  	
+  	<form:errors path="password" cssStyle="color:red"/>
  	パスワード:<form:password path="password"/><br>
  	<input type="submit" value="ログイン">
   </form:form>
