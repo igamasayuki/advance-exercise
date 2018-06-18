@@ -1,12 +1,23 @@
 package com.example.ec_201804d.domain;
 
+/**
+ * @author kakiki
+ *ユーザーを現すクラス.
+ */
 public class User {
+	/**id*/
 	long id;
+	/**名前*/
 	String name;
+	/**Eメール*/
 	String email;
+	/** パスワード*/
 	String password;
+	/** 郵便番号*/
 	String zipCode;
+	/**住所*/
 	String address;
+	/** 電話番号*/
 	String telephone;
 	public long getId() {
 		return id;
