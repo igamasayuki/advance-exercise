@@ -1,0 +1,37 @@
+package com.example.ec_201804d.controller;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.ec_201804d.domain.Item;
+import com.example.ec_201804d.repository.ItemRepository;
+
+@Controller
+@Transactional
+@RequestMapping(value="/item_registration")
+public class ItemRegistrationController {
+	@Autowired
+	private ItemRepository repository;
+
+	@ModelAttribute
+	public static ItemRegistrationForm setUpForm() {
+		return new ItemRegistrationForm();
+	}
+	
+	@RequestMapping(value="/show_view")
+	public String showInsertItemView() {
+		return "admin/insertItem";
+	}
+	
+	@RequestMapping(value="/register")
+	public String registerItem(ItemRegistrationForm form) {
+		Item item = new Item();
+		BeanUtils.copyProperties(form, item);
+		repository.insert(item);
+		return "item_list/show_view";
+	}
+}
