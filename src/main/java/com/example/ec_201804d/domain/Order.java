@@ -17,7 +17,7 @@ public class Order {
 	/**注文ステータス*/
 	Integer status;
 	/**注文品物一覧*/
-	List<Item> orderItemList;
+	List<OrderItem> orderItemList;
 	/**合計金額*/
 	Integer totalPrice;
 	/**注文日*/
@@ -58,10 +58,10 @@ public class Order {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public List<Item> getOrderItemList() {
+	public List<OrderItem> getOrderItemList() {
 		return orderItemList;
 	}
-	public void setOrderItemList(List<Item> orderItemList) {
+	public void setOrderItemList(List<OrderItem> orderItemList) {
 		this.orderItemList = orderItemList;
 	}
 	public Integer getTotalPrice() {
