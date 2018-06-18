@@ -35,6 +35,7 @@ public class UserRepository {
 
 	public void registerUser(User user) {
 		String sql = "insert into " + TABLE_NAME + " values(:name,:email,:password,:zipCode,:address,:telephone)";
-		// BeanPropertySqlParameterSource()
+		SqlParameterSource param = new BeanPropertySqlParameterSource(user);
+		template.update(sql, param);
 	}
 }

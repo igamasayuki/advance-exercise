@@ -6,7 +6,7 @@ package com.example.ec_201804d.form;
  *
  *ユーザ登録情報のリクエストパラメータを格納しておくためのフォームクラス.
  */
-public class UserRagistrationForm {
+public class UserRegistrationForm {
 
 	/**名前*/
 	private String name;
