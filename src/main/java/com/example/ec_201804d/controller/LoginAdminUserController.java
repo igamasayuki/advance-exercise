@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.ec_201804d.form.LoginForm;
+import com.example.ec_201804d.form.LoginAdminForm;
 
 @Controller
 @RequestMapping(value="/k")
 public class LoginAdminUserController {
 	@ModelAttribute
-	public LoginForm setUpLoginForm() {
-		return new LoginForm();
+	public LoginAdminForm setUpLoginForm() {
+		return new LoginAdminForm();
 	}
 	
 	@RequestMapping(value="/viewAdminLogin")

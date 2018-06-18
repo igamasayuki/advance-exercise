@@ -12,13 +12,13 @@
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"/>
-<form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/kakiki/registerAdminUser">
+<form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/registerAdmin/registerAdminUser">
 
 <form:errors path="name" cssStyle="color:red" />
 名前:<form:input path="name"/><br>
 
-<form:errors path="mailAddress" cssStyle="color:red"/><br>
-メールアドレス:<form:input path="mailAddress"/><br>
+<form:errors path="email" cssStyle="color:red"/><br>
+メールアドレス:<form:input path="email"/><br>
 
 <form:errors path="password" cssStyle="color:red"/><br>
 パスワード:<form:password path="password"/><br>
