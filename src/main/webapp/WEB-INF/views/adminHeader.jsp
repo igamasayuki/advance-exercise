@@ -13,7 +13,7 @@
 <body>
 <div id="userHeader" align="right">
 	<p>こんにちは管理者さん</p>
-	<p><a href="${pageContext.request.contextPath}/">ログアウトまだできない</a></p>
+	<p><a href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a></p>
 </div>
 			
 <div id="linkHeader" align="left">
