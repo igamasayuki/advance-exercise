@@ -1,6 +1,5 @@
 package com.example.ec_201804d.repository;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +44,7 @@ public class ItemRepository {
 		return itemList;
 	}
 	
-	
-	
-	
+	public void insert(Item item) {
+		
+	}
 }
