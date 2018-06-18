@@ -1,6 +1,6 @@
 package com.example.ec_201804d.form;
 
-public class LoginForm {
+public class LoginAdminForm {
 	/**メールアドレス*/
 	String mailAddress;
 	/**パスワード*/

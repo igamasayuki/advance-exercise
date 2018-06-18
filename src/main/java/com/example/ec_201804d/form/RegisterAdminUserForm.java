@@ -9,7 +9,7 @@ public class RegisterAdminUserForm {
 	
 	@Email( message = "メールアドレスの形式ではありません" )
 	@NotEmpty( message = "値を入力してください")
-	private String mailAddress;
+	private String email;
 	
 	@NotEmpty( message = "値を入力してください")
 	private String password;
@@ -24,11 +24,11 @@ public class RegisterAdminUserForm {
 		this.name = name;
 	}
 	
-	public String getMailAddress() {
-		return mailAddress;
+	public String getEmail() {
+		return email;
 	}
-	public void setMailAddress(String mailAddress) {
-		this.mailAddress = mailAddress;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public String getPassword() {

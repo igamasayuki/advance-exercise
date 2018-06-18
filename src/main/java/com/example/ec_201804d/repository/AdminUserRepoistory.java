@@ -36,7 +36,7 @@ public class AdminUserRepoistory {
 			adminUser.setId(currentMaxId+1);
 		}
 		SqlParameterSource param = new BeanPropertySqlParameterSource(adminUser);
-		String sql = "insert into admin_users(id,name,email,password)values(:id,:name,:mailAddress,:password);";
+		String sql = "insert into admin_users(id,name,email,password)values(:id,:name,:email,:password);";
 		template.update(sql, param);
 	}
 	
