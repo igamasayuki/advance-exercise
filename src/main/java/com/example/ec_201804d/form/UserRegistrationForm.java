@@ -1,5 +1,9 @@
 package com.example.ec_201804d.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * @author hibiki.ono
@@ -9,18 +13,29 @@ package com.example.ec_201804d.form;
 public class UserRegistrationForm {
 
 	/**名前*/
+	@NotBlank(message="名前を入力してください")
 	private String name;
 	/**メールアドレス*/
+	@NotBlank(message="メールアドレスを入力してください")
+	@Email(message="メールアドレスの形式が不正です")
 	private String email;
 	/**パスワード*/
+	@NotBlank(message="パスワードを入力してください")
 	private String password;
 	/**確認用パスワード*/
+	@NotBlank(message="確認用パスワードを入力してください")
 	private String conPassword;
 	/**郵便番号*/
+	@NotBlank(message="郵便番号を入力してください")
+	@Pattern(regexp="[0-9]+", message="郵便番号が不正です")
 	private String zipCode;
 	/**住所*/
+	@NotBlank(message="住所を入力してください")
 	private String address;
 	/**電話番号*/
+	@NotBlank(message="電話番号を入力してください")
+	@Size(max=4, message="電話番号はXXXX-XXXX-XXXX形式にしてください")
+	@Pattern(regexp="[0-9]+", message="電話番号が不正です")
 	private String telephone;
 	
 	public String getName() {

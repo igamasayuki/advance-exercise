@@ -4,6 +4,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,24 +25,44 @@ public class UserRegistrationController {
 	@Autowired
 	UserRepository userRepository;
 	
+	/**
+	 * ユーザフォームの初期化.
+	 * @return　インスタンス化
+	 */
 	@ModelAttribute
 	public UserRegistrationForm setUpUserForm() {
 		return new UserRegistrationForm();
 	}
 	
+	/**
+	 * ユーザ登録.
+	 * @param form　リクエストパラメータ
+	 * @param model　リクエストスコープ
+	 * @return　リダイレクト
+	 */
 	@RequestMapping(value="/insert")
-	public String insertUser(UserRegistrationForm form, Model model) {
+	public String insertUser(@Validated UserRegistrationForm form, BindingResult result, Model model) {
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
+		
+		String password = form.getPassword();
+		String conPassword = form.getConPassword();
+		if(!password.equals(conPassword)) {
+			result.rejectValue("conPassword", null, "パスワードが違います");
+		}
+		if(result.hasErrors()) {
+			return "userRegistration";
+		}
+		
 		userRepository.registerUser(user);
-		return "redirect:register/toUserLogin";
+		return "redirect:/userlogin/toUserLogin";
 	}
+	/**
+	 * ユーザ登録画面表示.
+	 * @return　ユーザ登録画面
+	 */
 	@RequestMapping(value="/toUserRegister")
-	public String showUserRagistration() {
+	public String showUserRegistration() {
 		return "userRegistration";
-	}
-	@RequestMapping(value="/toUserLogin")
-	public String showUserLogin() {
-		return "userLogin";
 	}
 }
