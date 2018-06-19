@@ -27,6 +27,8 @@
 	<input type="file" name="imageFile"><br>
 	<c:out value="※ファイルはjpegファイルを選択してください"/><br>
 	<form:errors path="imageFile" cssStyle="color:red" element="div"/><br>
+	<form:checkbox path="deleted"/>
+	<form:label path="deleted">削除</form:label><br>
 	<input type="submit" value="登録">
 </form:form>
 <a href="${pageContext.request.contextPath}/admin/adminmenu/show">管理者メニュー画面に戻る</a>
