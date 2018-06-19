@@ -28,25 +28,18 @@ public class OrderRepository {
 		Order order = new Order();
 		order.setId(rs.getInt("id"));
 		order.setOrderNumber(rs.getString("order_number"));
+		order.setUserId(rs.getInt("user_id"));
 		order.setStatus(rs.getInt("status"));
 		order.setTotalPrice(rs.getInt("total_price"));
-		order.setUserId(rs.getInt("user_id"));
+		order.setOrderDate(rs.getDate("order_date"));
+		order.setDeliveryName(rs.getString("delivery_name"));
+		order.setDeliveryEmail(rs.getString("delivery_email"));
+		order.setDeliveryZipCode(rs.getString("delivery_zip_code"));
+		order.setDeliveryAddress(rs.getString("delivery_address"));
+		order.setDeliveryTel(rs.getString("delivery_tel"));
+		
 		return order;
 	};
-	
-	public void insert(AdminUser adminUser) {
-		Integer currentMaxId =getMaxId();
-		if (currentMaxId == null) {
-			// テーブルにデータがない場合 -> IDを付与する
-			currentMaxId = 1;
-			adminUser.setId(currentMaxId);
-		}else {
-			adminUser.setId(currentMaxId+1);
-		}
-		SqlParameterSource param = new BeanPropertySqlParameterSource(adminUser);
-		String sql = "insert into orders(id,order_number,user_id,status,totalprice)values(:id,:order_number,:user_id,:status,:totalprice);";
-		template.update(sql, param);
-	}
 	
 	@Autowired
 	NamedParameterJdbcTemplate template;
@@ -57,20 +50,9 @@ public class OrderRepository {
 	 * @return 注文のリストを返す
 	 */
 	public List<Order> findAll(){
-		String sql ="SELECT id,order_number,user_id,status,total_price FROM orders";
+		String sql ="SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders";
 		
 		List<Order> orderList = template.query(sql, ORDER_ROW_MAPPER);
 		return orderList;
-	}
-	
-	public Integer getMaxId() {
-		try {
-			Integer maxId = template.queryForObject("SELECT MAX(id) FROM orders;", 
-													new MapSqlParameterSource(),Integer.class);
-			return maxId;
-		} catch (DataAccessException e) {
-			// データが存在しない場合
-			return null;
-		}
 	}
 }

@@ -18,34 +18,35 @@
         
         <table border="1">
 <tr>
-<td>注文番号</td>
-<td>日付</td>
-<td>利用者名</td>
-<td>現在のステータス</td>
-<td>総計(税込)</td>
+<th>注文番号</th>
+<th>日付</th>
+<th>利用者名</th>
+<th>現在のステータス</th>
+<th>総計(税込)</th>
 </tr>
 
-<tr>
+
 <c:forEach var="orderList" items="${orderList}">
+<tr>
 <td>
-<a href="./orderDetail.jsp"><c:out value="${orderList.orderNumber}"/></a>(決済の日付+連番)
+<a href="./orderDetail.jsp"><c:out value="${orderList.orderNumber}"/></a>
 </td>
 <td>
-<c:out value="${orderList.id}"/>(決済の日付)
+<fmt:formatDate pattern="yyyy/MM/dd" value="${orderList.orderDate}"/>
 </td>
 <td>
-<c:out value="${orderList.userId}"/>(userIdで結合して名前表示)
+<c:out value="${orderList.deliveryName}"/>
 </td>
 <td>
 <c:out value="${orderList.status}"/>
 </td>
 <td>
-<c:out value="${orderList.totalPrice}"/>
+<fmt:formatNumber pattern="\###,###" value="${orderList.totalPrice}"/>
 </td>
-</c:forEach>
 </tr>
+</c:forEach>
 </table>
-        
+<br>     
         <a href="administerMenu.jsp">メニューに戻れない</a>
 
 </div>
