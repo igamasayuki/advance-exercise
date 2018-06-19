@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.repository.OrderRepository;
 
-
-
-
 /**
  * 注文一覧を表示するコントローラ.
  * 

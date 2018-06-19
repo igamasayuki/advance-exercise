@@ -28,10 +28,10 @@
 <tr>
 <c:forEach var="orderList" items="${orderList}">
 <td>
-<c:out value="${orderList.orderNumber}"/>(決済の日付+連番)
+<a href="./orderDetail.jsp"><c:out value="${orderList.orderNumber}"/></a>(決済の日付+連番)
 </td>
 <td>
-<c:out value="${orderList.id}"/>(決済の時間)
+<c:out value="${orderList.id}"/>(決済の日付)
 </td>
 <td>
 <c:out value="${orderList.userId}"/>(userIdで結合して名前表示)
