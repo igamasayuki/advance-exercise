@@ -39,9 +39,20 @@ public class ItemRepository {
 	/**
 	 * 全件検索を行うメソッド.
 	 * 
-	 * @return 商品情報のリストを返します
+	 * @return 全商品情報のリストを返します
 	 */
-	public List<Item> findAll(){
+	public List<Item> findAll() {
+		String findSql = "SELECT id,name,description,price,imagepath,deleted FROM " + TABLE_NAME;
+		List<Item> itemList = template.query(findSql, ITEM_ROW_MAPPER);
+		return itemList;
+	}
+	
+	/**
+	 * 販売中の商品検索を行うメソッド.
+	 * 
+	 * @return 販売中の商品情報のリストを返します
+	 */
+	public List<Item> findSaleItems(){
 		String sql ="SELECT id,name,description,price,imagepath,deleted FROM " + TABLE_NAME + " WHERE deleted IS FALSE";
 		
 		List<Item> itemList = template.query(sql, ITEM_ROW_MAPPER);
@@ -49,11 +60,27 @@ public class ItemRepository {
 	}
 	
 	/**
-	 * 商品検索を行うメソッド.
+	 * 文字列検索を行うメソッド.
 	 * @param word 入力された単語
 	 * @return　該当する商品情報を返します
 	 */
 	public List<Item> findByWord(String word){
+		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word";
+	
+		SqlParameterSource param = new MapSqlParameterSource().addValue("word","%" +  word + "%");
+		
+		List<Item> findItemList = template.query(sql, param,ITEM_ROW_MAPPER);
+		
+		return findItemList;
+	
+	}
+	
+	/**
+	 * 販売中の商品一覧から商品名検索を行うメソッド.
+	 * @param word 入力された単語
+	 * @return　該当する商品情報を返します
+	 */
+	public List<Item> findSaleItemsByWord(String word){
 		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word AND deleted IS FALSE";
 	
 		SqlParameterSource param = new MapSqlParameterSource().addValue("word","%" +  word + "%");

@@ -25,14 +25,14 @@ public class ItemListController {
 	
 	@RequestMapping("/viewItemList")
 	public String list(Model model) {
-		List<Item> itemList = repository.findAll();
+		List<Item> itemList = repository.findSaleItems();
 		model.addAttribute("itemList",itemList);
 		return "/itemList";
 	}
 	
 	@RequestMapping("/findItem")
 	public String findItem(String word,Model model) {
-		List<Item> findItemList = repository.findByWord(word);
+		List<Item> findItemList = repository.findSaleItemsByWord(word);
 		model.addAttribute("findItemList",findItemList);
 		return "/itemList";
 	}
