@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-header {
+#header {
  width:800px;
  min-height:100px;
  height:auto !important;

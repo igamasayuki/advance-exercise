@@ -3,16 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="header/header.jsp"/>
 <meta charset="UTF-8">
 <title>商品詳細</title>
 </head>
 <body>
-<jsp:include page="header/header.jsp"/><br>
-<div align ="center">
 	<h2>商品詳細</h2>
+	<c:if test="${item != null}">
+		<table border="1" align="center">
 
-	<table border="1">
-		
 			<tr>
 				<td rowspan="3"><c:out value="${item.imagePath}" /></td>
 				<td>商品名</td>
@@ -26,13 +25,14 @@
 				<td>商品説明</td>
 				<td><c:out value="${item.description}" /></td>
 			</tr>
-	</table>
-	
+		</table>
+	</c:if>
+
+
 	<form action="${pageContext.request.contextPath}/×××" method="post">
 	<select path="quantity"/><br>
 	<input type="submit" value="カートに入れる">
 	</form>
 	<a href="${pageContext.request.contextPath}/viewItemList">商品一覧に戻る</a>
-</div>
 </body>
 </html>
