@@ -6,26 +6,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/adminHeader.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminRegister.css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
+<jsp:include page="adminHeader.jsp"/><br>
+<table border="1">
 <form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/registerAdmin/registerAdminUser">
-
-<form:errors path="name" cssStyle="color:red" />
-名前:<form:input path="name"/><br>
-
-<form:errors path="email" cssStyle="color:red"/><br>
-メールアドレス:<form:input path="email"/><br>
-
-<form:errors path="password" cssStyle="color:red"/><br>
-パスワード:<form:password path="password"/><br>
-
-<form:errors path="checkPassword" cssStyle="color:red" /><br>
-確認パスワード:<form:password path="checkPassword"/><br>
-<input type="submit" value="送信">
+<tr>
+<td><form:errors path="name" cssStyle="color:red" /></td>
+<td>名前:</td>
+<td><form:input path="name"/></td>
+</tr>
+<tr>
+<td><form:errors path="email" cssStyle="color:red"/></td>
+<td>メールアドレス:</td>
+<td><form:input path="email"/></td>
+</tr>
+<tr>
+<td><form:errors path="password" cssStyle="color:red"/></td>
+<td>パスワード:</td>
+<td><form:password path="password"/></td>
+</tr>
+<tr>
+<td><form:errors path="checkPassword" cssStyle="color:red" /></td>
+<td>確認パスワード:</td>
+<td><form:password path="checkPassword"/></td>
+</tr>
+<tr>
+<td><input type="submit" value="送信"></td>
+<td>aaa</td>
+<td>bbb</td>
+</tr>
 </form:form>
+</table>
 </body>
 </html>
