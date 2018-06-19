@@ -21,7 +21,7 @@
         <br>
         <br>
         <br>
-        <a href="administerLogin.html">ログアウト</a>
+        <a href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a>
 
 </div>
 
