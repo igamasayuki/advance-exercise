@@ -4,6 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.lang.NonNull;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ItemRegistrationForm {
 
@@ -13,8 +14,7 @@ public class ItemRegistrationForm {
 	private Integer price;
 	@NotBlank(message="説明を入力してください")
 	private String description;
-	@NotBlank(message="表示する商品画像を選択してください")
-	private String imagePath;
+	private MultipartFile imageFile;
 
 	public String getName() {
 		return name;
@@ -40,11 +40,11 @@ public class ItemRegistrationForm {
 		this.description = description;
 	}
 
-	public String getImagePath() {
-		return imagePath;
+	public MultipartFile getImageFile() {
+		return imageFile;
 	}
 
-	public void setImagePath(String imagePath) {
-		this.imagePath = imagePath;
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
 	}
 }
