@@ -21,6 +21,7 @@ public class AdminItemListController {
 	@RequestMapping
 	public String showItemListView(Model model) {
 		List<Item> itemList = repository.findAll();
+		if (itemList.isEmpty()) return "adminItemList";
 		model.addAttribute("items", itemList);
 		return "adminItemList";
 	}
@@ -29,6 +30,8 @@ public class AdminItemListController {
 	public String index(String keyword, Model model) {
 		model.addAttribute("keyword", keyword);
 		List<Item> filterdItemList = repository.findByWord(keyword);
+		System.out.println(filterdItemList);
+		if (filterdItemList.isEmpty()) return "adminItemList";
 		model.addAttribute("items", filterdItemList);
 		return "adminItemList";
 	}
