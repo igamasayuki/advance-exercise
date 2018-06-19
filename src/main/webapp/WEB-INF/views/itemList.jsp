@@ -8,6 +8,7 @@
 </head>
 <body>
 <jsp:include page="header/header.jsp"/><br>
+<div align ="center">
 	<h3>商品一覧</h3>
 
 	<form action="${pageContext.request.contextPath}/findItem"
@@ -51,6 +52,6 @@
 			</tr>
 		</table>
 	</c:if>
-
+</div>
 </body>
 </html>

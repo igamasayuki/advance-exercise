@@ -8,6 +8,7 @@
 </head>
 <body>
 <jsp:include page="header/header.jsp"/><br>
+<div align ="center">
 	<h2>商品詳細</h2>
 
 	<table border="1">
@@ -28,9 +29,10 @@
 	</table>
 	
 	<form action="${pageContext.request.contextPath}/×××" method="post">
+	<select path="quantity"/><br>
 	<input type="submit" value="カートに入れる">
 	</form>
 	<a href="${pageContext.request.contextPath}/viewItemList">商品一覧に戻る</a>
-
+</div>
 </body>
 </html>
