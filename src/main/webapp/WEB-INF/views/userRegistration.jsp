@@ -38,25 +38,25 @@
 				<th>郵便番号<br>
 				(ハイフン抜き　例：XXXyyyy)</th>
 				<td>〒<form:input path="zipCode"
-						onKeyUp="AjaxZip3.zip2addr(this,'','address','address');" /><br>
+						onKeyUp="AjaxZip3.zip2addr(this,'','address1','address1');" /><br>
 					<form:errors path="zipCode" cssStyle="color:red" element="div" /></td>
 			</tr>
 			<tr>
 				<th rowspan="3">住所</th>
-				<td><form:input path="address" /><br> <form:errors
-						path="address" cssStyle="color:red" element="div" /></td>
+				<td>都道府県市区町村<form:input path="address1" /><br> <form:errors
+						path="address1" cssStyle="color:red" element="div" /></td>
 			</tr>
 			<tr>
-				<td><form:input path="address" /><br> <form:errors
-						path="address" cssStyle="color:red" element="div" /></td>
+				<td>番地<form:input path="address2" /><br> <form:errors
+						path="address2" cssStyle="color:red" element="div" /></td>
 			</tr>
 			<tr>
-				<td><form:input path="address" /></td>
+				<td>建物名<form:input path="address3" /></td>
 			</tr>
 			<tr>
 				<th>電話番号</th>
-				<td><form:input path="telephone" />-<form:input
-						path="telephone" />-<form:input path="telephone" /><br> <form:errors
+				<td><form:input path="telephone1" />-<form:input
+						path="telephone2" />-<form:input path="telephone3" /><br> <form:errors
 						path="telephone" cssStyle="color:red" element="div" /></td>
 			</tr>
 		</table>
