@@ -31,7 +31,7 @@
 					<td><fmt:formatNumber pattern="\###,###" value="${item.price}"/></td>
 					<td><c:out value="${item.description}"/></td>
 					<td>
-						<form:form action="${pageContext.request.contextPath}/itemEditing/edit?id=${item.id}">
+						<form:form action="${pageContext.request.contextPath}/itemEditing/?id=${item.id}">
 							<input type="submit" value="編集">
 						</form:form>
 						<c:choose>
