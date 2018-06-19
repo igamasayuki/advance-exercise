@@ -7,10 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="../css/adminHeader.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <title>Insert title here</title>
 </head>
 <body>
+<div id="header">
 <div id="userHeader" align="right">
 	<p>こんにちは管理者さん</p>
 	<p><a href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a></p>
@@ -21,6 +22,6 @@
 	height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1></div>
 <div id="title" align="center">
 </div>
-
+</div>
 </body>
 </html>
