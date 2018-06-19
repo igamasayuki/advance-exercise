@@ -1,23 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <meta charset="UTF-8">
 <title>商品一覧</title>
+<jsp:include page="header/header.jsp"/>
 </head>
 <body>
-<jsp:include page="header/header.jsp"/><br>
+<div align ="center">
+
 	<h3>商品一覧</h3>
 
+</div>
 	<form action="${pageContext.request.contextPath}/findItem"
 		method="post">
 		<input type="text" name="word">
 		<input type="submit" value="検索する">
 	</form>
-
-	<c:if test="${findItemList == null}">
-		<table border="1">
+	<c:choose>
+	<c:when test="${itemList == null}">
+	<c:out value="商品がありません。"/>
+	</c:when>
+	<c:otherwise>
+		<table border="1" align ="center">
 			<tr>
 				<td colspan="2">商品名</td>
 				<td>価格</td>
@@ -33,24 +40,8 @@
 				</tr>
 			</c:forEach>
 		</table>
-	</c:if>
-
-	<c:if test="${findItemList != null}">
-		<table border="1">
-			<tr>
-				<td colspan="2">商品名</td>
-				<td>価格</td>
-			</tr>
-
-			<tr>
-				<c:forEach var="findItem" items="${findItemList}">
-					<td><c:out value="${findItem.name}" /></td>
-					<td><c:out value="${findItem.imagePath}" /></td>
-					<td><c:out value="${findItem.price}" /></td>
-				</c:forEach>
-			</tr>
-		</table>
-	</c:if>
-
+		</c:otherwise>
+		
+</c:choose>
 </body>
 </html>

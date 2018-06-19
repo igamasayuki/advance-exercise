@@ -26,6 +26,10 @@ public class ItemListController {
 	@RequestMapping("/viewItemList")
 	public String list(Model model) {
 		List<Item> itemList = repository.findSaleItems();
+
+		if(itemList.isEmpty()) {
+			return "/itemList";
+		}
 		model.addAttribute("itemList",itemList);
 		return "/itemList";
 	}
@@ -34,6 +38,10 @@ public class ItemListController {
 	public String findItem(String word,Model model) {
 		List<Item> findItemList = repository.findSaleItemsByWord(word);
 		model.addAttribute("findItemList",findItemList);
+		if(findItemList.isEmpty()) {
+			return "/itemList";
+		}
+		model.addAttribute("itemList",findItemList);
 		return "/itemList";
 	}
 }
