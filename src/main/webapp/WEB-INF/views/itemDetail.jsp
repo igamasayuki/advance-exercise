@@ -3,36 +3,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="header/header.jsp"/>
+<link rel="stylesheet" href="css/style.css">
 <meta charset="UTF-8">
 <title>商品詳細</title>
 </head>
 <body>
-	<h2>商品詳細</h2>
-	<c:if test="${item != null}">
-		<table border="1" align="center">
+<jsp:include page="userHeader.jsp" />
+	<div align="center">
+		<h3>商品詳細</h3>
+		<c:if test="${item != null}">
+			<table border="1">
 
-			<tr>
-				<td rowspan="3"><c:out value="${item.imagePath}" /></td>
-				<td>商品名</td>
-				<td><c:out value="${item.name}" /></td>
-			</tr>
-			<tr>
-				<td>価格</td>
-				<td><c:out value="${item.price}" /></td>
-			</tr>
-			<tr>
-				<td>商品説明</td>
-				<td><c:out value="${item.description}" /></td>
-			</tr>
-		</table>
-	</c:if>
+				<tr>
+					<td rowspan="3"><img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
+					<td>商品名</td>
+					<td><c:out
+								value="${item.name}" /></td>
+				</tr>
+				<tr>
+					<td>価格</td>
+					<td><c:out value="${item.price}" /></td>
+				</tr>
+				<tr>
+					<td>商品説明</td>
+					<td><c:out value="${item.description}" /></td>
+				</tr>
+			</table>
+		</c:if>
+		<br><br>
 
-
-	<form action="${pageContext.request.contextPath}/×××" method="post">
-	<select path="quantity"/><br>
-	<input type="submit" value="カートに入れる">
-	</form>
-	<a href="${pageContext.request.contextPath}/viewItemList">商品一覧に戻る</a>
+		<form action="${pageContext.request.contextPath}/×××" method="post">
+			個数　：　<select path="quantity" /><br> <br>
+		 <input type="submit" value="カートに入れる">
+		</form>
+		<br><br>
+			 <a href="${pageContext.request.contextPath}/viewItemList">商品一覧に戻る</a>
+	</div>
 </body>
 </html>
