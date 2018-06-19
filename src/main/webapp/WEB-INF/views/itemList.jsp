@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
@@ -7,7 +7,7 @@
 <title>商品一覧</title>
 </head>
 <body>
-
+<jsp:include page="header/header.jsp"/><br>
 	<h3>商品一覧</h3>
 
 	<form action="${pageContext.request.contextPath}/findItem"
@@ -25,7 +25,9 @@
 
 			<c:forEach var="item" items="${itemList}">
 				<tr>
-					<td><c:out value="${item.name}" /></td>
+					<td>
+					<a href="${pageContext.request.contextPath}/item_detail/item_detail?id=${item.id}"><c:out value="${item.name}" /></a>
+					</td>
 					<td><c:out value="${item.imagePath}" /></td>
 					<td><c:out value="${item.price}" /></td>
 				</tr>

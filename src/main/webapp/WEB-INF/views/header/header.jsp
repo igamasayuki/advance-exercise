@@ -17,7 +17,7 @@
 </div>
 			
 <div id="linkHeader" align="left">
-	<h1 align ="left"><a href="../user/itemList.html"><img src="../img/rakus.jpg" width="50"
+	<h1 align ="left"><a href="${pageContext.request.contextPath}/viewItemList"><img src="../img/rakus.jpg" width="50"
 	height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
 <div id="title" align="center">
 </div>
