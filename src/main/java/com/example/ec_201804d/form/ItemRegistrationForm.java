@@ -8,13 +8,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ItemRegistrationForm {
 
-	@NotBlank(message="商品名を入力してください")
+	@NotBlank(message = "商品名を入力してください")
 	private String name;
-	@NotNull(message="価格を入力してください")
+	@NotNull(message = "価格を入力してください")
 	private Integer price;
-	@NotBlank(message="説明を入力してください")
+	@NotBlank(message = "説明を入力してください")
 	private String description;
 	private MultipartFile imageFile;
+	private boolean deleted;
 
 	public String getName() {
 		return name;
@@ -46,5 +47,13 @@ public class ItemRegistrationForm {
 
 	public void setImageFile(MultipartFile imageFile) {
 		this.imageFile = imageFile;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 }
