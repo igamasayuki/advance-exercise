@@ -111,4 +111,14 @@ public class ItemRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
 		template.update(insertSql, param);
 	}
+
+	public void update(Item item) {
+		System.out.println("imagePath:" + item.getImagePath());
+		String updateSql = "UPDATE " + TABLE_NAME 
+				+ " SET name=:name, description=:description, price=:price, imagepath=:imagePath, deleted=:deleted"
+				+ " WHERE id=:id";
+		System.out.println("id:"+item.getId());
+		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
+		template.update(updateSql, param);
+	}
 }
