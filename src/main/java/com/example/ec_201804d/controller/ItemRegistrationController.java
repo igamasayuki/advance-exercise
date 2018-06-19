@@ -67,6 +67,6 @@ public class ItemRegistrationController {
 			return showInsertItemView(model);
 		}
 		repository.insert(item);
-		return "redirect:/itemList/viewItemList";
+		return "redirect:/adminItemList/viewItemList";
 	}
 }
