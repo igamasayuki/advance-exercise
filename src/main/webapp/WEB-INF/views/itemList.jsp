@@ -3,21 +3,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="styleshhet" href="../css/bootstrap.css">
-<link rel="styleshhet" href="../css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <meta charset="UTF-8">
 <title>商品一覧</title>
 </head>
 <body>
 <jsp:include page="userHeader.jsp"/>
-<div align ="center">
 
 	<h3>商品一覧</h3>
+
+<br><br>
 
 	<form action="${pageContext.request.contextPath}/findItem"
 		method="post">
 		<input type="text" name="word">
 		<input type="submit" value="検索する">
+		<br><br>
 	</form>
 	<c:choose>
 	<c:when test="${itemList == null}">
@@ -43,6 +44,6 @@
 		</c:otherwise>
 		
 </c:choose>
-</div>
+
 </body>
 </html>

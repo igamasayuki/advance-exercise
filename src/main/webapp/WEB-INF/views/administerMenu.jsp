@@ -15,7 +15,7 @@
 <div align ="center">
     <h2>管理者メニュー画面</h2>
         <a href="${pageContext.request.contextPath}/register">商品を登録</a><br><br>
-        <a href="${pageContext.request.contextPath}/itemList">商品一覧</a><br><br>
+        <a href="${pageContext.request.contextPath}/adminItemList">商品一覧</a><br><br>
         <a href="${pageContext.request.contextPath}/orderList">注文一覧</a><br><br>
         <a href="${pageContext.request.contextPath}/registerAdmin/viewRegisterAdmin">新規登録</a>
         <br>

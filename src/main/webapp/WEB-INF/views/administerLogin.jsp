@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="adminHeader.jsp"/><br>
 <div align="center">
   <h2>ログイン</h2> 
   <form:form modelAttribute="loginAdminForm" action="${pageContext.request.contextPath}/adminLogin/fromLogintoMenu">
