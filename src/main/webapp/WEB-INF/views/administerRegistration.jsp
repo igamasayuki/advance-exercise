@@ -11,7 +11,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/><br>
+<div id="includeHeader">
+<jsp:include page="adminHeader.jsp"/>
+</div>
+
+<div id="include">
+<jsp:include page="administerMenu.jsp"/>
+</div>
+
 <table border="1">
 <form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/registerAdmin/registerAdminUser">
 <tr>
@@ -35,9 +42,9 @@
 <td><form:password path="checkPassword"/></td>
 </tr>
 <tr>
+<td></td>
 <td><input type="submit" value="送信"></td>
-<td>aaa</td>
-<td>bbb</td>
+<td></td>
 </tr>
 </form:form>
 </table>

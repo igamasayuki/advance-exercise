@@ -1,13 +1,21 @@
 @charset "UTF-8";
 
 table{
+	
 	background-color:skyblue;
 	margin-right: auto;
 	margin-left: auto;
 }
 
 td{
-	width:30px;
-	height:40px;
+	width:150px;
+	height:100px;
 	text-align:right;
+}
+
+div#include{
+	width:250px;
+	height:100px;
+	color:red;
+	background-color:yellow;
 }
