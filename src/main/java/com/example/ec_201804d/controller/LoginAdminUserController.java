@@ -1,5 +1,7 @@
 package com.example.ec_201804d.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +15,16 @@ import com.example.ec_201804d.form.LoginAdminForm;
 import com.example.ec_201804d.repository.AdminUserRepoistory;
 
 
+
+
 @Controller
 @RequestMapping(value="/adminLogin")
 public class LoginAdminUserController {
 	@Autowired
 	private AdminUserRepoistory adminUserRepository;
+	
+	@Autowired
+	private HttpSession session;
 	
 	@ModelAttribute
 	public LoginAdminForm setUpLoginForm() {
@@ -41,6 +48,7 @@ public class LoginAdminUserController {
 		if(result.hasErrors()) {
 			return "administerLogin";
 		}
+		session.setAttribute("name",adminUser.getName());
 		return "administerMenu";
 	}
 	
