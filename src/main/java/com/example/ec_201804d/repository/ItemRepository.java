@@ -129,4 +129,17 @@ public class ItemRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
 		template.update(updateSql, param);
 	}
+
+	/**
+	 * 商品情報の削除フラグを変更する.
+	 * @param id ID
+	 * @param currentFlag 現在の削除フラグ
+	 */
+	public void updateDeletedById(long id, boolean currentFlag) {
+		String updateSql = "UPDATE " + TABLE_NAME 
+				+ " SET deleted=:deleted"
+				+ " WHERE id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("deleted", !currentFlag).addValue("id", id);
+		template.update(updateSql, param);
+	}
 }

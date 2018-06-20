@@ -43,7 +43,7 @@
 						</form:form>
 						<c:choose>
 							<c:when test="${item.deleted}">
-								<form:form action="${pageContext.request.contextPath}/itemDeletion/delete?id=${item.id}">
+								<form:form action="${pageContext.request.contextPath}/itemDeletion/redisplay?id=${item.id}">
 									<input type="hidden" name="deleted" value="false">
 									<input type="submit" value="再表示">
 								</form:form>
