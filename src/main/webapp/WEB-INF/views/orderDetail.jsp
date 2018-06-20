@@ -95,12 +95,21 @@
 					<c:when test="${order.status == 3}">発送済み</c:when>
 					<c:when test="${order.status == 4}">キャンセル</c:when>
 				</c:choose></td>
+			<td><select name="birthMonth">
+					<option value="0">未購入</option>
+					<option value="1">未入金</option>
+					<option value="2">入金済み</option>
+					<option value="3">発送済み</option>
+					<option value="4">キャンセル</option>
+			</select>
+			<input class="btn" type="submit" value="更新">
+			</td>
 		</tr>
+		
 	</table>
 	<br>
 
-	<a
-		href="${pageContext.request.contextPath}/viewOrderList/">注文一覧に戻る
+	<a href="${pageContext.request.contextPath}/viewOrderList/">注文一覧に戻る
 	</a>
 
 </body>
