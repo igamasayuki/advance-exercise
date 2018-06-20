@@ -29,7 +29,6 @@
 			<td><c:out value="${order.deliveryName}" /></td>
 		</tr>
 		<tr>
-		<tr>
 			<th>メールアドレス</th>
 			<td><c:out value="${order.deliveryEmail}" /></td>
 		</tr>
