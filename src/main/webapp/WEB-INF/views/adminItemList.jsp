@@ -13,8 +13,8 @@
 <title>商品一覧</title>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
 <jsp:include page="administerMenu.jsp"/>
+<jsp:include page="adminHeader.jsp"/>
 <div id="adminItemList">
 <h3>商品一覧</h3>
 <form:form action="${pageContext.request.contextPath}/adminItemList/index">
@@ -43,7 +43,7 @@
 						</form:form>
 						<c:choose>
 							<c:when test="${item.deleted}">
-								<form:form action="${pageContext.request.contextPath}/itemDeletion/delete?id=${item.id}">
+								<form:form action="${pageContext.request.contextPath}/itemDeletion/redisplay?id=${item.id}">
 									<input type="hidden" name="deleted" value="false">
 									<input type="submit" value="再表示">
 								</form:form>

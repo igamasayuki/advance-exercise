@@ -14,9 +14,7 @@ import com.example.ec_201804d.domain.Item;
 
 /**
  * 商品情報を操作するメソッド.
- * 
  * @author minori.matsuoka
- *
  */
 @Repository
 public class ItemRepository {
@@ -37,35 +35,36 @@ public class ItemRepository {
 	NamedParameterJdbcTemplate template;
 	
 	/**
-	 * 全件検索を行うメソッド.
-	 * 
-	 * @return 全商品情報のリストを返します
+	 * 全件検索を行う.
+	 * @return 全商品情報を保持するリスト
 	 */
 	public List<Item> findAll() {
-		String findSql = "SELECT id,name,description,price,imagepath,deleted FROM " + TABLE_NAME;
+		String findSql = "SELECT id,name,description,price,imagepath,deleted FROM " + TABLE_NAME
+				+ " ORDER BY name, price";
 		List<Item> itemList = template.query(findSql, ITEM_ROW_MAPPER);
 		return itemList;
 	}
 	
 	/**
-	 * 販売中の商品検索を行うメソッド.
-	 * 
-	 * @return 販売中の商品情報のリストを返します
+	 * 販売中の商品検索を行う.
+	 * @return 販売中の商品情報を保持するリスト
 	 */
 	public List<Item> findSaleItems(){
-		String sql ="SELECT id,name,description,price,imagepath,deleted FROM " + TABLE_NAME + " WHERE deleted IS FALSE";
+		String sql ="SELECT id,name,description,price,imagepath,deleted FROM " + TABLE_NAME + " WHERE deleted IS FALSE"
+				+ " ORDER BY name";
 		
 		List<Item> itemList = template.query(sql, ITEM_ROW_MAPPER);
 		return itemList;
 	}
 	
 	/**
-	 * 文字列検索を行うメソッド.
+	 * 文字列検索を行う.
 	 * @param word 入力された単語
-	 * @return　該当する商品情報を返します
+	 * @return　検索された文字列を含む商品情報
 	 */
 	public List<Item> findByWord(String word){
-		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word";
+		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word"
+				+ "  ORDER BY name";
 	
 		SqlParameterSource param = new MapSqlParameterSource().addValue("word","%" +  word + "%");
 		
@@ -76,12 +75,13 @@ public class ItemRepository {
 	}
 	
 	/**
-	 * 販売中の商品一覧から商品名検索を行うメソッド.
+	 * 販売中の商品一覧から商品名検索を行う.
 	 * @param word 入力された単語
-	 * @return　該当する商品情報を返します
+	 * @return　検索された文字列を含む商品の情報
 	 */
 	public List<Item> findSaleItemsByWord(String word){
-		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word AND deleted IS FALSE";
+		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word AND deleted IS FALSE"
+				+ " ORDER BY name";
 	
 		SqlParameterSource param = new MapSqlParameterSource().addValue("word","%" +  word + "%");
 		
@@ -92,9 +92,9 @@ public class ItemRepository {
 	}
 	
 	/**
-	 * 商品詳細を表示するためのメソッド.
+	 * 商品詳細を表示するための.
 	 * @param id ID
-	 * @return 該当する商品情報を返します
+	 * @return 選択された商品情報
 	 */
 	public Item load(int id) {
 		String sql ="SELECT id,name,description,price,imagepath,deleted FROM items WHERE id=:id";
@@ -127,6 +127,19 @@ public class ItemRepository {
 				+ " WHERE id=:id";
 		System.out.println("id:"+item.getId());
 		SqlParameterSource param = new BeanPropertySqlParameterSource(item);
+		template.update(updateSql, param);
+	}
+
+	/**
+	 * 商品情報の削除フラグを変更する.
+	 * @param id ID
+	 * @param currentFlag 現在の削除フラグ
+	 */
+	public void updateDeletedById(long id, boolean currentFlag) {
+		String updateSql = "UPDATE " + TABLE_NAME 
+				+ " SET deleted=:deleted"
+				+ " WHERE id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("deleted", !currentFlag).addValue("id", id);
 		template.update(updateSql, param);
 	}
 }

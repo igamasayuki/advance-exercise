@@ -1,36 +1,38 @@
 @charset "UTF-8";
 
-body{
-	background-color:lavender;
+h3{
+
+	width:250px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 	
 }
 
-h3{
-	width:800px;
-	text-align:center;
-	margin: 0 auto;
-	
-}
 
 .center-block{
+
+	width:500px;
 	text-align:center;
-	margin-right: auto;
 	margin-left: auto;
+	margin-right: auto;
 	margin-bottom:30px;
-	 width: 250px;
+	width:800px;
+	
 }
 
 
 table{
 	background-color:aquamarine;
-	margin-right: auto;
+	width:500px;
+	height:100px;
 	margin-left: auto;
-	margin-bottom:30px;
+	margin-right: auto;
+	margin-bottom: 30px;
 }
 
 td{
-	width:150px;
-	height:100px;
+	
 	text-align:center;
 }
 

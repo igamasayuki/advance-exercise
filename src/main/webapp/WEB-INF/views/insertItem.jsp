@@ -13,9 +13,8 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 </head>
 <body>
-
-<jsp:include page="adminHeader.jsp"/>
 <jsp:include page="administerMenu.jsp"/>
+<jsp:include page="adminHeader.jsp"/>
 <div class="padding">
 <h3>商品登録画面</h3>
 <p>新規で登録したい商品の情報を入力してください。</p>
@@ -37,7 +36,7 @@
 	<form:label path="deleted">削除</form:label><br>
 	<input type="submit" value="登録">
 </form:form>
-<a href="${pageContext.request.contextPath}/admin/adminmenu/show">管理者メニュー画面に戻る</a>
+<a href="${pageContext.request.contextPath}/adminItemList/">商品一覧画面に戻る</a>
 </div>
 </body>
 </html>

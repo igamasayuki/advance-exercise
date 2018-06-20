@@ -17,11 +17,12 @@
 			<input type="text" name="word"> <input type="submit"
 				value="検索する">
 		</form>
-	</div>
-
+</div>
 	<c:choose>
 		<c:when test="${itemList == null}">
-			<c:out value="商品がありません。" />
+			<div class="center-block">
+				<c:out value="商品がありません。" />
+			</div>
 		</c:when>
 		<c:otherwise>
 			<table border="1">
