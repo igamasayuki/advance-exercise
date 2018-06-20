@@ -6,6 +6,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminHeader.css" />
+
 <meta charset="UTF-8">
 <title>商品一覧</title>
 </head>
