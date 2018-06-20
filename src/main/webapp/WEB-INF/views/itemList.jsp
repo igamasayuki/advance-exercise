@@ -4,8 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <meta charset="UTF-8">
 <title>商品一覧</title>
 </head>

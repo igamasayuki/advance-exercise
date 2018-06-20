@@ -6,12 +6,17 @@ body{
 }
 
 h3{
+	width:800px;
+	text-align:center;
 	margin: 0 auto;
 	
 }
 
 .center-block{
-	 margin: 0 auto;
+	text-align:center;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom:30px;
 	 width: 250px;
 }
 
@@ -20,6 +25,7 @@ table{
 	background-color:aquamarine;
 	margin-right: auto;
 	margin-left: auto;
+	margin-bottom:30px;
 }
 
 td{

@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="head">
+<div id="header">
 <div id="userHeader">
 <p>こんにちは<c:out value="${name}"/>さん</p>
 	<p><a href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a></p>
