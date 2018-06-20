@@ -49,7 +49,7 @@ public class LoginAdminUserController {
 			return "administerLogin";
 		}
 		session.setAttribute("name",adminUser.getName());
-		return "administerMenu";
+		return "administerTop";
 	}
 	
 }

@@ -7,7 +7,7 @@
 <html>
 <head>
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminMenu.css" />
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -16,15 +16,14 @@
 <div id="menu">
     <h2>管理者メニュー画面</h2>
 
-        <a href="${pageContext.request.contextPath}/item_registration/show_view">商品を登録</a><br><br>
-        <a href="${pageContext.request.contextPath}/adminItemlist/">商品一覧</a><br><br>
-        <a href="${pageContext.request.contextPath}/orderList">注文一覧</a><br><br>
-        <a href="${pageContext.request.contextPath}/registerAdmin/viewRegisterAdmin">新規登録</a>
+        <a class="menuLink" href="${pageContext.request.contextPath}/item_registration/show_view">商品を登録</a><br><br>
+        <a class="menuLink" href="${pageContext.request.contextPath}/adminItemlist/">商品一覧</a><br><br>
+        <a class="menuLink" href="${pageContext.request.contextPath}/orderList">注文一覧</a><br><br>
+        <a class="menuLink" href="${pageContext.request.contextPath}/registerAdmin/viewRegisterAdmin">新規登録</a>
         <br>
         <br>
         <br>
-        <a href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a>
-
+        <a class="menuLink" href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a>
 </div>
 
 </body>

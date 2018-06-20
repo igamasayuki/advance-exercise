@@ -6,18 +6,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminRegister.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<div id="head">
-<div id="userHeader">
-<p>こんにちは<c:out value="${name}"/>さん</p>
-	<p><a href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a></p>
-	</div>
-	<h1 align ="left"><a href="${pageContext.request.contextPath}/viewItemList"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
-	
-	height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1></div>
+<jsp:include page="adminHeader.jsp"/>
+<jsp:include page="administerMenu.jsp"/>
+<div id="Top">
+hello
+</div>
 </body>
 </html>

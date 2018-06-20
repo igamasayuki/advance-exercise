@@ -7,20 +7,19 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminRegister.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<div id="includeHeader">
 <jsp:include page="adminHeader.jsp"/>
-</div>
-
-<div id="include">
 <jsp:include page="administerMenu.jsp"/>
-</div>
-
 <table border="1">
 <form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/registerAdmin/registerAdminUser">
+<tr>
+<td id="registerAdminUser"colspan="3">新規管理者登録</td>
+</tr>
 <tr>
 <td><form:errors path="name" cssStyle="color:red" /></td>
 <td>名前:</td>
