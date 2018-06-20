@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminRegister.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
@@ -13,8 +15,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
 <jsp:include page="administerMenu.jsp"/>
+<jsp:include page="adminHeader.jsp"/>
 <div id="Top">
 hello
 </div>
