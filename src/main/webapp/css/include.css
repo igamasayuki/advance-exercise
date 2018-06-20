@@ -52,6 +52,6 @@ a.menuLink:visited{
 	color:white;
 }
 
-a:hover{
+a.menuLink:hover{
 	color:white;
 }
