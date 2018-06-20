@@ -6,12 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>商品登録画面</title>
-<link rel="styleshhet" href="../css/bootstrap.css">
-<link rel="styleshhet" href="../css/style.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<jsp:include page="adminHeader.jsp"/>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
+<div class="padding">
 <h3>商品登録画面</h3>
+</div>
 <p>新規で登録したい商品の情報を入力してください。</p>
 <form:form modelAttribute="itemRegistrationForm" action="${pageContext.request.contextPath}/item_registration/register" enctype="multipart/form-data">
 	<form:label path="name">商品名:</form:label>
@@ -32,5 +34,6 @@
 	<input type="submit" value="登録">
 </form:form>
 <a href="${pageContext.request.contextPath}/admin/adminmenu/show">管理者メニュー画面に戻る</a>
+
 </body>
 </html>

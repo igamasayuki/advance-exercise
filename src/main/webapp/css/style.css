@@ -1,17 +1,29 @@
 @CHARSET "UTF-8";
 
 body {
-	
   padding-top: 40px;
   padding-bottom: 40px;
+  text-align: center;
+  
 }
 
+
+
 h3{
-	color:#4A9DFB;
-	background-color:#F1F8F8;
+	
 	width:635px;
-	border-left:#4A9DFB solid 4px;
 	text-indent:1em;
+	margin:0 auto;
+}
+
+form{
+	display: inline-block;
+	margin: 0 auto;
+}
+
+table{
+	display: inline-block;	
+	 text-align: left;
 }
 
 ul.error{

@@ -15,6 +15,7 @@
 
 <div id="menu">
     <h2>管理者メニュー画面</h2>
+
         <a href="${pageContext.request.contextPath}/item_registration/show_view">商品を登録</a><br><br>
         <a href="${pageContext.request.contextPath}/adminItemlist/">商品一覧</a><br><br>
         <a href="${pageContext.request.contextPath}/orderList">注文一覧</a><br><br>
