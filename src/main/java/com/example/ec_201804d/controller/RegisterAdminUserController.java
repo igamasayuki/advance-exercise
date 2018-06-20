@@ -16,6 +16,10 @@ import com.example.ec_201804d.repository.AdminUserRepoistory;
 
 
 
+/**
+ * @author kakiki
+ *管理者登録のコントローラー.
+ */
 @Controller
 @RequestMapping(value="/registerAdmin")
 public class RegisterAdminUserController {
@@ -27,11 +31,22 @@ public class RegisterAdminUserController {
 		return new RegisterAdminUserForm();
 	}
 	
+	/**
+	 * 管理者登録画面表示.
+	 * @return 管理者登録画面の表示
+	 */
 	@RequestMapping(value="/viewRegisterAdmin")
 	public String viewRegisterAdmin() {
 		return "administerRegistration";
 	}
 	
+	/**
+	 * 管理者登録実行もしエラー出たら管理者登録画面に戻る.
+	 * @param form 登録フォーム
+	 * @param result エラー
+	 * @param model　モデル
+	 * @return
+	 */
 	@RequestMapping(value="/registerAdminUser")
 	public String registerAdminUser(@Validated RegisterAdminUserForm form,
 									BindingResult result,

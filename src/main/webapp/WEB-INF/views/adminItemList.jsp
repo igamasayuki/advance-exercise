@@ -5,13 +5,17 @@
 <!DOCTYPE>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminHeader.css" />
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <meta charset="UTF-8">
 <title>商品一覧</title>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/><br>
+<jsp:include page="adminHeader.jsp"/>
+<jsp:include page="administerMenu.jsp"/>
+<div id="adminItemList">
 <h3>商品一覧</h3>
 <form:form action="${pageContext.request.contextPath}/adminItemList/index">
 	<input type="text" name="keyword" value="${keyword}">
@@ -60,5 +64,6 @@
 		商品がありません。
 	</c:otherwise>
 </c:choose>
+</div>
 </body>
 </html>
