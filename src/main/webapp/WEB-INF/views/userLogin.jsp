@@ -14,7 +14,7 @@
 	<h3>ログイン</h3>
 	<div class="center-block">
 		<form:form modelAttribute="userLoginForm"
-			action="${pageContext.request.contextPath}/">
+			action="${pageContext.request.contextPath}/login">
 			<table border="">
 				<tr>
 					<th>メールアドレス:</th>
@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<th>パスワード：</th>
-					<td><form:input path="password" /></td>
+					<td><form:input path="password" type="password" /></td>
 				</tr>
 			</table>
 			<input type="submit" value="ログイン">
