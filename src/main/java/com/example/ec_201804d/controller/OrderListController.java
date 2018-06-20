@@ -17,16 +17,23 @@ import com.example.ec_201804d.repository.OrderRepository;
  *
  */
 @Controller
-@RequestMapping("/orderList")
+@RequestMapping("/")
 public class OrderListController {
-	
+
 	@Autowired
 	OrderRepository repository;
-	
+
 	@RequestMapping("/viewOrderList")
 	public String list(Model model) {
 		List<Order> orderList = repository.findAll();
-		model.addAttribute("orderList",orderList);
+		model.addAttribute("orderList", orderList);
 		return "/orderList";
+	}
+
+	@RequestMapping("/orderDetail")
+	public String execute(Integer id, Model model) {
+		Order order = repository.load(id);
+		model.addAttribute("order", order);
+		return "/orderDetail";
 	}
 }

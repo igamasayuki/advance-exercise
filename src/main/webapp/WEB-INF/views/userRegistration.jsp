@@ -6,11 +6,14 @@
 <head>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <title>ユーザ登録画面</title>
 </head>
 <body>
-	<h2>新規利用者登録画面</h2>
-	<h4>お客様の情報を入力し、「お客様情報を登録する」ボタンをクリックしてください。</h4>
+<jsp:include page="userHeader.jsp" />
+	<h3>新規利用者登録画面</h3>
+	<div class="center-block">
+	お客様の情報を入力し、「お客様情報を登録する」ボタンをクリックしてください。<br>
 	<form:form modelAttribute="userRegistrationForm"
 		action="${pageContext.request.contextPath}/register/insert">
 		<table border="1">
@@ -36,7 +39,7 @@
 			</tr>
 			<tr>
 				<th>郵便番号<br>
-				(ハイフン抜き　例：XXXyyyy)</th>
+				(ハイフン抜き　例：123456)</th>
 				<td>〒<form:input path="zipCode"
 						onKeyUp="AjaxZip3.zip2addr(this,'','address1','address1');" /><br>
 					<form:errors path="zipCode" cssStyle="color:red" element="div" /></td>
@@ -63,5 +66,6 @@
 		<input type="submit" value="お客様情報を登録する">
 		<input type="reset" value="入力内容をクリアする">
 	</form:form>
+	</div>
 </body>
 </html>
