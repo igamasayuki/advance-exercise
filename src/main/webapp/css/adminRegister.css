@@ -1,8 +1,11 @@
 @charset "UTF-8";
 
+body{
+	background-color:lavender;
+}
+
 table{
-	
-	background-color:skyblue;
+	background-color:aquamarine;
 	margin-right: auto;
 	margin-left: auto;
 }
@@ -18,4 +21,9 @@ div#include{
 	height:100px;
 	color:red;
 	background-color:yellow;
+}
+
+td#registerAdminUser{
+	font-size:32px;
+	text-align:center;
 }
