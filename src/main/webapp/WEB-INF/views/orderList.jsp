@@ -6,12 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/css/adminHeader.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <meta charset="UTF-8">
 <title>注文一覧画面</title>
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"/>
+<jsp:include page="administerMenu.jsp"/>
 <div align ="center">
     <h2>注文一覧画面</h2>
         
