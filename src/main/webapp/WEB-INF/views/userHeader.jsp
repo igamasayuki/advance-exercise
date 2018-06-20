@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/ecHeader.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/userHeader.css" />
 <title>Insert title here</title>
 </head>
 <body>
