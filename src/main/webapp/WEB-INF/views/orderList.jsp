@@ -54,7 +54,9 @@
 		</c:otherwise>
 	</c:choose>
 
-	<a href="administerMenu.jsp">メニューに戻れない</a>
+	<a
+		href="${pageContext.request.contextPath}/adminMenu/viewAdminMenu/">メニューに戻る
+	</a>
 
 
 </body>

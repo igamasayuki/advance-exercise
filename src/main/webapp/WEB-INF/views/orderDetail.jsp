@@ -99,7 +99,9 @@
 	</table>
 	<br>
 
-	<a href="administerMenu.jsp">注文一覧に戻れない</a>
+	<a
+		href="${pageContext.request.contextPath}/viewOrderList/">注文一覧に戻る
+	</a>
 
 </body>
 </html>
