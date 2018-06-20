@@ -17,7 +17,7 @@
 <body>
 <jsp:include page="administerMenu.jsp"/>
 <jsp:include page="adminHeader.jsp"/>
-<table border="1">
+<table>
 <form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/registerAdmin/registerAdminUser">
 <tr>
 <td id="registerAdminUser"colspan="3">新規管理者登録</td>
