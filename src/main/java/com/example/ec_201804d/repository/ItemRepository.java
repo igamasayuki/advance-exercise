@@ -14,9 +14,7 @@ import com.example.ec_201804d.domain.Item;
 
 /**
  * 商品情報を操作するメソッド.
- * 
  * @author minori.matsuoka
- *
  */
 @Repository
 public class ItemRepository {
@@ -37,9 +35,8 @@ public class ItemRepository {
 	NamedParameterJdbcTemplate template;
 	
 	/**
-	 * 全件検索を行うメソッド.
-	 * 
-	 * @return 全商品情報のリストを返します
+	 * 全件検索を行う.
+	 * @return 全商品情報を保持するリスト
 	 */
 	public List<Item> findAll() {
 		String findSql = "SELECT id,name,description,price,imagepath,deleted FROM " + TABLE_NAME;
@@ -48,9 +45,8 @@ public class ItemRepository {
 	}
 	
 	/**
-	 * 販売中の商品検索を行うメソッド.
-	 * 
-	 * @return 販売中の商品情報のリストを返します
+	 * 販売中の商品検索を行う.
+	 * @return 販売中の商品情報を保持するリスト
 	 */
 	public List<Item> findSaleItems(){
 		String sql ="SELECT id,name,description,price,imagepath,deleted FROM " + TABLE_NAME + " WHERE deleted IS FALSE";
@@ -60,9 +56,9 @@ public class ItemRepository {
 	}
 	
 	/**
-	 * 文字列検索を行うメソッド.
+	 * 文字列検索を行う.
 	 * @param word 入力された単語
-	 * @return　該当する商品情報を返します
+	 * @return　検索された文字列を含む商品情報
 	 */
 	public List<Item> findByWord(String word){
 		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word";
@@ -76,9 +72,9 @@ public class ItemRepository {
 	}
 	
 	/**
-	 * 販売中の商品一覧から商品名検索を行うメソッド.
+	 * 販売中の商品一覧から商品名検索を行う.
 	 * @param word 入力された単語
-	 * @return　該当する商品情報を返します
+	 * @return　検索された文字列を含む商品の情報
 	 */
 	public List<Item> findSaleItemsByWord(String word){
 		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word AND deleted IS FALSE";
@@ -92,9 +88,9 @@ public class ItemRepository {
 	}
 	
 	/**
-	 * 商品詳細を表示するためのメソッド.
+	 * 商品詳細を表示するための.
 	 * @param id ID
-	 * @return 該当する商品情報を返します
+	 * @return 選択された商品情報
 	 */
 	public Item load(int id) {
 		String sql ="SELECT id,name,description,price,imagepath,deleted FROM items WHERE id=:id";
