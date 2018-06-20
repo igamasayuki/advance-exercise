@@ -49,7 +49,9 @@ public class OrderRepository {
 	 * @return 注文のリストを返す
 	 */
 	public List<Order> findAll() {
-		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders ORDER BY id";
+		String sql = "SELECT id," + "order_number," + "user_id,status," + "total_price,"
+				+ "order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel "
+				+ "FROM orders ORDER BY id";
 		List<Order> orderList = template.query(sql, ORDER_ROW_MAPPER);
 		return orderList;
 	}
@@ -62,7 +64,9 @@ public class OrderRepository {
 	 * @return 注文情報を返す
 	 */
 	public Order load(Integer id) {
-		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders WHERE id=:id";
+		String sql = "SELECT id,order_number,user_id,status,total_price,"
+				+ "order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel "
+				+ "FROM orders WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
 		return order;
