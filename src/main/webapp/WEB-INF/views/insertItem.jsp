@@ -8,9 +8,13 @@
 <title>商品登録画面</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<jsp:include page="adminHeader.jsp"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminRegister.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 </head>
 <body>
+<jsp:include page="adminHeader.jsp"/>
+<jsp:include page="administerMenu.jsp"/>
 <div class="padding">
 <h3>商品登録画面</h3>
 </div>
