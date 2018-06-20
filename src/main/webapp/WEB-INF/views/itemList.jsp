@@ -12,7 +12,7 @@
 	<jsp:include page="userHeader.jsp" />
 	<h3>商品一覧</h3>
 	<div class="center-block">
-		<form action="${pageContext.request.contextPath}/findItem"
+		<form action="${pageContext.request.contextPath}/itemList/findItem"
 			method="post">
 			<input type="text" name="word"> <input type="submit"
 				value="検索する">
@@ -33,8 +33,7 @@
 
 				<c:forEach var="item" items="${itemList}">
 					<tr>
-						<td><a
-							href="${pageContext.request.contextPath}/item_detail/item_detail?id=${item.id}"><c:out
+						<td><a href="${pageContext.request.contextPath}/item_detail/item_detail?id=${item.id}"><c:out
 									value="${item.name}" /></a></td>
 						<td><img
 							src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>

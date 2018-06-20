@@ -39,14 +39,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception{
-		http.authorizeRequests().antMatchers("/userlogin", "/userlogin/toUserLogin", "/register", "/register/insert", "/register/toUserRegister", "/", "/viewItemList").permitAll()
+		http.authorizeRequests().antMatchers("/userlogin", "/userlogin/toUserLogin", "/register", "/register/insert", "/register/toUserRegister", "/itemList/**").permitAll()
 		                        .anyRequest().authenticated();
 		
 		http.formLogin()
 		    .loginPage("/userlogin")
 		    .loginProcessingUrl("/login")
 		    .failureUrl("/userlogin?error=true")
-		    .defaultSuccessUrl("/viewItemList", false)
+		    .defaultSuccessUrl("/itemList/viewItemList", false)
 		    .usernameParameter("email")
 		    .passwordParameter("password");
 		

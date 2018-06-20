@@ -17,7 +17,7 @@ import com.example.ec_201804d.repository.ItemRepository;
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/itemList")
 public class ItemListController {
 
 	/** 商品DBをあつかうリポジトリ*/
