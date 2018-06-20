@@ -72,7 +72,6 @@ public class ItemRegistrationController {
 		Item item = new Item();
 		BeanUtils.copyProperties(form, item);
 		MultipartFile imageFile = form.getImageFile();
-		System.out.println("fileName : " + form.getImageFile());
 		if (imageFile.isEmpty()) {
 			model.addAttribute("imageError", "表示する商品画像を選択してください");
 			return showInsertItemView(model);
@@ -91,6 +90,6 @@ public class ItemRegistrationController {
 			return showInsertItemView(model);
 		}
 		repository.insert(item);
-		return "redirect:/adminItemList/viewItemList";
+		return "redirect:/adminItemList/";
 	}
 }
