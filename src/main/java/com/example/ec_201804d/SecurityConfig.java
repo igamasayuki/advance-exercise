@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.formLogin()
 		    .loginPage("/userlogin")
-		    .loginProcessingUrl("/userlogin/toUserLogin")
+		    .loginProcessingUrl("/login")
 		    .failureUrl("/userlogin?error=true")
 		    .defaultSuccessUrl("/viewItemList", false)
 		    .usernameParameter("email")
@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.logout()
 		    .logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))
-		    .logoutSuccessUrl("/userlogin")
+		    .logoutSuccessUrl("/userlogin/toUserLogin")
 		    .deleteCookies("JSESSIONID")
 		    .invalidateHttpSession(true);
 	}

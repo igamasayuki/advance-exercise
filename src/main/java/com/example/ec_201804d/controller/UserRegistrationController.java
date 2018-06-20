@@ -2,6 +2,7 @@ package com.example.ec_201804d.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,8 @@ public class UserRegistrationController {
 
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	/**
 	 * ユーザフォームの初期化.
@@ -83,9 +86,11 @@ public class UserRegistrationController {
 		if (result.hasErrors()) {
 			return "userRegistration";
 		}
-
+		
+		password = passwordEncoder.encode(form.getPassword());
 		String address = form.getAddress();
 		String telephone = form.getTelephone();
+		user.setPassword(password);
 		user.setAddress(address);
 		user.setTelephone(telephone);
 

@@ -13,7 +13,8 @@
 <body>
 <div id="userHeader" align="right">
 	<p>こんにちは管理者さん</p>
-	<p><a href="${pageContext.request.contextPath}/">ログアウトまだできない</a></p>
+	<p><a href="${pageContext.request.contextPath}/logout">ログアウト</a></p>
+	<p><a href="${pageContext.request.contextPath}/login">ログイン</a></p>
 </div>
 			
 <div id="linkHeader" align="left">

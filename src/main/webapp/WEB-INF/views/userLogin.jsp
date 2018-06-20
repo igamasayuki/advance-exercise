@@ -10,7 +10,8 @@
 <body>
 	<h2>ログイン</h2>
 	<form:form modelAttribute="userLoginForm"
-		action="${pageContext.request.contextPath}/">
+		action="${pageContext.request.contextPath}/login">
+		<c:out value="loginError" />
 		<table border="">
 			<tr>
 				<th>メールアドレス:</th>
@@ -18,7 +19,7 @@
 			</tr>
 			<tr>
 				<th>パスワード：</th>
-				<td><form:input path="password" /></td>
+				<td><form:input path="password" type="password" /></td>
 			</tr>
 		</table>
 		<input type="submit" value="ログイン">
