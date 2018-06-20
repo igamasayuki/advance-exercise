@@ -2,6 +2,7 @@ package com.example.ec_201804d.controller;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.ec_201804d.domain.AdminUser;
 import com.example.ec_201804d.form.RegisterAdminUserForm;
-import com.example.ec_201804d.repository.AdminUserRepoistory;
+import com.example.ec_201804d.repository.AdminUserRepository;
 
 
 
@@ -24,7 +25,10 @@ import com.example.ec_201804d.repository.AdminUserRepoistory;
 @RequestMapping(value="/registerAdmin")
 public class RegisterAdminUserController {
 	@Autowired
-	private AdminUserRepoistory adminUserRepository;
+	private AdminUserRepository adminUserRepository;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@ModelAttribute
 	public RegisterAdminUserForm setUpForm() {
@@ -69,7 +73,7 @@ public class RegisterAdminUserController {
 		}
 		
 		BeanUtils.copyProperties(form,admin);
-		//registerAdminUser.setPassword(passwordEncode.encodePassword(form.getPassword());
+		admin.setPassword(passwordEncoder.encode(form.getPassword()));
 		adminUserRepository.insert(admin);
 		return "redirect:/adminMenu/viewAdminMenu";
 	}

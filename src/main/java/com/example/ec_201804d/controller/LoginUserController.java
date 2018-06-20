@@ -2,6 +2,8 @@ package com.example.ec_201804d.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,12 +28,13 @@ public class LoginUserController {
 	}
 	
 	@RequestMapping(value="/toUserLogin")
-	public String showUserLogin(Model model, @RequestParam(required = false) String error) {
+	public String showUserLogin(@Validated UserLoginForm form, BindingResult result, @RequestParam(required = false) String error) {
 		System.err.println("login error:" + error);
 		if(error != null) {
 			System.err.println("member: login failed");
-			model.addAttribute("loginError", "メールアドレスまたはパスワードが違います");
+			result.rejectValue("email", null, "メールアドレスまたはパスワードが違います");
 		}
+		
 		return "userLogin";
 	}
 }

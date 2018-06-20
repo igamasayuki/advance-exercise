@@ -15,14 +15,13 @@
 	<jsp:include page="adminHeader.jsp" /><br>
 	<h3>ログイン</h3>
 	<form:form modelAttribute="loginAdminForm"
-		action="${pageContext.request.contextPath}/adminLogin/fromLogintoMenu">
+		action="${pageContext.request.contextPath}/adminLogin">
 		<div class="center-block">
-			<form:errors path="mailAddress" cssStyle="color:red" />
+			<form:errors path="email" cssStyle="color:red" element="div" />
 			<br> メールアドレス:
 			<form:input path="mailAddress" />
 			<br>
-
-			<form:errors path="password" cssStyle="color:red" />
+			
 			パスワード:
 			<form:password path="password" />
 			<br>

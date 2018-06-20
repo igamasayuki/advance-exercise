@@ -23,7 +23,7 @@
         <br>
         <br>
         <br>
-        <a class="menuLink" href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a>
+        <a class="menuLink" href="${pageContext.request.contextPath}/adminlogout">ログアウト</a>
 </div>
 
 </body>
