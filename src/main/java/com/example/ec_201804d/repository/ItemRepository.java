@@ -105,6 +105,10 @@ public class ItemRepository {
 		return item;
 	}
 	
+	/**
+	 * 商品情報を追加する.
+	 * @param item 新規に追加する商品
+	 */
 	public void insert(Item item) {
 		String insertSql = "INSERT INTO " + TABLE_NAME + "(name, description, price, imagepath, deleted)"
 				+ "VALUES(:name, :description, :price, :imagePath, :deleted)";
@@ -112,6 +116,10 @@ public class ItemRepository {
 		template.update(insertSql, param);
 	}
 
+	/**
+	 * 商品情報を更新する.
+	 * @param item 編集後の商品
+	 */
 	public void update(Item item) {
 		System.out.println("imagePath:" + item.getImagePath());
 		String updateSql = "UPDATE " + TABLE_NAME 

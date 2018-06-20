@@ -21,25 +21,49 @@ import com.example.ec_201804d.domain.Item;
 import com.example.ec_201804d.form.ItemRegistrationForm;
 import com.example.ec_201804d.repository.ItemRepository;
 
+/**
+ * 商品登録画面を表示するコントローラ.
+ *
+ * @author daiki.fujioka
+ *
+ */
 @Controller
 @Transactional
 @RequestMapping(value="/item_registration")
 public class ItemRegistrationController {
-	@Autowired
-	private ItemRepository repository;
+	/** アプリケーションスコープ */
 	@Autowired
 	private ServletContext application;
+	/** 商品DBを扱うリポジトリ */
+	@Autowired
+	private ItemRepository repository;
 
+	/**
+	 * 商品登録フォームの初期化.
+	 * @return 商品登録フォーム
+	 */
 	@ModelAttribute
 	public static ItemRegistrationForm setUpForm() {
 		return new ItemRegistrationForm();
 	}
 	
+	/**
+	 * 商品登録画面を表示する.
+	 * @param model リクエストスコープ
+	 * @return
+	 */
 	@RequestMapping(value="/show_view")
 	public String showInsertItemView(Model model) {
 		return "insertItem";
 	}
 	
+	/**
+	 * 商品を登録する.
+	 * @param form 商品登録フォーム
+	 * @param result 入力チェックの結果
+	 * @param model リクエストスコープ
+	 * @return 入力が正しければ管理者の商品一覧画面、入力チェックに引っかかれば商品登録画面を表示する
+	 */
 	@RequestMapping(value="/register")
 	public String registerItem(@Validated ItemRegistrationForm form, BindingResult result, Model model) {
 		if (result.hasErrors()) {

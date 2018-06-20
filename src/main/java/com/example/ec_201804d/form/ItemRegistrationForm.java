@@ -6,15 +6,26 @@ import javax.validation.constraints.NotNull;
 import org.springframework.lang.NonNull;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * 商品登録フォーム
+ *
+ * @author daiki.fujioka
+ *
+ */
 public class ItemRegistrationForm {
 
+	/** 商品名 */
 	@NotBlank(message = "商品名を入力してください")
 	private String name;
+	/** 価格 */
 	@NotNull(message = "価格を入力してください")
 	private Integer price;
+	/** 商品説明 */
 	@NotBlank(message = "説明を入力してください")
 	private String description;
+	/** 商品画像ファイル */
 	private MultipartFile imageFile;
+	/** 削除フラグ */
 	private boolean deleted;
 
 	public String getName() {

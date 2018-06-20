@@ -20,20 +20,39 @@ import com.example.ec_201804d.domain.Item;
 import com.example.ec_201804d.form.ItemEditingForm;
 import com.example.ec_201804d.repository.ItemRepository;
 
+/**
+ * 商品編集画面を表示するコントローラー.
+ *
+ * @author daiki.fujioka
+ *
+ */
 @Controller
 @Transactional
 @RequestMapping(value="/itemEditing")
 public class ItemEditingController {
+	/** アプリケーションサーブレット */
 	@Autowired
 	private ServletContext application;
+	/** 商品DBを扱うリポジトリ */
 	@Autowired
 	private ItemRepository repository;
 	
+	/**
+	 * 商品編集フォームの初期化.
+	 * @return 商品編集フォーム
+	 */
 	@ModelAttribute
 	public ItemEditingForm setUpForm() {
 		return new ItemEditingForm();
 	}
 
+	/**
+	 * 商品編集画面を表示する.
+	 * @param id ID
+	 * @param form 商品編集フォーム
+	 * @param model リクエストスコープ
+	 * @return 商品編集画面
+	 */
 	@RequestMapping
 	public String showInsertItemView(int id, ItemEditingForm form, Model model) {
 		Item item = repository.load(id);
@@ -42,6 +61,13 @@ public class ItemEditingController {
 		return "itemEditing";
 	}
 	
+	/**
+	 * 商品情報を編集する.
+	 * @param form 商品編集フォーム
+	 * @param result 入力チェックの結果
+	 * @param model リクエストスコープ
+	 * @return 入力が正しければ管理者の商品一覧画面、入力チェックに引っかかると商品編集画面に戻る
+	 */
 	@RequestMapping(value="/edit")
 	public String edit(@Validated ItemEditingForm form, BindingResult result, Model model) {
 		

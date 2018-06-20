@@ -5,16 +5,29 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * 商品編集フォーム
+ *
+ * @author daiki.fujioka
+ *
+ */
 public class ItemEditingForm {
+	/** ID */
 	private long id;
+	/** 商品名 */
 	@NotBlank(message="商品名を入力してください")
 	private String name;
+	/** 価格 */
 	@NotNull(message="価格を入力してください")
 	private Integer price;
+	/** 商品説明 */
 	@NotBlank(message="説明を入力してください")
 	private String description;
+	/** 商品画像ファイル */
 	private MultipartFile imageFile;
+	/** 編集前の商品画像ファイル */
 	private String beforeImagePath;
+	/** 削除フラグ */
 	private boolean deleted;
 
 	public long getId() {
