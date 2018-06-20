@@ -1,37 +1,31 @@
-@CHARSET "UTF-8";
+@charset "UTF-8";
 
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  text-align: center;
-  
+body{
+	background-color:lavender;
+	
 }
-
-
 
 h3{
+	margin: 0 auto;
 	
-	width:635px;
-	text-indent:1em;
-	margin:0 auto;
 }
 
-form{
-	display: inline-block;
-	margin: 0 auto;
+.center-block{
+	 margin: 0 auto;
+	 width: 250px;
 }
+
 
 table{
-	display: inline-block;	
-	 text-align: left;
+	background-color:aquamarine;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-ul.error{
-	color:#ff0000;
-	font-size:15px;
-	font-weight:bold;
+td{
+	width:150px;
+	height:100px;
+	text-align:center;
 }
 
-a#toInsertMember{
-	margin:0 160px;
-}
+
