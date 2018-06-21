@@ -7,11 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(value="/adminMenu")
 public class ViewAdminMenuController {
 	
-	@RequestMapping(value="/viewAdminMenu")
-	public String viewAdminMenu() {
-		return "administerMenu";
-	}
-	
 	@RequestMapping(value="/viewAdminTop")
 	public String viewAdminTop() {
 		return "administerTop";
