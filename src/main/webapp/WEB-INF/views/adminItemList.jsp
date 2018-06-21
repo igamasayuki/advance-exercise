@@ -38,18 +38,18 @@
 					<td><fmt:formatNumber pattern="\###,###" value="${item.price}"/></td>
 					<td><c:out value="${item.description}"/></td>
 					<td>
-						<form:form action="${pageContext.request.contextPath}/itemEditing/?id=${item.id}">
+						<form:form action="${pageContext.request.contextPath}/admin/?id=${item.id}">
 							<input type="submit" value="編集">
 						</form:form>
 						<c:choose>
 							<c:when test="${item.deleted}">
-								<form:form action="${pageContext.request.contextPath}/itemDeletion/redisplay?id=${item.id}">
+								<form:form action="${pageContext.request.contextPath}/admin/redisplay?id=${item.id}">
 									<input type="hidden" name="deleted" value="false">
 									<input type="submit" value="再表示">
 								</form:form>
 							</c:when>
 							<c:otherwise>
-								<form:form action="${pageContext.request.contextPath}/itemDeletion/delete?id=${item.id}">
+								<form:form action="${pageContext.request.contextPath}/admin/itemDeletion?id=${item.id}">
 									<input type="hidden" name="deleted" value="true">
 									<input type="submit" value="削除">
 								</form:form>
