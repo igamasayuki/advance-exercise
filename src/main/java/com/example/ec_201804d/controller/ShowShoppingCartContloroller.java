@@ -37,6 +37,7 @@ public class ShowShoppingCartContloroller {
 	@RequestMapping("/viewShoppingCart")
 	public String findByUserId(Model model) {
 		
+	
 //		long sessionId = Long.parseLong(session.getId());
 		long sessionId = 3;
 		
