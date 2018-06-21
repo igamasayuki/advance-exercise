@@ -38,7 +38,6 @@
                     </form>
                 </td>
             </tr>
-
             </c:forEach>
         </table><br>
         </c:otherwise>
