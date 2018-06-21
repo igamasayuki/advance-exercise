@@ -67,6 +67,13 @@ public class OrderRepository {
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
 		return order;
 	}
+	
+	public void insertNewOrder(Order order) {
+
+		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
+		String sql = "insert into orders(order_number,user_id,status,total_price,order_date)values(:order_number,:user_id,:status,:total_price,:order_date);";
+		template.update(sql, param);
+	}
 
 	public void insert(AdminUser adminUser) {
 		Integer currentMaxId = getMaxId();
