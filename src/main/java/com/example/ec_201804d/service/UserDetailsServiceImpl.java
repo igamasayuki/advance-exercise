@@ -30,7 +30,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmailAddress(email);
-		System.out.println("UserDetailsServiceImpl");
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();
 		
 		if(user == null) {
