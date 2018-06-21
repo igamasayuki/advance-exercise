@@ -99,4 +99,13 @@ public class OrderRepository {
 			return null;
 		}
 	}
+	
+	public List<Order> findByUserIdAndStatus(long userId, Integer status) {
+		
+		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders WHERE user_id=:userId AND status=:status ORDER BY id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("status", status);
+		List<Order> orders = template.query(sql, param, ORDER_ROW_MAPPER);
+		return orders;
+	}
+	
 }

@@ -44,7 +44,7 @@ public class OrderItemController {
 			userId = (((User)session.getAttribute("user")).getId());
 		}
 		
-		List<Order> orders = orderItemRepository.findByUserIdAndStatus(userId, 0);
+		List<Order> orders = orderRepository.findByUserIdAndStatus(userId, 0);
 		if(orders.isEmpty()) {
 			order = new Order();
 			LocalDate localDate = LocalDate.now();
