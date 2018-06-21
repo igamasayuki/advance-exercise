@@ -1,9 +1,11 @@
 package com.example.ec_201804d.repository;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -11,8 +13,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.example.ec_201804d.domain.AdminUser;
+import com.example.ec_201804d.domain.Item;
 import com.example.ec_201804d.domain.Order;
+import com.example.ec_201804d.domain.OrderItem;
 
 /**
  * 注文一覧を表示するレポジトリ.
@@ -40,6 +43,46 @@ public class OrderRepository {
 		return order;
 	};
 
+	private static final ResultSetExtractor<List<Order>> ORDER_EXTRACTOR = (rs) -> {
+		List<Order> orderList = new ArrayList<>();
+		Order order = null;
+		List<OrderItem> orderItemList = null;
+		long beforeOrderId = 0;
+		while (rs.next()) {
+			if (rs.getInt("ID") != beforeOrderId) {
+				order = new Order();
+				order.setId(rs.getLong("ID"));
+				order.setOrderNumber(rs.getString("order_number"));
+				order.setUserId(rs.getLong("user_id"));
+				order.setStatus(rs.getInt("status"));
+				orderItemList = new LinkedList<>();
+				order.setOrderItemList(orderItemList);
+				order.setTotalPrice(rs.getInt("total_price"));
+				order.setOrderDate(rs.getDate("order_date"));
+				order.setDeliveryName(rs.getString("delivery_name"));
+				order.setDeliveryEmail(rs.getString("delivery_email"));
+				order.setDeliveryZipCode(rs.getString("delivery_zip_code"));
+				order.setDeliveryAddress(rs.getString("delivery_address"));
+				order.setDeliveryTel(rs.getString("delivery_tel"));
+				orderList.add(order);
+			}
+			OrderItem orderItem = new OrderItem();
+			orderItem.setId(rs.getLong("orderitem_id"));
+			Item item = new Item();
+			item.setName(rs.getString("item_name"));
+			item.setDescription(rs.getString("description"));
+			item.setPrice(rs.getInt("price"));
+			item.setImagePath(rs.getString("imagepath"));
+			item.setDeleted(rs.getBoolean("deleted"));
+			orderItem.setItem(item);
+			orderItem.setQuantity(rs.getInt("quantity"));
+			orderItemList.add(orderItem);
+
+			beforeOrderId = order.getId();
+		}
+		return orderList;
+	};
+
 	@Autowired
 	NamedParameterJdbcTemplate template;
 
@@ -63,37 +106,46 @@ public class OrderRepository {
 	 *            ID
 	 * @return 注文情報を返す
 	 */
-	public Order load(Integer id) {
-		String sql = "SELECT id,order_number,user_id,status,total_price,"
-				+ "order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel "
-				+ "FROM orders WHERE id=:id";
+
+	public Order load(long id) {
+		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
 		return order;
 	}
 
-	public void insert(AdminUser adminUser) {
-		Integer currentMaxId = getMaxId();
-		if (currentMaxId == null) {
-			// テーブルにデータがない場合 -> IDを付与する
-			currentMaxId = 1;
-			adminUser.setId(currentMaxId);
-		} else {
-			adminUser.setId(currentMaxId + 1);
-		}
-		SqlParameterSource param = new BeanPropertySqlParameterSource(adminUser);
-		String sql = "insert into admin_users(id,name,email,password)values(:id,:name,:email,:password);";
-		template.update(sql, param);
+	/**
+	 * ユーザIDとステータスから検索を行う.
+	 * 
+	 * @param userId
+	 *            ユーザID
+	 * @param status
+	 *            ステータス (0:購入前,1:未入金,2:入金済,3:発送済,9:キャンセル)
+	 * @return 該当するオーダーの一覧
+	 */
+	public List<Order> findByUserIdAndStatus(long userId, Integer status) {
+		String findSql = "SELECT o.id AS ID, order_number, user_id, status, "
+				+ "oi.id AS orderitem_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
+				+ "delivery_name, delivery_email, delivery_zip_code, delivery_address, delivery_tel "
+				+ "FROM orders o JOIN order_items oi ON o.id = oi.order_id JOIN items i ON oi.item_id = i.id "
+				+ "WHERE user_id=:userId AND status=:status";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("status", status);
+		List<Order> orders = template.query(findSql, param, ORDER_EXTRACTOR);
+		return orders;
 	}
 
-	public Integer getMaxId() {
-		try {
-			Integer maxId = template.queryForObject("SELECT MAX(id) FROM admin_users;", new MapSqlParameterSource(),
-					Integer.class);
-			return maxId;
-		} catch (DataAccessException e) {
-			// データが存在しない場合
-			return null;
-		}
+	/**
+	 * オーダー情報を更新する.
+	 * 
+	 * @param order
+	 *            更新するオーダー情報
+	 */
+	public void update(Order order) {
+		System.out.println("status:" + order.getStatus());
+		String updateSql = "UPDATE orders SET"
+				+ " order_number=:orderNumber, user_id=:userId, status=:status, total_price=:totalPrice, order_date=:orderDate, delivery_name=:deliveryName, delivery_email=:deliveryEmail, delivery_zip_code=:deliveryZipCode, delivery_address=:deliveryAddress, delivery_tel=:deliveryTel"
+				+ " WHERE id=:id";
+		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
+		template.update(updateSql, param);
 	}
 }

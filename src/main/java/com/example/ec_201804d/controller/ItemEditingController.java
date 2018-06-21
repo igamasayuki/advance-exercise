@@ -28,7 +28,7 @@ import com.example.ec_201804d.repository.ItemRepository;
  */
 @Controller
 @Transactional
-@RequestMapping(value="/itemEditing")
+@RequestMapping(value="/admin")
 public class ItemEditingController {
 	/** アプリケーションサーブレット */
 	@Autowired
@@ -45,7 +45,6 @@ public class ItemEditingController {
 	public ItemEditingForm setUpForm() {
 		return new ItemEditingForm();
 	}
-
 	/**
 	 * 商品編集画面を表示する.
 	 * @param id ID
@@ -53,7 +52,7 @@ public class ItemEditingController {
 	 * @param model リクエストスコープ
 	 * @return 商品編集画面
 	 */
-	@RequestMapping
+	@RequestMapping(value="/")
 	public String showInsertItemView(int id, ItemEditingForm form, Model model) {
 		Item item = repository.load(id);
 		BeanUtils.copyProperties(item, form);
@@ -95,6 +94,6 @@ public class ItemEditingController {
 			}
 		}
 		repository.update(item);
-		return "redirect:/adminItemList/";
+		return "redirect:/admin/adminItemList";
 	}
 }

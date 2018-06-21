@@ -2,16 +2,16 @@ package com.example.ec_201804d.form;
 
 public class LoginAdminForm {
 	/**メールアドレス*/
-	String mailAddress;
+	String email;
 	/**パスワード*/
 	String password;
 	
-	public String getMailAddress() {
-		return mailAddress;
+	public String getEmail() {
+		return email;
 	}
 	
-	public void setMailAddress(String mailAddress) {
-		this.mailAddress = mailAddress;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public String getPassword() {

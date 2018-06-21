@@ -16,12 +16,12 @@
 
 	<p>こんにちは<c:out value="${name}"/>さん</p>
 
-	<p><a href="${pageContext.request.contextPath}/logout">ログアウト</a></p>
-	<p><a href="${pageContext.request.contextPath}/login">ログイン</a></p>
+	<p><a href="${pageContext.request.contextPath}/user/logout">ログアウト</a></p>
+	<p><a href="${pageContext.request.contextPath}/user/login">ログイン</a></p>
 </div>
 			
 <div id="linkHeader" align="left">
-	<h1 align ="left"><a href="${pageContext.request.contextPath}/viewItemList"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
+	<h1 align ="left"><a href="${pageContext.request.contextPath}/itemList/viewItemList"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
 	
 	height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1></div>
 <div id="title" align="center">

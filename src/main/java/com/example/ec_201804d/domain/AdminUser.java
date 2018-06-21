@@ -5,6 +5,10 @@ package com.example.ec_201804d.domain;
  *管理者を表すクラス.
  */
 public class AdminUser {
+	@Override
+	public String toString() {
+		return "AdminUser [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + "]";
+	}
 	/**id*/
 	private long id;
 	/**名前*/

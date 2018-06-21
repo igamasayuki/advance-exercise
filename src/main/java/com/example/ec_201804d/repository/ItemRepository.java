@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.ec_201804d.domain.Item;
+import com.example.ec_201804d.domain.Order;
 
 /**
  * 商品情報を操作するメソッド.
@@ -142,4 +143,5 @@ public class ItemRepository {
 		SqlParameterSource param = new MapSqlParameterSource().addValue("deleted", !currentFlag).addValue("id", id);
 		template.update(updateSql, param);
 	}
+	
 }
