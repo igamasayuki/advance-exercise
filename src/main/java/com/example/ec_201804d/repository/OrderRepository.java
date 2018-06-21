@@ -120,7 +120,7 @@ public class OrderRepository {
 		template.update(sql, param);
 	}
 
-	public Order findByUserIdAndStatus(long userId, Integer status) {
+	public List<Order> findByUserIdAndStatus(long userId, Integer status) {
 		String findSql = "SELECT o.id AS ID, order_number, user_id, status, "
 				+ "oi.id AS orderitem_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
 				+ "delivery_name, delivery_email, delivery_zip_code, delivery_address, delivery_tel "
@@ -128,11 +128,7 @@ public class OrderRepository {
 				+ "WHERE user_id=:userId AND status=:status";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("status", status);
 		List<Order> orders = template.query(findSql, param, ORDER_EXTRACTOR);
-		if (orders.isEmpty()) {
-			return null;
-		} else {
-			return orders.get(0);
-		}
+		return orders;
 	}
 
 	public void update(Order order) {
