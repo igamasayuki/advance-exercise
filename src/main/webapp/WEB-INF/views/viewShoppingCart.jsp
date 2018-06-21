@@ -1,26 +1,28 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ショッピングカートの中身</title>
 </head>
 <body>
-<h2 align="center">ショッピングカート一覧</h2>
+<h3>ショッピングカート一覧</h3>
 
-    <p align="center">カートに商品がありません</p>
-
-        <table border ="1"  align="center">
+ <table border ="1">
             <tr>
-                <th colspan="2">商品名</th>
+                <th colspan="1">商品名</th>
                 <th>価格</th>
                 <th>個数</th>
                 <th></th>
             </tr>
+            <c:forEach var="orderItem" items="${orderItem}">
             <tr>
-				<td><a href="itemDetail.html"><img src="../img/pc.jpg" width="150"height="125" alt="商品画像"></a></td>
-                <td><a href="itemDetail.html">パソコン</a></td>
-                <td>&yen;50,000</td>
+				<td><a href="${pageContext.request.contextPath}/item_detail/item_detail?id=${orderItem.id}">
+					<img src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.imagePath}"/>"alt="商品画像"></a></td>
+                <td><a href="itemDetail.html"><c:out value="${orderItem.name}"/></a></td>
+                <td><fmt:formatNumber pattern="\###,###" value="${orderItem.price}" /></td>
                 <td>1個</td>
                 <td>
                     <form action="viewShoppingCart.html" method="post">
@@ -29,20 +31,10 @@
                     </form>
                 </td>
             </tr>
-            <tr>
-				<td><a href="itemDetail.html"><img src="../img/mouse.jpg" width="150"height="125" alt="商品画像"></a></td>
-                <td><a href="itemDetail.html">マウス</a></td>
-                <td>&yen;500</td>
-                <td>2個</td>
-                <td>
-                    <form action="viewShoppingCart.html" method="post">
-                        <input type="hidden" name="item.id" value="1">
-                        <input type="submit" value="削除">
-                    </form>
-                </td>
-            </tr>
+            </c:forEach>
         </table><br>
 
-    <div  align="center"><a href="makePayment.html">決済へ</a></div>
+    <div class="center-block"><a href="${pageContext.request.contextPath}/決済画面のURL">決済へ</a></div>
+
 </body>
 </html>

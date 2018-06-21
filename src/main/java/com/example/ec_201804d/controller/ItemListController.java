@@ -11,18 +11,24 @@ import com.example.ec_201804d.domain.Item;
 import com.example.ec_201804d.repository.ItemRepository;
 
 /**
- * 商品一覧を表示するコントローラー.
+ * 商品一覧画面を表示するコントローラー.
  * 
  * @author minori.matsuoka
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/itemList")
 public class ItemListController {
 
+	/** 商品DBをあつかうリポジトリ*/
 	@Autowired
 	ItemRepository repository;
 	
+	/**
+	 * 利用者の商品一覧画面を表示する.
+	 * @param model　リクエストスコープ
+	 * @return　利用者が見ることができる商品情報
+	 */
 	@RequestMapping("/viewItemList")
 	public String list(Model model) {
 		List<Item> itemList = repository.findSaleItems();
@@ -34,6 +40,12 @@ public class ItemListController {
 		return "/itemList";
 	}
 	
+	/**
+	 * 商品の文字列検索を行い、商品一覧を表示する.
+	 * @param word 検索された文字列
+	 * @param model　リクエストスコープ
+	 * @return　該当する商品情報
+	 */
 	@RequestMapping("/findItem")
 	public String findItem(String word,Model model) {
 		List<Item> findItemList = repository.findSaleItemsByWord(word);

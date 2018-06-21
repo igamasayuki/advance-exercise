@@ -6,11 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/css/adminHeader.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <meta charset="UTF-8">
 <title>注文一覧画面</title>
 </head>
 <body>
+	<jsp:include page="administerMenu.jsp"/>
 	<jsp:include page="adminHeader.jsp" />
 	<div align="center">
 		<h2>注文一覧画面</h2>
@@ -20,6 +24,7 @@
 			<c:out value="商品がありません" />
 		</c:when>
 		<c:otherwise>
+
 
 			<table border="1" align="center">
 				<tr>
@@ -55,7 +60,7 @@
 	</c:choose>
 
 	<a
-		href="${pageContext.request.contextPath}/adminMenu/viewAdminMenu/">メニューに戻る
+		href="${pageContext.request.contextPath}/adminMenu/viewAdminTop/">メニューに戻る
 	</a>
 
 

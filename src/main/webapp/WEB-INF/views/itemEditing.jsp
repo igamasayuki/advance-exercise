@@ -5,11 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminRegister.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <title>商品編集画面</title>
 </head>
 <body>
 <jsp:include page="adminHeader.jsp"/>
+<jsp:include page="administerMenu.jsp"/>
 <h3>商品編集画面</h3>
 <p>編集したい商品の情報を入力してください。</p>
 <form:form modelAttribute="itemEditingForm" action="${pageContext.request.contextPath}/itemEditing/edit" enctype="multipart/form-data">
@@ -33,7 +37,7 @@
 	<form:label path="deleted">削除</form:label><br>
 	<input type="submit" value="編集">
 </form:form>
-<a href="${pageContext.request.contextPath}/admin/adminmenu/show">管理者メニュー画面に戻る</a>
+<a href="${pageContext.request.contextPath}/adminItemList/">商品一覧画面に戻る</a>
 
 </body>
 </html>

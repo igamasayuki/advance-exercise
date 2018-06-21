@@ -6,6 +6,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="${pageContext.request.contextPath}css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminRegister.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
@@ -13,9 +15,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
 <jsp:include page="administerMenu.jsp"/>
-<table border="1">
+<jsp:include page="adminHeader.jsp"/>
+<table>
 <form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/registerAdmin/registerAdminUser">
 <tr>
 <td id="registerAdminUser"colspan="3">新規管理者登録</td>

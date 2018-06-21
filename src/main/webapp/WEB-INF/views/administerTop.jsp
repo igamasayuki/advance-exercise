@@ -6,15 +6,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminRegister.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>管理者TOPメニュー</title>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
 <jsp:include page="administerMenu.jsp"/>
+<jsp:include page="adminHeader.jsp"/>
 <div id="Top">
 hello
 </div>

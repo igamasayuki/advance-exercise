@@ -17,8 +17,8 @@
     <h2>管理者メニュー画面</h2>
 		<a class="menuLink" href="${pageContext.request.contextPath}/adminMenu/viewAdminTop">TOP</a><br><br>
         <a class="menuLink" href="${pageContext.request.contextPath}/item_registration/show_view">商品を登録</a><br><br>
-        <a class="menuLink" href="${pageContext.request.contextPath}/adminItemList/index">商品一覧</a><br><br>
-        <a class="menuLink" href="${pageContext.request.contextPath}/orderList/viewOrderList">注文一覧</a><br><br>
+        <a class="menuLink" href="${pageContext.request.contextPath}/adminItemList/">商品一覧</a><br><br>
+        <a class="menuLink" href="${pageContext.request.contextPath}/viewOrderList">注文一覧</a><br><br>
         <a class="menuLink" href="${pageContext.request.contextPath}/registerAdmin/viewRegisterAdmin">新規登録</a>
         <br>
         <br>

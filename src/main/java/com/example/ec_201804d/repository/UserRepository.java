@@ -37,7 +37,9 @@ public class UserRepository {
 
 	/**
 	 * ユーザ登録.
-	 * @param user　登録情報
+	 * 
+	 * @param user
+	 *            登録情報
 	 */
 	public void registerUser(User user) {
 		String sql = "insert into " + TABLE_NAME
@@ -48,25 +50,35 @@ public class UserRepository {
 
 	/**
 	 * メールアドレス検索.
-	 * @param address メールアドレス
-	 * @return　ユーザ情報
+	 * 
+	 * @param address
+	 *            メールアドレス
+	 * @return ユーザ情報
 	 */
 	public User findByEmailAddress(String address) {
 		User user = new User();
 		try {
-		String sql = "select name,email,password,zipcode,address,telephone from " + TABLE_NAME
-				+ " where email=:address";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("address", address);
-		user = template.queryForObject(sql, param, userRowMapper);
-		System.out.println(user.getName());
-		} catch(EmptyResultDataAccessException ee) {
+			String sql = "select name,email,password,zipcode,address,telephone from " + TABLE_NAME
+					+ " where email=:address";
+			SqlParameterSource param = new MapSqlParameterSource().addValue("address", address);
+			user = template.queryForObject(sql, param, userRowMapper);
+			System.out.println(user.getName());
+		} catch (EmptyResultDataAccessException ee) {
 			ee.printStackTrace();
 			return null;
-		} catch(Exception ex) {
+		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;
 		}
 
+		return user;
+	}
+
+	public User load(long userId) {
+		String loadSql = "SELECT name,email,password,zipcode,address,telephone from " + TABLE_NAME
+				+ " WHERE id=:userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		User user = template.queryForObject(loadSql, param, userRowMapper);
 		return user;
 	}
 }
