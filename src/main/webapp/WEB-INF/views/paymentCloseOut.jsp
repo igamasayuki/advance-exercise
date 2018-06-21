@@ -15,7 +15,7 @@
 <h3>この度はご注文ありがとうございます。</h3>
 <h3>お支払先は、お送りしたメールに記載しありますのでご確認してください。</h3>
 <div class="center-block">
-	<a href="${pageContext.request.contextPath}/viewItemList">一覧画面へ戻る</a>
+	<a href="${pageContext.request.contextPath}/user/viewItemList">一覧画面へ戻る</a>
 </div>
 </body>
 </html>
