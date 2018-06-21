@@ -16,14 +16,14 @@
 <div id="menu">
     <h2>管理者メニュー画面</h2>
 		<a class="menuLink" href="${pageContext.request.contextPath}/adminMenu/viewAdminTop">TOP</a><br><br>
-        <a class="menuLink" href="${pageContext.request.contextPath}/item_registration/show_view">商品を登録</a><br><br>
-        <a class="menuLink" href="${pageContext.request.contextPath}/adminItemList/">商品一覧</a><br><br>
-        <a class="menuLink" href="${pageContext.request.contextPath}/viewOrderList">注文一覧</a><br><br>
-        <a class="menuLink" href="${pageContext.request.contextPath}/registerAdmin/viewRegisterAdmin">新規登録</a>
+        <a class="menuLink" href="${pageContext.request.contextPath}/admin/show_view">商品を登録</a><br><br>
+        <a class="menuLink" href="${pageContext.request.contextPath}/admin/adminItemList">商品一覧</a><br><br>
+        <a class="menuLink" href="${pageContext.request.contextPath}/admin/viewOrderList">注文一覧</a><br><br>
+        <a class="menuLink" href="${pageContext.request.contextPath}/admin/viewRegisterAdmin">新規登録</a>
         <br>
         <br>
         <br>
-        <a class="menuLink" href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a>
+        <a class="menuLink" href="${pageContext.request.contextPath}/adminlogout">ログアウト</a>
 </div>
 
 </body>

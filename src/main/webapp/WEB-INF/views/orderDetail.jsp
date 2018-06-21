@@ -113,7 +113,7 @@
 	</table>
 	<br>
 
-	<a href="${pageContext.request.contextPath}/viewOrderList/">注文一覧に戻る
+	<a href="${pageContext.request.contextPath}/admin/viewOrderList">注文一覧に戻る
 	</a>
 
 </body>

@@ -15,8 +15,10 @@
 	</div>
 	<h3>商品一覧</h3>
 	<div class="center-block">
-		<form action="${pageContext.request.contextPath}/itemList/findItem" method="post">
-			<input type="text" name="word"> <input type="submit" value="検索する">
+		<form action="${pageContext.request.contextPath}/user/findItem"
+			method="post">
+			<input type="text" name="word"> <input type="submit"
+				value="検索する">
 		</form>
 </div>
 	<c:choose>

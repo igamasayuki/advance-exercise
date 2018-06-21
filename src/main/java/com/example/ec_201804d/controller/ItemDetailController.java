@@ -14,7 +14,7 @@ import com.example.ec_201804d.repository.ItemRepository;
  *
  */
 @Controller
-@RequestMapping("/item_detail")
+@RequestMapping("/user")
 public class ItemDetailController {
 
 	@Autowired

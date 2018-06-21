@@ -17,7 +17,7 @@ import com.example.ec_201804d.repository.OrderRepository;
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/admin")
 public class OrderListController {
 
 	@Autowired

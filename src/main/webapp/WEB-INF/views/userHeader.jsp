@@ -16,8 +16,8 @@
 
 	<p>こんにちは<c:out value="${name}"/>さん</p>
 
-	<p><a href="${pageContext.request.contextPath}/logout">ログアウト</a></p>
-	<p><a href="${pageContext.request.contextPath}/login">ログイン</a></p>
+	<p><a href="${pageContext.request.contextPath}/user/logout">ログアウト</a></p>
+	<p><a href="${pageContext.request.contextPath}/user/login">ログイン</a></p>
 </div>
 			
 <div id="linkHeader" align="left">
