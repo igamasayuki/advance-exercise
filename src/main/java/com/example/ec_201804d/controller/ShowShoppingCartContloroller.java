@@ -38,11 +38,12 @@ public class ShowShoppingCartContloroller {
 	public String findByUserId(Model model) {
 		
 	
-		long sessionId = Long.parseLong(session.getId());
-//		long sessionId = 3;
+//		long sessionId = Long.parseLong(session.getId());
+		long sessionId = 3;
 		
 //		long sessionId = session.getId();
 		List<Order> orderList = repository.findByUserIdAndStatus(sessionId,0);
+		
 		System.err.println(orderList.get(0).getOrderItemList().get(0).getItem().getName());
 		if(orderList.isEmpty()) {
 			return  "viewShoppingCart";
