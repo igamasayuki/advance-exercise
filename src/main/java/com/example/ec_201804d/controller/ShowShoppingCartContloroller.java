@@ -37,22 +37,18 @@ public class ShowShoppingCartContloroller {
 	@RequestMapping("/viewShoppingCart")
 	public String findByUserId(Model model) {
 		
-		long sessionId = Long.parseLong(session.getId());
-		List<Order> orderItemList = repository.findByUserIdAndStatus(sessionId,0);
+//		long sessionId = Long.parseLong(session.getId());
+		long sessionId = 3;
 		
-		if(orderItemList.isEmpty()) {
-			return  "redirect:/toViewShoppingCart";
+		List<Order> orderList = repository.findByUserIdAndStatus(sessionId,0);
+		System.err.println(orderList.get(0).getOrderItemList().get(0).getItem().getName());
+		if(orderList.isEmpty()) {
+			return  "viewShoppingCart";
 		}
 		
-		model.addAttribute("orderItemList",orderItemList.get(0).getOrderItemList());
-		return "redirect:/toViewShoppingCart";
+		model.addAttribute("orderItemList",orderList.get(0).getOrderItemList());
+		return "viewShoppingCart";
 	}
 	
-	/**
-	 * ショッピングカート一覧を表示する
-	 * @return　ショッピングカートjsp
-	 */
-	public String toViewShoppingCart() {
-		return "/viewShoppingCart";
-	}
+
 }
