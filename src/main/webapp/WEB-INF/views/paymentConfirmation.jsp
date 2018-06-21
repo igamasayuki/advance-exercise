@@ -7,9 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>決済確認画面</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/user/viewShoppingCart">カートの中身を見る</a>
+<jsp:include page="userHeader.jsp"/>
+<div class="center-block">
+	<a href="${pageContext.request.contextPath}/user/viewShoppingCart">カートの中身を見る</a>
 <h3>ご注文内容</h3>
 <hr>
 <table border="1">
@@ -43,15 +46,16 @@
 	</tr>
 </table>
 <h3>お届け先</h3>
-<hr>
-お名前:<c:out value="${order.deliveryName}"/><br>
-メールアドレス:<c:out value="${order.deliveryEmail}"/><br>
-郵便番号:<c:out value="${order.deliveryZipCode}"/><br>
-住所:<c:out value="${order.deliveryAddress}"/><br>
-電話番号:<c:out value="${order.deliveryTel}"/><br>
-<form:form action="${pageContext.request.contextPath}/payment/closeOut">
-	<input type="hidden" name="order" value="${order}">
-	<input type="submit" value="確定">
-</form:form>
+	<hr>
+	お名前:<c:out value="${order.deliveryName}"/><br>
+	メールアドレス:<c:out value="${order.deliveryEmail}"/><br>
+	郵便番号:<c:out value="${order.deliveryZipCode}"/><br>
+	住所:<c:out value="${order.deliveryAddress}"/><br>
+	電話番号:<c:out value="${order.deliveryTel}"/><br>
+	<form:form action="${pageContext.request.contextPath}/payment/closeOut">
+		<input type="hidden" name="orderId" value="${order.id}">
+		<input type="submit" value="確定">
+	</form:form>
+</div>
 </body>
 </html>

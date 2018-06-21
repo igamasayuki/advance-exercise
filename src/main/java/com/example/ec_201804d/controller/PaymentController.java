@@ -55,8 +55,16 @@ public class PaymentController {
 		return "paymentConfirmation";
 	}
 	
-	@RequestMapping(value="closeOut")
+	@RequestMapping(value="/showView")
 	public String showPaymentCloseOutView() {
 		return "paymentCloseOut";
+	}
+	
+	@RequestMapping(value="/closeOut")
+	public String closeOutPayment(long orderId) {
+		Order order = repository.load(orderId);
+		order.setStatus(1);
+		repository.update(order);
+		return "redirect:showView";
 	}
 }
