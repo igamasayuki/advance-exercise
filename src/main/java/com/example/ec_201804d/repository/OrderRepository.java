@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -14,7 +13,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.example.ec_201804d.domain.AdminUser;
 import com.example.ec_201804d.domain.Item;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.domain.OrderItem;
@@ -44,13 +42,13 @@ public class OrderRepository {
 
 		return order;
 	};
-	
+
 	private static final ResultSetExtractor<List<Order>> ORDER_EXTRACTOR = (rs) -> {
 		List<Order> orderList = new ArrayList<>();
 		Order order = null;
 		List<OrderItem> orderItemList = null;
 		long beforeOrderId = 0;
-		while(rs.next()) {
+		while (rs.next()) {
 			if (rs.getInt("ID") != beforeOrderId) {
 				order = new Order();
 				order.setId(rs.getLong("ID"));
@@ -84,7 +82,7 @@ public class OrderRepository {
 		}
 		return orderList;
 	};
-	
+
 	@Autowired
 	NamedParameterJdbcTemplate template;
 
@@ -94,7 +92,9 @@ public class OrderRepository {
 	 * @return 注文のリストを返す
 	 */
 	public List<Order> findAll() {
-		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders ORDER BY id";
+		String sql = "SELECT id," + "order_number," + "user_id,status," + "total_price,"
+				+ "order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel "
+				+ "FROM orders ORDER BY id";
 		List<Order> orderList = template.query(sql, ORDER_ROW_MAPPER);
 		return orderList;
 	}
@@ -106,7 +106,8 @@ public class OrderRepository {
 	 *            ID
 	 * @return 注文情報を返す
 	 */
-	public Order load(Integer id) {
+
+	public Order load(long id) {
 		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
@@ -120,6 +121,15 @@ public class OrderRepository {
 		template.update(sql, param);
 	}
 
+	/**
+	 * ユーザIDとステータスから検索を行う.
+	 * 
+	 * @param userId
+	 *            ユーザID
+	 * @param status
+	 *            ステータス (0:購入前,1:未入金,2:入金済,3:発送済,9:キャンセル)
+	 * @return 該当するオーダーの一覧
+	 */
 	public List<Order> findByUserIdAndStatus(long userId, Integer status) {
 		String findSql = "SELECT o.id AS ID, order_number, user_id, status, "
 				+ "oi.id AS orderitem_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
@@ -131,9 +141,16 @@ public class OrderRepository {
 		return orders;
 	}
 
+	/**
+	 * オーダー情報を更新する.
+	 * 
+	 * @param order
+	 *            更新するオーダー情報
+	 */
 	public void update(Order order) {
+		System.out.println("status:" + order.getStatus());
 		String updateSql = "UPDATE orders SET"
-				+ " total_price=:totalPrice, delivery_name=:deliveryName, delivery_email=:deliveryEmail, delivery_zip_code=:deliveryZipCode, delivery_address=:deliveryAddress, delivery_tel=:deliveryTel"
+				+ " order_number=:orderNumber, user_id=:userId, status=:status, total_price=:totalPrice, order_date=:orderDate, delivery_name=:deliveryName, delivery_email=:deliveryEmail, delivery_zip_code=:deliveryZipCode, delivery_address=:deliveryAddress, delivery_tel=:deliveryTel"
 				+ " WHERE id=:id";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		template.update(updateSql, param);

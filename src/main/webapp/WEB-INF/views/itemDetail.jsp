@@ -41,7 +41,7 @@
 		 <input type="submit" value="カートに入れる">
 		</form>
 		<br><br>
-			 <a href="${pageContext.request.contextPath}/itemList/viewItemList">商品一覧に戻る</a>
+			 <a href="${pageContext.request.contextPath}/user/viewItemList">商品一覧に戻る</a>
 </div>
 </body>
 </html>

@@ -14,7 +14,8 @@
 	<h3>ログイン</h3>
 	<div class="center-block">
 		<form:form modelAttribute="userLoginForm"
-			action="${pageContext.request.contextPath}/login">
+			action="${pageContext.request.contextPath}/user/login">
+		<form:errors path="email" cssStyle="color:red" element="div" />
 			<table border="">
 				<tr>
 					<th>メールアドレス:</th>
@@ -22,7 +23,7 @@
 				</tr>
 				<tr>
 					<th>パスワード：</th>
-					<td><form:input path="password" type="password" /></td>
+					<td><form:password path="password" /></td>
 				</tr>
 			</table>
 			<input type="submit" value="ログイン">
@@ -30,7 +31,7 @@
 		</form:form>
 	</div>
 	<div class="center-block">
-		<a href="${pageContext.request.contextPath}/register/toUserRegister">新規登録はこちら</a>
+		<a href="${pageContext.request.contextPath}/user/toUserRegister">新規登録はこちら</a>
 	</div>
 </body>
 </html>
