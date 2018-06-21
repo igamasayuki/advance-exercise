@@ -10,6 +10,9 @@
 </head>
 <body>
 <jsp:include page="userHeader.jsp" />
+<div class="link-right" align="right">
+	<a href="${pageContext.request.contextPath}/カートの中身表示するURLかく">カートの中身を表示する</a>
+	</div>
 		<h3>商品詳細</h3>
 		<c:if test="${item != null}">
 			<table border="1">
@@ -33,7 +36,7 @@
 		<br><br>
 
 		<div class="center-block">
-		<form action="${pageContext.request.contextPath}/×××" method="post">
+		<form action="${pageContext.request.contextPath}/カートに入れるURL（やっすー）" method="post">
 			個数　：<select path="quantity" /><br> <br>
 		 <input type="submit" value="カートに入れる">
 		</form>
