@@ -1,6 +1,8 @@
 package com.example.ec_201804d.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,10 +38,13 @@ public class ShowShoppingCartContloroller {
 	public String findByUserId(Model model) {
 		
 		long sessionId = Long.parseLong(session.getId());
+		List<Order> orderItemList = repository.findByUserIdAndStatus(sessionId,0);
 		
-		Order orderItem = repository.findByUserIdAndStatus(sessionId,0);
+		if(orderItemList.isEmpty()) {
+			return  "redirect:/toViewShoppingCart";
+		}
 		
-		model.addAttribute("orderItem",orderItem);
+		model.addAttribute("orderItemList",orderItemList.get(0).getOrderItemList());
 		return "redirect:/toViewShoppingCart";
 	}
 	

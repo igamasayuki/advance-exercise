@@ -11,7 +11,7 @@
 <body>
 <jsp:include page="userHeader.jsp" />
 <div class="link-right" align="right">
-	<a href="${pageContext.request.contextPath}/カートの中身表示するURLかく">カートの中身を表示する</a>
+	<a href="${pageContext.request.contextPath}/user/viewShoppingCart">カートの中身を表示する</a>
 	</div>
 		<h3>商品詳細</h3>
 		<c:if test="${item != null}">

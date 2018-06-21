@@ -10,6 +10,13 @@
 <body>
 <h3>ショッピングカート一覧</h3>
 
+<c:choose>
+		<c:when test="${orderItemList == null}">
+			<div class="center-block">
+				<c:out value="商品がありません。" />
+			</div>
+		</c:when>
+		<c:otherwise>
  <table border ="1">
             <tr>
                 <th colspan="1">商品名</th>
@@ -17,7 +24,7 @@
                 <th>個数</th>
                 <th></th>
             </tr>
-            <c:forEach var="orderItem" items="${orderItem}">
+            <c:forEach var="orderItem" items="${orderItemList}">
             <tr>
 				<td><a href="${pageContext.request.contextPath}/item_detail/item_detail?id=${orderItem.id}">
 					<img src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.imagePath}"/>"alt="商品画像"></a></td>
@@ -33,6 +40,8 @@
             </tr>
             </c:forEach>
         </table><br>
+        </c:otherwise>
+        </c:choose>
 
     <div class="center-block"><a href="${pageContext.request.contextPath}/決済画面のURL">決済へ</a></div>
 
