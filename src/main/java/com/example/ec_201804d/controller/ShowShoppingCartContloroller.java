@@ -1,6 +1,5 @@
 package com.example.ec_201804d.controller;
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,9 +37,9 @@ public class ShowShoppingCartContloroller {
 		
 		long sessionId = Long.parseLong(session.getId());
 		
-		List<Order> orderItemList = repository.findByUserIdAndStatus(sessionId,0);
+		Order orderItem = repository.findByUserIdAndStatus(sessionId,0);
 		
-		model.addAttribute("orderItem",orderItemList);
+		model.addAttribute("orderItem",orderItem);
 		return "redirect:/toViewShoppingCart";
 	}
 	
