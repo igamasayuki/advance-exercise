@@ -106,13 +106,19 @@ public class OrderRepository {
 	 *            ID
 	 * @return 注文情報を返す
 	 */
-	public Order load(Integer id) {
+	public Order load(long id) {
 		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
 		return order;
 	}
 
+	/**
+	 * ユーザIDとステータスから検索を行う.
+	 * @param userId ユーザID
+	 * @param status ステータス (0:購入前,1:未入金,2:入金済,3:発送済,9:キャンセル)
+	 * @return 該当するオーダーの一覧
+	 */
 	public List<Order> findByUserIdAndStatus(long userId, Integer status) {
 		String findSql = "SELECT o.id AS ID, order_number, user_id, status, "
 				+ "oi.id AS orderitem_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
@@ -124,9 +130,14 @@ public class OrderRepository {
 		return orders;
 	}
 
+	/**
+	 * オーダー情報を更新する.
+	 * @param order 更新するオーダー情報
+	 */
 	public void update(Order order) {
+		System.out.println("status:" + order.getStatus());
 		String updateSql = "UPDATE orders SET"
-				+ " total_price=:totalPrice, delivery_name=:deliveryName, delivery_email=:deliveryEmail, delivery_zip_code=:deliveryZipCode, delivery_address=:deliveryAddress, delivery_tel=:deliveryTel"
+				+ " order_number=:orderNumber, user_id=:userId, status=:status, total_price=:totalPrice, order_date=:orderDate, delivery_name=:deliveryName, delivery_email=:deliveryEmail, delivery_zip_code=:deliveryZipCode, delivery_address=:deliveryAddress, delivery_tel=:deliveryTel"
 				+ " WHERE id=:id";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		template.update(updateSql, param);
