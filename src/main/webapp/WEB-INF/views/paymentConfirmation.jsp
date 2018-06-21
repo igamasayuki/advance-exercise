@@ -12,8 +12,10 @@
 <body>
 <jsp:include page="userHeader.jsp"/>
 <div class="center-block">
-	<a href="${pageContext.request.contextPath}/user/viewShoppingCart">カートの中身を見る</a>
-<h3>ご注文内容</h3>
+	<div class="link-right" align="right">
+	<a href="${pageContext.request.contextPath}/user/viewShoppingCart">カートの中身を表示する</a>
+	</div>
+	<h3>ご注文内容</h3>
 <hr>
 <table border="1">
 	<tr>

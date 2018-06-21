@@ -37,7 +37,9 @@
 
 				<c:forEach var="item" items="${itemList}">
 					<tr>
-						<td><a href="${pageContext.request.contextPath}/item_detail/item_detail?id=${item.id}"><c:out value="${item.name}" /></a></td>
+						<td><a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
+								<c:out value="${item.name}" />
+							</a></td>
 						<td><img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
 						<td><fmt:formatNumber pattern="\###,###" value="${item.price}" /></td>
 					</tr>
