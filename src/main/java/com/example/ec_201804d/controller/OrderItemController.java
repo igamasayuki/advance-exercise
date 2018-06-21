@@ -9,6 +9,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,6 +27,11 @@ import com.example.ec_201804d.repository.OrderRepository;
 @RequestMapping("/orderItems")
 public class OrderItemController {
 
+	@ModelAttribute
+	public ItemForm setupForm() {
+		return new ItemForm();
+	}
+	
 	@Autowired
 	private HttpSession session;
 	
@@ -31,9 +40,18 @@ public class OrderItemController {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@RequestMapping("/view")
+	public String viewShoppingCart() {
+		return "redirect:/shoppingCart/showShoppingCart";
+	}
 
 	@RequestMapping("/addItem")
-	public String addItemToShoppingCart(ItemForm itemForm, RedirectAttributes redirectAttributes) {
+	public String addItemToShoppingCart(@Validated ItemForm itemForm, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
+
+		if(result.hasErrors()) {
+			return "/item_detail/item_detail";
+		}
 		
 		Order order;
 		
@@ -66,7 +84,7 @@ public class OrderItemController {
 		orderItem.setQuantity(itemForm.getQuantity());
 		orderItemRepository.save(orderItem);
 		
-		return "redirect:/shoppingCart/showShoppingCart";
+		return "/orderItems/view";
 	}
 
 }
