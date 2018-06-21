@@ -1,5 +1,7 @@
 package com.example.ec_201804d.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +31,12 @@ public class PaymentController {
 	public String showPaymentConfirmationView(Model model) {
 //		long userId = ((User)session.getAttribute("user")).getId();
 		long userId = 1;
-		Order order = repository.findByUserIdAndStatus(userId, 0);
-		if (order == null) {
+		List<Order> orders = repository.findByUserIdAndStatus(userId, 0);
+		Order order = null;
+		if (orders.isEmpty()) {
 			return "viewItemList";
+		} else {
+			order = orders.get(0);
 		}
 		int totalPrice = 0;
 		for (OrderItem orderItem : order.getOrderItemList()) {
@@ -48,5 +53,10 @@ public class PaymentController {
 		
 		model.addAttribute("order", order);
 		return "paymentConfirmation";
+	}
+	
+	@RequestMapping(value="closeOut")
+	public String showPaymentCloseOutView() {
+		return "paymentCloseOut";
 	}
 }
