@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ショッピングカートの中身</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
 <jsp:include page="userHeader.jsp" />
@@ -47,7 +48,7 @@
         </c:otherwise>
         </c:choose>
 </div>
-    <div class="center-block"><a href="${pageContext.request.contextPath}/決済画面のURL">決済へ</a></div>
+    <div class="center-block"><a href="${pageContext.request.contextPath}/payment/">決済へ</a></div>
 
 </body>
 </html>
