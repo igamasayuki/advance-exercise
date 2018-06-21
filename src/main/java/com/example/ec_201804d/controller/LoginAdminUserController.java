@@ -19,7 +19,7 @@ import com.example.ec_201804d.repository.AdminUserRepository;
 
 
 @Controller
-@RequestMapping(value="/adminLogin")
+@RequestMapping(value="/admin")
 @SessionAttributes(types = {AdminUser.class})
 public class LoginAdminUserController {
 	@Autowired
@@ -33,7 +33,7 @@ public class LoginAdminUserController {
 		return new LoginAdminForm();
 	}
 	
-	@RequestMapping(value="/viewAdminLogin")
+	@RequestMapping(value="/login")
 	public String viewLogin() {
 		return "administerLogin";
 	}

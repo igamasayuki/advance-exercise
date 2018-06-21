@@ -16,7 +16,7 @@
 <jsp:include page="administerMenu.jsp"/>
 <h3>商品編集画面</h3>
 <p>編集したい商品の情報を入力してください。</p>
-<form:form modelAttribute="itemEditingForm" action="${pageContext.request.contextPath}/itemEditing/edit" enctype="multipart/form-data">
+<form:form modelAttribute="itemEditingForm" action="${pageContext.request.contextPath}/admin/edit" enctype="multipart/form-data">
 	<form:hidden path="id"/>
 	<form:label path="name">商品名:</form:label>
 	<form:input path="name"/><br>

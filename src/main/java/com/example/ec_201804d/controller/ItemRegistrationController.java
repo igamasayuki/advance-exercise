@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletContext;
-import javax.validation.constraints.NotBlank;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ import com.example.ec_201804d.repository.ItemRepository;
  */
 @Controller
 @Transactional
-@RequestMapping(value="/item_registration")
+@RequestMapping(value="/admin")
 public class ItemRegistrationController {
 	/** アプリケーションスコープ */
 	@Autowired
@@ -90,6 +89,6 @@ public class ItemRegistrationController {
 			return showInsertItemView(model);
 		}
 		repository.insert(item);
-		return "redirect:/adminItemList/";
+		return "redirect:/admin/adminItemList";
 	}
 }

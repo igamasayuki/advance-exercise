@@ -22,7 +22,7 @@ import com.example.ec_201804d.repository.AdminUserRepository;
  *管理者登録のコントローラー.
  */
 @Controller
-@RequestMapping(value="/registerAdmin")
+@RequestMapping(value="/admin")
 public class RegisterAdminUserController {
 	@Autowired
 	private AdminUserRepository adminUserRepository;

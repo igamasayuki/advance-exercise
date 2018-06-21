@@ -19,7 +19,7 @@
 		<div class="center-block">
 			<form:errors path="email" cssStyle="color:red" element="div" />
 			<br> メールアドレス:
-			<form:input path="mailAddress" />
+			<form:input path="email" />
 			<br>
 			
 			パスワード:

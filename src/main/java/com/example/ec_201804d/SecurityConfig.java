@@ -9,10 +9,12 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import com.example.ec_201804d.service.AdminUserDetailsServiceImpl;
+import com.example.ec_201804d.service.UserDetailsServiceImpl;
 
 
 /**
@@ -25,11 +27,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Configuration
-	@Order(1)
+	@Order(2)
 	public static class UserSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		@Autowired
-		private UserDetailsService userDetailsService;
+		private UserDetailsServiceImpl userDetailsService;
 		
 		/* (non-Javadoc)
 		 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.WebSecurity)
@@ -43,22 +45,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 */
 		@Override
 		protected void configure(HttpSecurity http) throws Exception{
-			http.authorizeRequests().antMatchers("/userlogin/**","/register/**", "/itemList/**", "item_detail/**", "/registerAdmin/**").permitAll()
-			.anyRequest().authenticated();
+			http
+			    .antMatcher("/user/**")
+			    .authorizeRequests()
+			    .antMatchers("/user/**").permitAll()
+			    .antMatchers("/payment/**").hasRole("USER")
+			    .anyRequest()
+			    .authenticated();
 			
 			http.formLogin()
-			.loginPage("/userlogin/toUserLogin")
-			.loginProcessingUrl("/login")
-			.failureUrl("/userlogin/toUserLogin?error=true")
-			.defaultSuccessUrl("/viewItemList", false)
-			.usernameParameter("email")
-			.passwordParameter("password");
+			    .loginPage("/user/login")
+			    .loginProcessingUrl("/user/login")
+			    .failureUrl("/user/login?error=true")
+			    .defaultSuccessUrl("/user/viewItemList", false)
+			    .usernameParameter("email")
+			    .passwordParameter("password");
 			
 			http.logout()
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout**"))
-			.logoutSuccessUrl("/userlogin/toUserLogin")
-			.deleteCookies("JSESSIONID")
-			.invalidateHttpSession(true);
+			    .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
+			    .logoutSuccessUrl("/user/login")
+			    .deleteCookies("JSESSIONID")
+			    .invalidateHttpSession(true);
 		}
 		/* (non-Javadoc)
 		 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder)
@@ -71,11 +78,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Configuration
-	@Order(2)
+	@Order(1)
 	public static class AdminUserSecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		@Autowired
-		private UserDetailsService adminUserDetailsService;
+		private AdminUserDetailsServiceImpl adminUserDetailsService;
 		
 		/* (non-Javadoc)
 		 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.WebSecurity)
@@ -89,22 +96,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 */
 		@Override
 		protected void configure(HttpSecurity http) throws Exception{
-			http.authorizeRequests().antMatchers("/adminLogin/**", "registerAdmin/**").permitAll()
-			.anyRequest().authenticated();
+			http
+			    .antMatcher("/admin**/**")
+			    .authorizeRequests()
+			    .antMatchers("/admin/login").permitAll()
+			    .antMatchers("/admin**/**").hasRole("ADMIN")
+			    .anyRequest()
+			    .authenticated();
 			
 			http.formLogin()
-			.loginPage("/adminLogin/viewAdminLogin")
-			.loginProcessingUrl("/adminlogin")
-			.failureUrl("/adminLogin/viewAdminLogin?error=true")
-			.defaultSuccessUrl("/fromLogintoMenu", false)
-			.usernameParameter("email")
-			.passwordParameter("password");
+			    .loginPage("/admin/login")
+			    .loginProcessingUrl("/adminLogin")
+			    .failureUrl("/admin/login?error=true")
+			    .defaultSuccessUrl("/admin/fromLogintoMenu", false)
+			    .usernameParameter("email")
+			    .passwordParameter("password");
 			
 			http.logout()
-			.logoutRequestMatcher(new AntPathRequestMatcher("/adminlogout**"))
-			.logoutSuccessUrl("/adminLogin/viewAdminLogin")
-			.deleteCookies("JSESSIONID")
-			.invalidateHttpSession(true);
+			    .logoutRequestMatcher(new AntPathRequestMatcher("/adminlogout/**"))
+			    .logoutSuccessUrl("/admin/login")
+			    .deleteCookies("JSESSIONID")
+			    .invalidateHttpSession(true);
 		}
 		/* (non-Javadoc)
 		 * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder)

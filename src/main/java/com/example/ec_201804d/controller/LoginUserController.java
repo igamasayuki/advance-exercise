@@ -1,7 +1,7 @@
 package com.example.ec_201804d.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,7 +18,7 @@ import com.example.ec_201804d.form.UserLoginForm;
  *
  */
 @Controller
-@RequestMapping(value="/userlogin")
+@RequestMapping(value="/user")
 @SessionAttributes(types = {User.class})
 public class LoginUserController {
 
@@ -27,7 +27,7 @@ public class LoginUserController {
 		return new UserLoginForm();
 	}
 	
-	@RequestMapping(value="/toUserLogin")
+	@RequestMapping(value="/login")
 	public String showUserLogin(@Validated UserLoginForm form, BindingResult result, @RequestParam(required = false) String error) {
 		System.err.println("login error:" + error);
 		if(error != null) {

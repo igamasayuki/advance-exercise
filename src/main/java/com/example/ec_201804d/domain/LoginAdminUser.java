@@ -20,6 +20,11 @@ public class LoginAdminUser extends org.springframework.security.core.userdetail
 		this.adminUser = adminUser;
 	}
 	
+	@Override
+	public String toString() {
+		return "LoginAdminUser [adminUser=" + adminUser + "]";
+	}
+
 	public AdminUser getAdminUser() {
 		return adminUser;
 	}

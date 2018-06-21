@@ -15,7 +15,7 @@ import com.example.ec_201804d.repository.ItemRepository;
  */
 @Controller
 @Transactional
-@RequestMapping(value="/itemDeletion")
+@RequestMapping(value="/admin")
 public class ItemDeletionSwitchController {
 	/** 商品リポジトリ */
 	@Autowired
@@ -27,10 +27,10 @@ public class ItemDeletionSwitchController {
 	 * @param id ID
 	 * @return 管理者の商品一覧画面
 	 */
-	@RequestMapping(value="/delete")
+	@RequestMapping(value="/itemDeletion")
 	public String deleteItem(long id) {
 		repository.updateDeletedById(id, false);
-		return "redirect:/adminItemList/";
+		return "redirect:/admin/adminItemList";
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class ItemDeletionSwitchController {
 	@RequestMapping(value="/redisplay")
 	public String redisplayItem(long id) {
 		repository.updateDeletedById(id, true);
-		return "redirect:/adminItemList/";
+		return "redirect:/admin/adminItemList";
 	}
 	
 }
