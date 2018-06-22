@@ -26,6 +26,7 @@ public class UserRepository {
 
 	private static final RowMapper<User> userRowMapper = (rs, i) -> {
 		User user = new User();
+		user.setId(rs.getLong("id"));
 		user.setName(rs.getString("name"));
 		user.setEmail(rs.getString("email"));
 		user.setPassword(rs.getString("password"));
@@ -58,7 +59,7 @@ public class UserRepository {
 	public User findByEmailAddress(String address) {
 		User user = new User();
 		try {
-			String sql = "select name,email,password,zipcode,address,telephone from " + TABLE_NAME
+			String sql = "select id,name,email,password,zipcode,address,telephone from " + TABLE_NAME
 					+ " where email=:address";
 			SqlParameterSource param = new MapSqlParameterSource().addValue("address", address);
 			user = template.queryForObject(sql, param, userRowMapper);
@@ -75,7 +76,7 @@ public class UserRepository {
 	}
 
 	public User load(long userId) {
-		String loadSql = "SELECT name,email,password,zipcode,address,telephone from " + TABLE_NAME
+		String loadSql = "SELECT id,name,email,password,zipcode,address,telephone from " + TABLE_NAME
 				+ " WHERE id=:userId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
 		User user = template.queryForObject(loadSql, param, userRowMapper);

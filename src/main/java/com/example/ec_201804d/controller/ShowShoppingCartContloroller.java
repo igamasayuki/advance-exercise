@@ -6,10 +6,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.ec_201804d.domain.LoginUser;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.repository.OrderRepository;
 
@@ -35,16 +37,12 @@ public class ShowShoppingCartContloroller {
 	 * @return toViewShoppingCartメソッド
 	 */
 	@RequestMapping("/viewShoppingCart")
-	public String findByUserId(Model model) {
+	public String findByUserId(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+			
+		long id = loginUser.getUser().getId();
 		
-	
-//		long sessionId = Long.parseLong(session.getId());
-		long sessionId = 3;
+		List<Order> orderList = repository.findByUserIdAndStatus(id,0);
 		
-//		long sessionId = session.getId();
-		List<Order> orderList = repository.findByUserIdAndStatus(sessionId,0);
-		
-		System.err.println(orderList.get(0).getOrderItemList().get(0).getItem().getName());
 		if(orderList.isEmpty()) {
 			return  "viewShoppingCart";
 		}

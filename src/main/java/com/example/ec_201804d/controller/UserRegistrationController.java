@@ -95,7 +95,7 @@ public class UserRegistrationController {
 		user.setTelephone(telephone);
 
 		userRepository.registerUser(user);
-		return "redirect:/userlogin/toUserLogin";
+		return "redirect:/user/login";
 	}
 
 	/**
