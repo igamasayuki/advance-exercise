@@ -1,4 +1,4 @@
-package com.example.ec_201804d.controller;
+package com.example.ec_201804d;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  *
  */
 @Controller
-@RequestMapping("/error")
-public class errorController {
+@RequestMapping("/500error")
+public class GlobalErrorController {
 
 	/**
 	 * 500エラー画面に遷移する.
