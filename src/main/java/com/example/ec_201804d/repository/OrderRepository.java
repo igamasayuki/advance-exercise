@@ -70,6 +70,7 @@ public class OrderRepository {
 			OrderItem orderItem = new OrderItem();
 			orderItem.setId(rs.getLong("orderitem_id"));
 			Item item = new Item();
+			item.setId(rs.getLong("item_id"));
 			item.setName(rs.getString("item_name"));
 			item.setDescription(rs.getString("description"));
 			item.setPrice(rs.getInt("price"));
@@ -156,7 +157,7 @@ public class OrderRepository {
 	 */
 	public List<Order> findByUserIdAndStatus(long userId, Integer status) {
 		String findSql = "SELECT o.id AS ID, order_number, user_id, status, "
-				+ "oi.id AS orderitem_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
+				+ "oi.id AS orderitem_id, oi.item_id AS item_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
 				+ "delivery_name, delivery_email, delivery_zip_code, delivery_address, delivery_tel "
 				+ "FROM orders o LEFT OUTER JOIN order_items oi ON o.id = oi.order_id LEFT OUTER JOIN items i ON oi.item_id = i.id "
 				+ "WHERE user_id=:userId AND status=:status";

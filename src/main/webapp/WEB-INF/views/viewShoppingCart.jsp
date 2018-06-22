@@ -31,9 +31,9 @@
             </tr>
             <c:forEach var="orderItem" items="${orderItemList}">
             <tr>
-				<td><a href="${pageContext.request.contextPath}/item_detail/item_detail?id=${orderItem.item.id}">
+				<td><a href="${pageContext.request.contextPath}/user/item_detail?id=${orderItem.item.id}">
 					<img src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.item.imagePath}"/>"alt="商品画像"></a></td>
-                <td><a href="itemDetail.html"><c:out value="${orderItem.item.name}"/></a></td>
+                <td><a href="${pageContext.request.contextPath}/user/item_detail?id=${orderItem.item.id}"><c:out value="${orderItem.item.name}"/></a></td>
                 <td><fmt:formatNumber pattern="\###,###" value="${orderItem.item.price}" /></td>
                 <td><c:out value="${orderItem.quantity}"/></td>
                 <td>
@@ -45,10 +45,10 @@
             </tr>
             </c:forEach>
         </table><br>
+	    <div class="center-block"><a href="${pageContext.request.contextPath}/userPayment/">決済へ</a></div>
         </c:otherwise>
-        </c:choose>
+</c:choose>
 </div>
-    <div class="center-block"><a href="${pageContext.request.contextPath}/payment/">決済へ</a></div>
 
 </body>
 </html>

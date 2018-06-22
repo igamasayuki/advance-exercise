@@ -46,10 +46,10 @@ public class SecurityConfig {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception{
 			http
-			    .antMatcher("/user/**")
+			    .antMatcher("/user**/**")
 			    .authorizeRequests()
 			    .antMatchers("/user/**").permitAll()
-			    .antMatchers("/payment/**").hasRole("USER")
+			    .antMatchers("/userPayment/**").hasRole("USER")
 			    .anyRequest()
 			    .authenticated();
 			
