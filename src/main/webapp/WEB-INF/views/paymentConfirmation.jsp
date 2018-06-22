@@ -54,7 +54,7 @@
 	郵便番号:<c:out value="${order.deliveryZipCode}"/><br>
 	住所:<c:out value="${order.deliveryAddress}"/><br>
 	電話番号:<c:out value="${order.deliveryTel}"/><br>
-	<form:form action="${pageContext.request.contextPath}/payment/closeOut">
+	<form:form action="${pageContext.request.contextPath}/userPayment/closeOut">
 		<input type="hidden" name="orderId" value="${order.id}">
 		<input type="submit" value="確定">
 	</form:form>
