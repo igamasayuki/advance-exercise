@@ -24,11 +24,12 @@
 		<h2>注文一覧画面</h2>
 	</div>
 	<c:choose>
-		<c:when test="${orderList == null}">
-			<c:out value="商品がありません" />
+		<c:when test="${orderCheck}">
+			<font size="5" color="red"> <br>
+			<c:out value="注文がありません" /><br>
+			</font>
 		</c:when>
 		<c:otherwise>
-
 
 			<table border="1" align="center">
 				<tr>
@@ -39,31 +40,35 @@
 					<th>総計(税込)</th>
 				</tr>
 
-				<c:forEach var="orderList" items="${orderList}">
+				<c:forEach var="order" items="${order}">
 					<tr>
 						<td><a
-							href="${pageContext.request.contextPath}/admin/orderDetail?id=<c:out value= "${orderList.id}"/>">
-								<c:out value="${orderList.orderNumber}" />
+							href="${pageContext.request.contextPath}/admin/orderDetail?id=<c:out value= "${order.id}"/>">
+								<c:out value="${order.orderNumber}" />
 						</a></td>
 						<td><fmt:formatDate pattern="yyyy/MM/dd"
-								value="${orderList.orderDate}" /></td>
-						<td><c:out value="${orderList.deliveryName}" /></td>
+								value="${order.orderDate}" /></td>
+						<td><c:out value="${order.deliveryName}" /></td>
 						<td><c:choose>
-								<c:when test="${orderList.status == 0}">未購入</c:when>
-								<c:when test="${orderList.status == 1}">未入金</c:when>
-								<c:when test="${orderList.status == 2}">入金済み</c:when>
-								<c:when test="${orderList.status == 3}">発送済み</c:when>
-								<c:when test="${orderList.status == 9}">キャンセル</c:when>
+								<c:when test="${order.status == 0}">未購入</c:when>
+								<c:when test="${order.status == 1}">未入金</c:when>
+								<c:when test="${order.status == 2}">入金済み</c:when>
+								<c:when test="${order.status == 3}">発送済み</c:when>
+								<c:when test="${order.status == 9}">キャンセル</c:when>
 							</c:choose></td>
 						<td><fmt:formatNumber pattern="\###,###"
-								value="${orderList.totalPrice}" /></td>
+								value="${order.totalPrice}" /></td>
 					</tr>
 				</c:forEach>
 			</table>
+
+
+
 		</c:otherwise>
 	</c:choose>
 
-	<a href="${pageContext.request.contextPath}/adminMenu/viewAdminTop/">メニューに戻る
+	<br>
+	<a href="${pageContext.request.contextPath}/adminMenu/viewAdminTop/">TOPに戻る
 	</a>
 
 
