@@ -19,7 +19,7 @@ public class GlobalExceptionHandler implements HandlerExceptionResolver{
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object obj,
 			Exception e) {
 		LOGGER.error("システムエラーが発生しました",e);
-		return new ModelAndView("redirect:/error/maintenance");
+		return new ModelAndView("redirect:/500error/maintenance");
 	}
 
 }

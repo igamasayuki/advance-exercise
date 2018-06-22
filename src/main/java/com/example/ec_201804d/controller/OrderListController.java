@@ -26,8 +26,10 @@ public class OrderListController {
 
 	@RequestMapping("/viewOrderList")
 	public String list(Model model) {
-		List<Order> orderList = repository.findAll();
-		model.addAttribute("orderList", orderList);
+		List<Order> order = repository.findAll();
+		model.addAttribute("order", order);
+		model.addAttribute("orderCheck",order.isEmpty());
+		
 		return "/orderList";
 	}
 
