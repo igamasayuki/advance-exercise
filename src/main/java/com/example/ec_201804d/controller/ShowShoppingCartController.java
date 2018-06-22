@@ -48,12 +48,17 @@ public class ShowShoppingCartController {
 			
 		
 		List<Order> orderList = repository.findByUserIdAndStatus(id,0);
-		
 		if(orderList.isEmpty()) {
+			System.out.println("ショッピングカートがありません");
 			return  "viewShoppingCart";
 		}
-
-		model.addAttribute("orderItemList", orderList.get(0).getOrderItemList());
+		Order order = orderList.get(0);
+		if (order.getOrderItemList().get(0).getId()==0) {
+			System.out.println("ショッピングカートの中身がありません");
+			return  "viewShoppingCart";			
+		}
+		System.out.println("ショッピングカートの中身があります。" +order.getOrderItemList().size());
+		model.addAttribute("orderItemList", order.getOrderItemList());
 		return "viewShoppingCart";
 	}
 

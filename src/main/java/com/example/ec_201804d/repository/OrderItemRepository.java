@@ -14,11 +14,12 @@ public class OrderItemRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
+	private final String TABLE_NAME = "order_items";
 
 	public void save(OrderItem orderItem) {
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(orderItem);
-		String sql = "insert into order_items(item_id,order_id,quantity)values(:itemId,:orderId,:quantity)";
+		String sql = "insert into " + TABLE_NAME + "(item_id,order_id,quantity)values(:itemId,:orderId,:quantity)";
 		template.update(sql, param);
 	}
 	
@@ -26,6 +27,12 @@ public class OrderItemRepository {
 		String UpdateSql = "UPDATE order_items SET order_id=:to WHERE order_id=:from";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("to", to).addValue("from", from);
 		template.update(UpdateSql, param);
+	}
+
+	public void deleteById(long id) {
+		String deleteSql = "DELETE FROM " + TABLE_NAME + " WHERE id=:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
+		template.update(deleteSql, param);
 	}
 
 }
