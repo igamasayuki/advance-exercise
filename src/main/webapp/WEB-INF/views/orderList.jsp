@@ -38,7 +38,7 @@
 				<c:forEach var="orderList" items="${orderList}">
 					<tr>
 						<td><a
-							href="${pageContext.request.contextPath}/orderDetail?id=<c:out value= "${orderList.id}"/>">
+							href="${pageContext.request.contextPath}/admin/orderDetail?id=<c:out value= "${orderList.id}"/>">
 								<c:out value="${orderList.orderNumber}" />
 						</a></td>
 						<td><fmt:formatDate pattern="yyyy/MM/dd"

@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import com.example.ec_201804d.domain.Info;
 import com.example.ec_201804d.domain.Item;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.domain.OrderItem;
@@ -82,6 +83,16 @@ public class OrderRepository {
 		}
 		return orderList;
 	};
+	
+	private static final RowMapper<Info> InfoRowMapper = (rs,i)->{
+		  Info info = new Info();
+		  info.setName(rs.getString("iName"));
+		  info.setPrice(rs.getInt("iPrice"));
+		  info.setQuantity(rs.getInt("oiQuantity"));
+		  info.setTotalPrice(rs.getInt("oTotal"));
+		  
+		  return info;
+		 };
 
 	@Autowired
 	NamedParameterJdbcTemplate template;
@@ -113,6 +124,13 @@ public class OrderRepository {
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
 		return order;
 	}
+	
+	public List<Info> find() {
+		  String sql="select i.price as iPrice,i.name as iName,oi.quantity as oiQuantity,o.total_price as oTotal from orders as o inner join order_items as oi on(o.id=oi.order_id)\r\n" + 
+		    "inner join items as i on(oi.item_id=i.id);";
+		  List<Info>list=template.query(sql, InfoRowMapper);
+		  return list;
+		 }
 
 	/**
 	 * ユーザIDとステータスから検索を行う.
