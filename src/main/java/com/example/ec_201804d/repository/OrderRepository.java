@@ -26,6 +26,8 @@ import com.example.ec_201804d.domain.OrderItem;
  */
 @Repository
 public class OrderRepository {
+	
+	private String TABLE_NAME = "orders";
 
 	private static final RowMapper<Order> ORDER_ROW_MAPPER = (rs, i) -> {
 		Order order = new Order();
@@ -106,7 +108,7 @@ public class OrderRepository {
 	public List<Order> findAll() {
 		String sql = "SELECT id," + "order_number," + "user_id,status," + "total_price,"
 				+ "order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel "
-				+ "FROM orders ORDER BY id";
+				+ "FROM " + TABLE_NAME + " ORDER BY id";
 		List<Order> orderList = template.query(sql, ORDER_ROW_MAPPER);
 		return orderList;
 	}
@@ -120,7 +122,7 @@ public class OrderRepository {
 	 */
 
 	public Order load(long id) {
-		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM orders WHERE id=:id";
+		String sql = "SELECT id,order_number,user_id,status,total_price,order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel FROM " + TABLE_NAME + " WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
 		return order;
@@ -129,13 +131,13 @@ public class OrderRepository {
 	public void insertNewOrder(Order order) {
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
-		String sql = "insert into orders(order_number,user_id,status,total_price,order_date)values(:orderNumber,:userId,:status,:totalPrice,:orderDate);";
+		String sql = "insert into " + TABLE_NAME + "(order_number,user_id,status,total_price,order_date)values(:orderNumber,:userId,:status,:totalPrice,:orderDate);";
 		template.update(sql, param);
 	}
 
 	public List<Info> find(long orderId) {
 		  String sql="select i.price as iPrice,i.name as iName,oi.quantity as oiQuantity,o.total_price as oTotal "
-		  		+ "from orders as o inner join order_items as oi on(o.id=oi.order_id)" + 
+		  		+ "from " + TABLE_NAME + " as o inner join order_items as oi on(o.id=oi.order_id)" + 
 		    "inner join items as i on(oi.item_id=i.id) where oi.order_id=:orderId";
 		  SqlParameterSource param = new MapSqlParameterSource().addValue("orderId",orderId);
 		  List<Info>list=template.query(sql,param,InfoRowMapper);
@@ -155,7 +157,7 @@ public class OrderRepository {
 		String findSql = "SELECT o.id AS ID, order_number, user_id, status, "
 				+ "oi.id AS orderitem_id, oi.item_id AS item_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
 				+ "delivery_name, delivery_email, delivery_zip_code, delivery_address, delivery_tel "
-				+ "FROM orders o LEFT OUTER JOIN order_items oi ON o.id = oi.order_id LEFT OUTER JOIN items i ON oi.item_id = i.id "
+				+ "FROM " + TABLE_NAME +" o LEFT OUTER JOIN order_items oi ON o.id = oi.order_id LEFT OUTER JOIN items i ON oi.item_id = i.id "
 				+ "WHERE user_id=:userId AND status=:status";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("status", status);
 		List<Order> orders = template.query(findSql, param, ORDER_EXTRACTOR);
@@ -170,11 +172,23 @@ public class OrderRepository {
 	 */
 	public void update(Order order) {
 		System.out.println("status:" + order.getStatus());
-		String updateSql = "UPDATE orders SET"
+		String updateSql = "UPDATE " + TABLE_NAME + " SET"
 				+ " order_number=:orderNumber, user_id=:userId, status=:status, total_price=:totalPrice, order_date=:orderDate, delivery_name=:deliveryName, delivery_email=:deliveryEmail, delivery_zip_code=:deliveryZipCode, delivery_address=:deliveryAddress, delivery_tel=:deliveryTel"
 				+ " WHERE id=:id";
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		template.update(updateSql, param);
+	}
+	
+	public void updateUserId(long preUserId, long userId) {
+		String updateSql = "UPDATE " + TABLE_NAME + " SET user_id=:userId WHERE user_id=:preUserId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("preUserId", preUserId);
+		template.update(updateSql, param);
+	}
+	
+	public void deleteByUserId(long userId) {
+		String deleteSql = "DELETE FROM " + TABLE_NAME + " WHERE user_id=:userId";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		template.update(deleteSql, param);
 	}
 	
 }

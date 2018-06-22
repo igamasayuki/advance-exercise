@@ -1,4 +1,4 @@
-package com.example.ec_201804d.repository;
+	package com.example.ec_201804d.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
