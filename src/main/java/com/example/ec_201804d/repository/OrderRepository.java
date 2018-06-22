@@ -125,10 +125,12 @@ public class OrderRepository {
 		return order;
 	}
 	
-	public List<Info> find() {
-		  String sql="select i.price as iPrice,i.name as iName,oi.quantity as oiQuantity,o.total_price as oTotal from orders as o inner join order_items as oi on(o.id=oi.order_id)\r\n" + 
-		    "inner join items as i on(oi.item_id=i.id);";
-		  List<Info>list=template.query(sql, InfoRowMapper);
+	public List<Info> find(long orderId) {
+		  String sql="select i.price as iPrice,i.name as iName,oi.quantity as oiQuantity,o.total_price as oTotal "
+		  		+ "from orders as o inner join order_items as oi on(o.id=oi.order_id)" + 
+		    "inner join items as i on(oi.item_id=i.id) where oi.order_id=:orderId";
+		  SqlParameterSource param = new MapSqlParameterSource().addValue("orderId",orderId);
+		  List<Info>list=template.query(sql,param,InfoRowMapper);
 		  return list;
 		 }
 

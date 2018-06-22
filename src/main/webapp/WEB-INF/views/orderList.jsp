@@ -49,7 +49,7 @@
 								<c:when test="${orderList.status == 1}">未入金</c:when>
 								<c:when test="${orderList.status == 2}">入金済み</c:when>
 								<c:when test="${orderList.status == 3}">発送済み</c:when>
-								<c:when test="${orderList.status == 4}">キャンセル</c:when>
+								<c:when test="${orderList.status == 9}">キャンセル</c:when>
 							</c:choose></td>
 						<td><fmt:formatNumber pattern="\###,###"
 								value="${orderList.totalPrice}" /></td>
