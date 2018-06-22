@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,7 @@
 <c:choose>
 		<c:when test="${orderItemList == null}">
 			<div class="center-block">
-				<c:out value="商品がありません。" />
+				<c:out value="商品がありません。"/>
 			</div>
 		</c:when>
 		<c:otherwise>
@@ -37,10 +38,10 @@
                 <td><fmt:formatNumber pattern="\###,###" value="${orderItem.item.price}" /></td>
                 <td><c:out value="${orderItem.quantity}"/></td>
                 <td>
-                    <form action="viewShoppingCart.html" method="post">
-                        <input type="hidden" name="item.id" value="1">
+                    <form:form action="${pageContext.request.contextPath}/user/deleteOrderItem">
+                        <input type="hidden" name="id" value="${orderItem.id}">
                         <input type="submit" value="削除">
-                    </form>
+                    </form:form>
                 </td>
             </tr>
             </c:forEach>
