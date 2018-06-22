@@ -11,4 +11,9 @@ public class ViewAdminMenuController {
 	public String viewAdminTop() {
 		return "administerTop";
 	}
+	
+	@RequestMapping(value="/test")
+	public String test() {
+		return "test";
+	}
 }
