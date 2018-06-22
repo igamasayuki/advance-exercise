@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.ec_201804d.domain.Info;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.repository.OrderRepository;
 
@@ -33,7 +34,9 @@ public class OrderListController {
 	@RequestMapping("/orderDetail")
 	public String execute(long id, Model model) {
 		Order order = repository.load(id);
+		List<Info> list = repository.find(id);
 		model.addAttribute("order", order);
+		model.addAttribute("list", list);
 		return "/orderDetail";
 	}
 }
