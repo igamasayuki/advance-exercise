@@ -1,6 +1,6 @@
 package com.example.ec_201804d.controller;
 
-import java.sql.Date; 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -20,7 +20,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.ec_201804d.domain.LoginUser;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.domain.OrderItem;
-import com.example.ec_201804d.domain.User;
 import com.example.ec_201804d.form.ItemForm;
 import com.example.ec_201804d.repository.OrderItemRepository;
 import com.example.ec_201804d.repository.OrderRepository;
@@ -59,13 +58,10 @@ public class OrderItemController {
 		
 		long userId;
 		if(loginUser == null) {
-//			userId = Long.parseLong(session.getId());
 			userId = session.getId().hashCode();
 		}else {
-//			userId = (((User)session.getAttribute("user")).getId());
 			userId = loginUser.getUser().getId();
 		}
-		System.out.println("id:" + userId);
 		
 		List<Order> orders = orderRepository.findByUserIdAndStatus(userId, 0);
 		if(orders.isEmpty()) {
