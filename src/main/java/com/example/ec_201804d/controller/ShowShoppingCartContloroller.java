@@ -1,6 +1,5 @@
 package com.example.ec_201804d.controller;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,42 +12,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.repository.OrderRepository;
 
-/** 
+/**
  * ショッピングカートを表示するコントローラー.
+ * 
  * @author minori.matsuoka
  *
  */
 @Controller
 @RequestMapping("/user")
 public class ShowShoppingCartContloroller {
-	
+
 	@Autowired
 	HttpSession session;
-
 
 	/** 注文一覧レポジトリ. */
 	@Autowired
 	OrderRepository repository;
-	
+
 	/**
 	 * ショッピングカート一覧を取得する.
+	 * 
 	 * @return toViewShoppingCartメソッド
 	 */
 	@RequestMapping("/viewShoppingCart")
 	public String findByUserId(Model model) {
+
+		// sessionIDを数値に変換する
+		// System.err.println(sessionID:" + session.getId());
+		// String sessionStr = session.getId();
+		// long sessionId = sessionStr.hashCode();
+		// System.out.println("sessionIdをハッシュ化後" + sessionId);
+
 		
-//		long sessionId = Long.parseLong(session.getId());
 		long sessionId = 3;
-		
-		List<Order> orderList = repository.findByUserIdAndStatus(sessionId,0);
+
+		List<Order> orderList = repository.findByUserIdAndStatus(sessionId, 0);
+
 		System.err.println(orderList.get(0).getOrderItemList().get(0).getItem().getName());
-		if(orderList.isEmpty()) {
-			return  "viewShoppingCart";
+		if (orderList.isEmpty()) {
+			return "viewShoppingCart";
 		}
-		
-		model.addAttribute("orderItemList",orderList.get(0).getOrderItemList());
+
+		model.addAttribute("orderItemList", orderList.get(0).getOrderItemList());
 		return "viewShoppingCart";
 	}
-	
 
 }

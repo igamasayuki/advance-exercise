@@ -6,16 +6,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="${pageContext.request.contextPath}css/bootstrap.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/adminHeader.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}css/bootstrap.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/include.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/adminHeader.css" />
 <meta charset="UTF-8">
 <title>注文詳細画面</title>
 </head>
 <body>
 	<jsp:include page="adminHeader.jsp" />
-	<jsp:include page="administerMenu.jsp"/>
+	<jsp:include page="administerMenu.jsp" />
 	<div align="center">
 		<h2>注文詳細</h2>
 	</div>
@@ -54,30 +58,38 @@
 			<th>個数</th>
 			<th>金額</th>
 		</tr>
-		<c:forEach var="item" items="${itemList}">
-		<tr>
-			<td><c:out value="${item.name}" /></td>
-			<td><fmt:formatNumber pattern="\###,###" value="${item.price}" /></td>
-			<td>×</td>
-			<td>カウントする</td>
-			<td>priceの合計</td>
-		</tr>
+		<c:forEach var="list" items="${list}">
+			<tr>
+				<td><c:out value="${list.name}" /></td>
+				<td><fmt:formatNumber pattern="\###,###" value="${list.price}" /></td>
+				<td>×</td>
+				<td><c:out value="${list.quantity}" /></td>
+				<td><fmt:formatNumber pattern="\###,###"
+						value="${list.price*list.quantity}" />円</td>
+			</tr>
 		</c:forEach>
 	</table>
 	<br>
 
 	<table border="1" align="center">
+
 		<tr>
 			<th>小計</th>
-			<td><fmt:formatNumber pattern="\###,###" value="${order.id}" />円</td>
+			<c:set var="total" value="${0}" />
+			<c:set var="sum" value="${0}" />
+			<c:forEach var="list" items="${list}">
+				<c:set var="sum" value="${list.price*list.quantity}" />
+				<c:set var="total" value="${sum+total}" />
+			</c:forEach>
+			<td><fmt:formatNumber pattern="\###,###" value="${total}" />円</td>
 		</tr>
 		<tr>
 			<th>税</th>
-			<td><fmt:formatNumber pattern="\###,###" value="${order.id}" />円</td>
+			<td><fmt:formatNumber pattern="\###,###" value="${total*0.08}" />円</td>
 		</tr>
 		<tr>
 			<th>支払方法</th>
-			<td><c:out value="${order.id}" /></td>
+			<td><c:out value="銀行振込" /></td>
 		</tr>
 		<tr>
 			<th>送料一律</th>
@@ -102,19 +114,17 @@
 					<c:when test="${order.status == 1}">未入金</c:when>
 					<c:when test="${order.status == 2}">入金済み</c:when>
 					<c:when test="${order.status == 3}">発送済み</c:when>
-					<c:when test="${order.status == 4}">キャンセル</c:when>
+					<c:when test="${order.status == 9}">キャンセル</c:when>
 				</c:choose></td>
 			<td><select name="birthMonth">
 					<option value="0">未購入</option>
 					<option value="1">未入金</option>
 					<option value="2">入金済み</option>
 					<option value="3">発送済み</option>
-					<option value="4">キャンセル</option>
-			</select>
-			<input class="btn" type="submit" value="更新">
-			</td>
+					<option value="9">キャンセル</option>
+			</select> <input class="btn" type="submit" value="更新"></td>
 		</tr>
-		
+
 	</table>
 	<br>
 

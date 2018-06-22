@@ -2,6 +2,8 @@ package com.example.ec_201804d.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,40 +22,55 @@ import com.example.ec_201804d.repository.ItemRepository;
 @RequestMapping("/user")
 public class ItemListController {
 
-	/** 商品DBをあつかうリポジトリ*/
+	/** 商品DBをあつかうリポジトリ */
 	@Autowired
 	ItemRepository repository;
-	
+
+	@Autowired
+	HttpSession session;
+
 	/**
 	 * 利用者の商品一覧画面を表示する.
-	 * @param model　リクエストスコープ
-	 * @return　利用者が見ることができる商品情報
+	 * 
+	 * @param model
+	 *            リクエストスコープ
+	 * @return 利用者が見ることができる商品情報
 	 */
 	@RequestMapping("/viewItemList")
 	public String list(Model model) {
+
+		// sessionIDを数値に変換する
+		// System.err.println("ItemControllerのsessionID:" + session.getId());
+		// String sessionStr = session.getId();
+		// long sessionId = sessionStr.hashCode();
+		// System.out.println("sessionIdをハッシュ化後" + sessionId);
+
 		List<Item> itemList = repository.findSaleItems();
 
-		if(itemList.isEmpty()) {
+		if (itemList.isEmpty()) {
 			return "/itemList";
 		}
-		model.addAttribute("itemList",itemList);
+		model.addAttribute("itemList", itemList);
 		return "/itemList";
 	}
-	
+
 	/**
 	 * 商品の文字列検索を行い、商品一覧を表示する.
-	 * @param word 検索された文字列
-	 * @param model　リクエストスコープ
-	 * @return　該当する商品情報
+	 * 
+	 * @param word
+	 *            検索された文字列
+	 * @param model
+	 *            リクエストスコープ
+	 * @return 該当する商品情報
 	 */
 	@RequestMapping("/findItem")
-	public String findItem(String word,Model model) {
+	public String findItem(String word, Model model) {
 		List<Item> findItemList = repository.findSaleItemsByWord(word);
-		model.addAttribute("findItemList",findItemList);
-		if(findItemList.isEmpty()) {
+		model.addAttribute("findItemList", findItemList);
+		if (findItemList.isEmpty()) {
 			return "/itemList";
 		}
-		model.addAttribute("itemList",findItemList);
+		model.addAttribute("itemList", findItemList);
 		return "/itemList";
 	}
 }
