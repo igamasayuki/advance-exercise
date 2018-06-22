@@ -38,13 +38,14 @@ public class ShowShoppingCartController {
 	 */
 	@RequestMapping("/viewShoppingCart")
 	public String findByUserId(@AuthenticationPrincipal LoginUser loginUser, Model model) {
-		// sessionIDを数値に変換する
-		 System.err.println("sessionID:" + session.getId());
-		 String sessionStr = session.getId();
-		 long sessionId = sessionStr.hashCode();
-		 System.out.println("sessionIdをハッシュ化後" + sessionId);
+		long id;
+		if (loginUser == null) {
+			String sessionStr = session.getId();
+			id = sessionStr.hashCode();
+		} else {			
+			id = loginUser.getUser().getId();
+		}
 			
-		long id = loginUser.getUser().getId();
 		
 		List<Order> orderList = repository.findByUserIdAndStatus(id,0);
 		

@@ -45,10 +45,10 @@
             </tr>
             </c:forEach>
         </table><br>
+	    <div class="center-block"><a href="${pageContext.request.contextPath}/userPayment/">決済へ</a></div>
         </c:otherwise>
-        </c:choose>
+</c:choose>
 </div>
-    <div class="center-block"><a href="${pageContext.request.contextPath}/payment/">決済へ</a></div>
 
 </body>
 </html>
