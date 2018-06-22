@@ -31,7 +31,6 @@ public class PaymentController {
 	
 	@RequestMapping
 	public String showPaymentConfirmationView(@AuthenticationPrincipal LoginUser loginUser, Model model) {
-		System.out.println("loginUser:" + loginUser);
 		long userId = loginUser.getUser().getId();
 		List<Order> orders = repository.findByUserIdAndStatus(userId, 0);
 		Order order = null;

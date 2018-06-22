@@ -19,7 +19,6 @@
 							<sec:authentication var="userName" property="principal.user.name" />
 								<c:out value="${userName}" />&nbsp;さんこんにちは
 						</sec:authorize>
-
 	<p><a href="${pageContext.request.contextPath}/user/logout">ログアウト</a></p>
 	<p><a href="${pageContext.request.contextPath}/user/login">ログイン</a></p>
 </div>
