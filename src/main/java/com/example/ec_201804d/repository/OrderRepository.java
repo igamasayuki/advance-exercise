@@ -132,6 +132,10 @@ public class OrderRepository {
 		template.update(sql, param);
 	}
 
+	/**
+	 * @param orderId オーダーID
+	 * @return　itemから取得しリストに返す
+	 */
 	public List<Info> find(long orderId) {
 		  String sql="select i.price as iPrice,i.name as iName,oi.quantity as oiQuantity,o.total_price as oTotal "
 		  		+ "from orders as o inner join order_items as oi on(o.id=oi.order_id)" + 
