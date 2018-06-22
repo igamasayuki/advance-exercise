@@ -5,11 +5,13 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.ec_201804d.domain.LoginUser;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.domain.OrderItem;
 import com.example.ec_201804d.domain.User;
@@ -18,19 +20,19 @@ import com.example.ec_201804d.repository.UserRepository;
 
 @Controller
 @Transactional
-@RequestMapping(value="/payment")
+@RequestMapping(value="/userPayment")
 public class PaymentController {
 	@Autowired
-	private HttpSession session;
+	HttpSession session;
 	@Autowired
 	private OrderRepository repository;
 	@Autowired
 	private UserRepository userRepository;
 	
 	@RequestMapping
-	public String showPaymentConfirmationView(Model model) {
-//		long userId = ((User)session.getAttribute("user")).getId();
-		long userId = 3;
+	public String showPaymentConfirmationView(@AuthenticationPrincipal LoginUser loginUser, Model model) {
+		System.out.println("loginUser:" + loginUser);
+		long userId = loginUser.getUser().getId();
 		List<Order> orders = repository.findByUserIdAndStatus(userId, 0);
 		Order order = null;
 		if (orders.isEmpty()) {

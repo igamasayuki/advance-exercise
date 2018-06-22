@@ -12,13 +12,14 @@ import com.example.ec_201804d.repository.ItemRepository;
 
 /**
  * 商品詳細を表示するためのコントローラー
+ * 
  * @author minori.matsuoka
  *
  */
 @Controller
 @RequestMapping("/user")
 public class ItemDetailController {
-	
+
 	@ModelAttribute
 	public ItemForm setupForm() {
 		return new ItemForm();
@@ -26,13 +27,12 @@ public class ItemDetailController {
 
 	@Autowired
 	ItemRepository repository;
-	
+
 	@RequestMapping("/item_detail")
-	public String detail(Integer id,Model model) {
-	Item item = repository.load(id);
-	model.addAttribute("item", item);
-	return "/itemDetail";
+	public String detail(Integer id, Model model) {
+		Item item = repository.load(id);
+		model.addAttribute("item", item);
+		return "/itemDetail";
 	}
-	
-	
-	}
+
+}

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.ec_201804d.domain.LoginUser;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.domain.OrderItem;
 import com.example.ec_201804d.domain.User;
@@ -43,11 +45,11 @@ public class OrderItemController {
 	
 	@RequestMapping("/view")
 	public String viewShoppingCart() {
-		return "redirect:/shoppingCart/showShoppingCart";
+		return "redirect:/user/viewShoppingCart";
 	}
 
 	@RequestMapping("/addItem")
-	public String addItemToShoppingCart(@Validated ItemForm itemForm, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
+	public String addItemToShoppingCart(@AuthenticationPrincipal LoginUser loginUser, @Validated ItemForm itemForm, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
 
 		if(result.hasErrors()) {
 			return "/user/item_detail?id=" + itemForm.getItemId();
@@ -56,13 +58,14 @@ public class OrderItemController {
 		Order order;
 		
 		long userId;
-		if((session.getAttribute("user")) == null) {
+		if(loginUser == null) {
 //			userId = Long.parseLong(session.getId());
-			userId = 1;
+			userId = session.getId().hashCode();
 		}else {
 //			userId = (((User)session.getAttribute("user")).getId());
-			userId = 1;
+			userId = loginUser.getUser().getId();
 		}
+		System.out.println("id:" + userId);
 		
 		List<Order> orders = orderRepository.findByUserIdAndStatus(userId, 0);
 		if(orders.isEmpty()) {
