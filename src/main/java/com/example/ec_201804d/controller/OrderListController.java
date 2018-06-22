@@ -17,7 +17,7 @@ import com.example.ec_201804d.repository.OrderRepository;
  *
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/admin")
 public class OrderListController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class OrderListController {
 	}
 
 	@RequestMapping("/orderDetail")
-	public String execute(Integer id, Model model) {
+	public String execute(long id, Model model) {
 		Order order = repository.load(id);
 		model.addAttribute("order", order);
 		return "/orderDetail";

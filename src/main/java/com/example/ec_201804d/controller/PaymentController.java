@@ -30,7 +30,7 @@ public class PaymentController {
 	@RequestMapping
 	public String showPaymentConfirmationView(Model model) {
 //		long userId = ((User)session.getAttribute("user")).getId();
-		long userId = 1;
+		long userId = 3;
 		List<Order> orders = repository.findByUserIdAndStatus(userId, 0);
 		Order order = null;
 		if (orders.isEmpty()) {
@@ -55,8 +55,16 @@ public class PaymentController {
 		return "paymentConfirmation";
 	}
 	
-	@RequestMapping(value="closeOut")
+	@RequestMapping(value="/showView")
 	public String showPaymentCloseOutView() {
 		return "paymentCloseOut";
+	}
+	
+	@RequestMapping(value="/closeOut")
+	public String closeOutPayment(long orderId) {
+		Order order = repository.load(orderId);
+		order.setStatus(1);
+		repository.update(order);
+		return "redirect:showView";
 	}
 }

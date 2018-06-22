@@ -15,7 +15,7 @@
 	<div class="center-block">
 	お客様の情報を入力し、「お客様情報を登録する」ボタンをクリックしてください。<br>
 	<form:form modelAttribute="userRegistrationForm"
-		action="${pageContext.request.contextPath}/register/insert">
+		action="${pageContext.request.contextPath}/user/register">
 		<table border="1">
 			<tr>
 				<th>名前</th>

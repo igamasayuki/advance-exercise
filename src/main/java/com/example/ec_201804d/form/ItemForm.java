@@ -12,11 +12,11 @@ import javax.validation.constraints.Pattern;
 public class ItemForm {
 
 	/** 個数 */
-	@NotNull(message="個数を入力してください")
+//	@NotNull(message="個数を入力してください")
 //	@Pattern(regexp = "^[1-9][0-9]*+$",message="自然数で入力してください")
 	private Integer quantity;
 	/** 商品のID */
-	private long itemId;
+	private Long itemId;
 
 	/** 以下setter,getter */
 	public Integer getQuantity() {
@@ -27,11 +27,11 @@ public class ItemForm {
 		this.quantity = quantity;
 	}
 
-	public long getItemId() {
+	public Long getItemId() {
 		return itemId;
 	}
 
-	public void setItemId(long itemId) {
+	public void setItemId(Long itemId) {
 		this.itemId = itemId;
 	}
 }

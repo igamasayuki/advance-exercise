@@ -19,7 +19,7 @@ import com.example.ec_201804d.repository.ItemRepository;
  */
 @Controller
 @Transactional
-@RequestMapping(value="/adminItemList")
+@RequestMapping(value="/admin")
 public class AdminItemListController {
 	/** 商品DBを扱うリポジトリ */
 	@Autowired
@@ -30,7 +30,7 @@ public class AdminItemListController {
 	 * @param model リクエストスコープ
 	 * @return 管理者の商品一覧画面
 	 */
-	@RequestMapping
+	@RequestMapping(value="/adminItemList")
 	public String showItemListView(Model model) {
 		List<Item> itemList = repository.findAll();
 		if (itemList.isEmpty()) return "adminItemList";

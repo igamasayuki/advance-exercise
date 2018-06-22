@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +16,11 @@
 	</div>
 	<h3>商品一覧</h3>
 	<div class="center-block">
-		<form action="${pageContext.request.contextPath}/itemList/findItem" method="post">
-			<input type="text" name="word"> <input type="submit" value="検索する">
-		</form>
+		<form:form action="${pageContext.request.contextPath}/user/findItem"
+			method="post">
+			<input type="text" name="word"> <input type="submit"
+				value="検索する">
+		</form:form>
 </div>
 	<c:choose>
 		<c:when test="${itemList == null}">
@@ -34,7 +37,9 @@
 
 				<c:forEach var="item" items="${itemList}">
 					<tr>
-						<td><a href="${pageContext.request.contextPath}/item_detail/item_detail?id=${item.id}"><c:out value="${item.name}" /></a></td>
+						<td><a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
+								<c:out value="${item.name}" />
+							</a></td>
 						<td><img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
 						<td><fmt:formatNumber pattern="\###,###" value="${item.price}" /></td>
 					</tr>

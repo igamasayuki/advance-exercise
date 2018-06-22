@@ -6,10 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>ショッピングカートの中身</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
+<jsp:include page="userHeader.jsp" />
+	<div class="link-right" align="right">
+	<a href="${pageContext.request.contextPath}/user/viewShoppingCart">カートの中身を表示する</a>
+	</div>
 <h3>ショッピングカート一覧</h3>
-
+<div class="center-block">
 <c:choose>
 		<c:when test="${orderItemList == null}">
 			<div class="center-block">
@@ -19,18 +24,18 @@
 		<c:otherwise>
  <table border ="1">
             <tr>
-                <th colspan="1">商品名</th>
+                <th colspan="2">商品名</th>
                 <th>価格</th>
                 <th>個数</th>
                 <th></th>
             </tr>
             <c:forEach var="orderItem" items="${orderItemList}">
             <tr>
-				<td><a href="${pageContext.request.contextPath}/item_detail/item_detail?id=${orderItem.id}">
-					<img src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.imagePath}"/>"alt="商品画像"></a></td>
-                <td><a href="itemDetail.html"><c:out value="${orderItem.name}"/></a></td>
-                <td><fmt:formatNumber pattern="\###,###" value="${orderItem.price}" /></td>
-                <td>1個</td>
+				<td><a href="${pageContext.request.contextPath}/item_detail/item_detail?id=${orderItem.item.id}">
+					<img src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.item.imagePath}"/>"alt="商品画像"></a></td>
+                <td><a href="itemDetail.html"><c:out value="${orderItem.item.name}"/></a></td>
+                <td><fmt:formatNumber pattern="\###,###" value="${orderItem.item.price}" /></td>
+                <td><c:out value="${orderItem.quantity}"/></td>
                 <td>
                     <form action="viewShoppingCart.html" method="post">
                         <input type="hidden" name="item.id" value="1">
@@ -42,8 +47,8 @@
         </table><br>
         </c:otherwise>
         </c:choose>
-
-    <div class="center-block"><a href="${pageContext.request.contextPath}/決済画面のURL">決済へ</a></div>
+</div>
+    <div class="center-block"><a href="${pageContext.request.contextPath}/payment/">決済へ</a></div>
 
 </body>
 </html>

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import com.example.ec_201804d.domain.AdminUser;
 
 @Repository
-public class AdminUserRepoistory {
+public class AdminUserRepository {
 	private static final RowMapper<AdminUser> AdminUserRowMapper=(rs,i)->{
 		AdminUser registerAdminUser = new AdminUser();
 		registerAdminUser.setName(rs.getString("name"));

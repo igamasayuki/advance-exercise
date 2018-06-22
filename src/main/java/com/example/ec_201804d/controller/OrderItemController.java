@@ -24,10 +24,10 @@ import com.example.ec_201804d.repository.OrderItemRepository;
 import com.example.ec_201804d.repository.OrderRepository;
 
 @Controller
-@RequestMapping("/orderItems")
+@RequestMapping("/user")
 public class OrderItemController {
 
-	@ModelAttribute
+	@ModelAttribute(value= "itemForm")
 	public ItemForm setupForm() {
 		return new ItemForm();
 	}
@@ -50,16 +50,18 @@ public class OrderItemController {
 	public String addItemToShoppingCart(@Validated ItemForm itemForm, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
 
 		if(result.hasErrors()) {
-			return "/item_detail/item_detail";
+			return "/user/item_detail?id=" + itemForm.getItemId();
 		}
 		
 		Order order;
 		
 		long userId;
 		if((session.getAttribute("user")) == null) {
-			userId = Long.parseLong(session.getId());
+//			userId = Long.parseLong(session.getId());
+			userId = 1;
 		}else {
-			userId = (((User)session.getAttribute("user")).getId());
+//			userId = (((User)session.getAttribute("user")).getId());
+			userId = 1;
 		}
 		
 		List<Order> orders = orderRepository.findByUserIdAndStatus(userId, 0);
@@ -75,6 +77,7 @@ public class OrderItemController {
 			order.setTotalPrice(0);
 			order.setOrderDate(date);
 			orderRepository.insertNewOrder(order);
+			orders = orderRepository.findByUserIdAndStatus(userId, 0);
 		}
 			long orderId = orders.get(0).getId();
 		
@@ -84,7 +87,7 @@ public class OrderItemController {
 		orderItem.setQuantity(itemForm.getQuantity());
 		orderItemRepository.save(orderItem);
 		
-		return "/orderItems/view";
+		return "forward:/user/view";
 	}
 
 }

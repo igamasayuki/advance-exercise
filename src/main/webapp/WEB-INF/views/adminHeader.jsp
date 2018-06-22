@@ -14,9 +14,9 @@
 <div id="header">
 <div id="userHeader">
 <p>こんにちは<c:out value="${name}"/>さん</p>
-	<p><a href="${pageContext.request.contextPath}/adminLogout/viewAdminLogout">ログアウト</a></p>
+	<p><a href="${pageContext.request.contextPath}/adminlogout">ログアウト</a></p>
 	</div>
-	<h1 align ="left"><a href="${pageContext.request.contextPath}/viewItemList"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
+	<h1 align ="left"><a href="${pageContext.request.contextPath}/user/viewItemList"><img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"
 	
 	height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1></div>
 </body>

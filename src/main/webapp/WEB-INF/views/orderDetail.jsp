@@ -25,6 +25,9 @@
 			<td><c:out value="${order.orderNumber}" /></td>
 		</tr>
 		<tr>
+			<th>名前</th>
+			<td><c:out value="${order.deliveryName}" /></td>
+		</tr>
 		<tr>
 			<th>メールアドレス</th>
 			<td><c:out value="${order.deliveryEmail}" /></td>
@@ -51,6 +54,7 @@
 			<th>個数</th>
 			<th>金額</th>
 		</tr>
+		<c:forEach var="item" items="${itemList}">
 		<tr>
 			<td><c:out value="${item.name}" /></td>
 			<td><fmt:formatNumber pattern="\###,###" value="${item.price}" /></td>
@@ -58,6 +62,7 @@
 			<td>カウントする</td>
 			<td>priceの合計</td>
 		</tr>
+		</c:forEach>
 	</table>
 	<br>
 
@@ -113,7 +118,7 @@
 	</table>
 	<br>
 
-	<a href="${pageContext.request.contextPath}/viewOrderList/">注文一覧に戻る
+	<a href="${pageContext.request.contextPath}/admin/viewOrderList">注文一覧に戻る
 	</a>
 
 </body>

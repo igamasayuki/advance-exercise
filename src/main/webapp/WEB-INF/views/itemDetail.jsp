@@ -37,14 +37,14 @@
 		<br><br>
 
 		<div class="center-block">
-		<form:form modelAttribute="itemForm" action="${pageContext.request.contextPath}/item_detail/item_detail">
-			個数　：<form:input path="quantity" size="10"/>
+		<form:form modelAttribute="itemForm" action="${pageContext.request.contextPath}/user/addItem">
+			個数　：<form:input path="quantity"/>
 			<br> <br>
 		<input type="hidden" name="itemId" value="${item.id}">
 		<input type="submit" value="カートに入れる">
 		</form:form>
 		<br><br>
-			 <a href="${pageContext.request.contextPath}/itemList/viewItemList">商品一覧に戻る</a>
+			 <a href="${pageContext.request.contextPath}/user/viewItemList">商品一覧に戻る</a>
 </div>
 </body>
 </html>

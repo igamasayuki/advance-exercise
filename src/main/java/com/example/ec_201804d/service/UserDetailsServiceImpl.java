@@ -12,9 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.ec_201804d.domain.LoginUser;
-//import com.example.ec_201804d.domain.AdminUser;
 import com.example.ec_201804d.domain.User;
-//import com.example.ec_201804d.repository.AdminUserRepoistory;
 import com.example.ec_201804d.repository.UserRepository;
 
 /**
@@ -28,24 +26,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UserRepository userRepository;
-//	@Autowired
-//	private AdminUserRepoistory adminUserRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmailAddress(email);
-//		AdminUser adminUser = adminUserRepository.findByMailAddress(email);
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();
 		
 		if(user == null) {
 			throw new UsernameNotFoundException("そのEmailは登録されていません");
 		}
 		authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
-		
-//		if(adminUser == null) {
-//			throw new UsernameNotFoundException("そのEmailは登録されていません");
-//		}
-//		authorityList.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		
 		return new LoginUser(user,authorityList);
 	}

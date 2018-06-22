@@ -20,7 +20,7 @@ import com.example.ec_201804d.repository.UserRepository;
  *         利用者登録するコントローラクラス.
  */
 @Controller
-@RequestMapping(value = "/register")
+@RequestMapping(value = "/user")
 public class UserRegistrationController {
 
 	@Autowired
@@ -47,7 +47,7 @@ public class UserRegistrationController {
 	 *            リクエストスコープ
 	 * @return リダイレクト
 	 */
-	@RequestMapping(value = "/insert")
+	@RequestMapping(value = "/register")
 	public String insertUser(@Validated UserRegistrationForm form, BindingResult result, Model model) {
 		User user = new User();
 		BeanUtils.copyProperties(form, user);
