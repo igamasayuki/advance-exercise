@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import com.example.ec_201804d.domain.Info;
 import com.example.ec_201804d.domain.Item;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.domain.OrderItem;
@@ -83,6 +84,16 @@ public class OrderRepository {
 		}
 		return orderList;
 	};
+	
+	private static final RowMapper<Info> InfoRowMapper = (rs,i)->{
+		  Info info = new Info();
+		  info.setName(rs.getString("iName"));
+		  info.setPrice(rs.getInt("iPrice"));
+		  info.setQuantity(rs.getInt("oiQuantity"));
+		  info.setTotalPrice(rs.getInt("oTotal"));
+		  
+		  return info;
+		 };
 
 	@Autowired
 	NamedParameterJdbcTemplate template;
@@ -114,6 +125,22 @@ public class OrderRepository {
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
 		return order;
 	}
+	
+	public void insertNewOrder(Order order) {
+
+		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
+		String sql = "insert into orders(order_number,user_id,status,total_price,order_date)values(:orderNumber,:userId,:status,:totalPrice,:orderDate);";
+		template.update(sql, param);
+	}
+
+	public List<Info> find(long orderId) {
+		  String sql="select i.price as iPrice,i.name as iName,oi.quantity as oiQuantity,o.total_price as oTotal "
+		  		+ "from orders as o inner join order_items as oi on(o.id=oi.order_id)" + 
+		    "inner join items as i on(oi.item_id=i.id) where oi.order_id=:orderId";
+		  SqlParameterSource param = new MapSqlParameterSource().addValue("orderId",orderId);
+		  List<Info>list=template.query(sql,param,InfoRowMapper);
+		  return list;
+		 }
 
 	/**
 	 * ユーザIDとステータスから検索を行う.
@@ -128,7 +155,7 @@ public class OrderRepository {
 		String findSql = "SELECT o.id AS ID, order_number, user_id, status, "
 				+ "oi.id AS orderitem_id, oi.item_id AS item_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
 				+ "delivery_name, delivery_email, delivery_zip_code, delivery_address, delivery_tel "
-				+ "FROM orders o JOIN order_items oi ON o.id = oi.order_id JOIN items i ON oi.item_id = i.id "
+				+ "FROM orders o LEFT OUTER JOIN order_items oi ON o.id = oi.order_id LEFT OUTER JOIN items i ON oi.item_id = i.id "
 				+ "WHERE user_id=:userId AND status=:status";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("status", status);
 		List<Order> orders = template.query(findSql, param, ORDER_EXTRACTOR);
@@ -149,4 +176,5 @@ public class OrderRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		template.update(updateSql, param);
 	}
+	
 }

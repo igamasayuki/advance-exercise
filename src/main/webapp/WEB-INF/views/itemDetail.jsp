@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,10 +37,12 @@
 		<br><br>
 
 		<div class="center-block">
-		<form action="${pageContext.request.contextPath}/カートに入れるURL（やっすー）" method="post">
-			個数　：<select path="quantity" /><br> <br>
-		 <input type="submit" value="カートに入れる">
-		</form>
+		<form:form modelAttribute="itemForm" action="${pageContext.request.contextPath}/user/addItem">
+			個数　：<form:input path="quantity"/>
+			<br> <br>
+		<input type="hidden" name="itemId" value="${item.id}">
+		<input type="submit" value="カートに入れる">
+		</form:form>
 		<br><br>
 			 <a href="${pageContext.request.contextPath}/user/viewItemList">商品一覧に戻る</a>
 </div>
