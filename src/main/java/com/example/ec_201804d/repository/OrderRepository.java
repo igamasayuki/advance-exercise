@@ -128,7 +128,7 @@ public class OrderRepository {
 	public void insertNewOrder(Order order) {
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
-		String sql = "insert into orders(order_number,user_id,status,total_price,order_date)values(:order_number,:user_id,:status,:total_price,:order_date);";
+		String sql = "insert into orders(order_number,user_id,status,total_price,order_date)values(:orderNumber,:userId,:status,:totalPrice,:orderDate);";
 		template.update(sql, param);
 	}
 
@@ -154,7 +154,7 @@ public class OrderRepository {
 		String findSql = "SELECT o.id AS ID, order_number, user_id, status, "
 				+ "oi.id AS orderitem_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
 				+ "delivery_name, delivery_email, delivery_zip_code, delivery_address, delivery_tel "
-				+ "FROM orders o JOIN order_items oi ON o.id = oi.order_id JOIN items i ON oi.item_id = i.id "
+				+ "FROM orders o LEFT OUTER JOIN order_items oi ON o.id = oi.order_id LEFT OUTER JOIN items i ON oi.item_id = i.id "
 				+ "WHERE user_id=:userId AND status=:status";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("status", status);
 		List<Order> orders = template.query(findSql, param, ORDER_EXTRACTOR);
