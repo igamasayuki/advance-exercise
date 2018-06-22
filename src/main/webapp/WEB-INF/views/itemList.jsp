@@ -11,16 +11,19 @@
 </head>
 <body>
 	<jsp:include page="userHeader.jsp" />
-	<div class="link-right" align="right">
-	<a href="${pageContext.request.contextPath}/user/viewShoppingCart">カートの中身を表示する</a>
+	<div style="width:100px;height:100px;background-color:yellow;margin-right:auto;margin-left:auto;">
+	<jsp:include page="slide.jsp" />
 	</div>
+	<hr>
 	<h3>商品一覧</h3>
+	
 	<div class="center-block">
 		<form:form action="${pageContext.request.contextPath}/user/findItem"
 			method="post">
 			<input type="text" name="word"> <input type="submit"
 				value="検索する">
 		</form:form>
+	<hr>
 </div>
 	<c:choose>
 		<c:when test="${itemList == null}">
@@ -29,25 +32,25 @@
 			</div>
 		</c:when>
 		<c:otherwise>
-			<table border="1">
-				<tr>
-					<td colspan="2">商品名</td>
-					<td>価格</td>
-				</tr>
-
+			<div style="margin-right:auto;margin-left:auto;width:auto;height:800px;">
 				<c:forEach var="item" items="${itemList}">
-					<tr>
-						<td><a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
-								<c:out value="${item.name}" />
-							</a></td>
-						<td><img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
-						<td><fmt:formatNumber pattern="\###,###" value="${item.price}" /></td>
-					</tr>
+					<span style="float:left;padding-left:30px;">
+						<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
+								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>">
+							</a><br>
+						<c:out value="${item.name}" /><br>
+						<fmt:formatNumber pattern="\###,###" value="${item.price}" />
+					</span>
 				</c:forEach>
-			</table>
+			</div>
 		</c:otherwise>
-
 	</c:choose>
-
+<div style="width:auto;height:250px;background-color:#80808014;text-align:center">
+<span style="margin-right:30px;position:relative; top:50px;">当サイトについて</span>
+<span style="margin-right:30px;position:relative; top:50px;">プライバシーポリシー</span>
+<span style="margin-right:30px;position:relative; top:50px;">特定商取引法に基づく表記</span>
+<span style="margin-right:30px;position:relative; top:50px;">お問い合わせ</span>
+<h1 style="position:relative; top:50px;">キャベツ王国</h1>
+</div>
 </body>
 </html>
