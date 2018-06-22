@@ -43,6 +43,7 @@ public class ShowShoppingCartContloroller {
 		// long sessionId = sessionStr.hashCode();
 		// System.out.println("sessionIdをハッシュ化後" + sessionId);
 
+		
 		long sessionId = 3;
 
 		List<Order> orderList = repository.findByUserIdAndStatus(sessionId, 0);
