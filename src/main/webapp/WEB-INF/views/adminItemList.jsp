@@ -17,7 +17,9 @@
 <jsp:include page="adminHeader.jsp"/>
 <div id="adminItemList">
 <h3>商品一覧</h3>
-<form:form action="${pageContext.request.contextPath}/adminItemList/index">
+<h4><c:out value="${message}"/></h4>
+
+<form:form action="${pageContext.request.contextPath}/admin/index">
 	<input type="text" name="keyword" value="${keyword}">
 	<input type="submit" value="検索する">
 </form:form>

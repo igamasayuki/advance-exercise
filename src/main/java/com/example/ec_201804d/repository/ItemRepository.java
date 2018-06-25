@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.ec_201804d.domain.Item;
-import com.example.ec_201804d.domain.Order;
 
 /**
  * 商品情報を操作するメソッド.
@@ -97,7 +96,7 @@ public class ItemRepository {
 	 * @param id ID
 	 * @return 選択された商品情報
 	 */
-	public Item load(int id) {
+	public Item load(long id) {
 		String sql ="SELECT id,name,description,price,imagepath,deleted FROM items WHERE id=:id";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
@@ -142,6 +141,15 @@ public class ItemRepository {
 				+ " WHERE id=:id";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("deleted", !currentFlag).addValue("id", id);
 		template.update(updateSql, param);
+	}
+	
+	public int countNumberOfSameName(String name) {
+		String countSql = "SELECT COUNT(id)"
+				+ " FROM " + TABLE_NAME
+				+ " WHERE name=:name";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", name);
+		int count = template.queryForObject(countSql, param, Integer.class);
+		return count;
 	}
 	
 }

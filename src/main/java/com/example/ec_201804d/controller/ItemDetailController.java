@@ -29,7 +29,8 @@ public class ItemDetailController {
 	ItemRepository repository;
 
 	@RequestMapping("/item_detail")
-	public String detail(Integer id, Model model) {
+	public String detail(Long id, Model model) {
+		System.out.println("商品詳細へのメソッド");
 		Item item = repository.load(id);
 		model.addAttribute("item", item);
 		return "/itemDetail";
