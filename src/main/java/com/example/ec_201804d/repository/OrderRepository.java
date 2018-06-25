@@ -86,16 +86,16 @@ public class OrderRepository {
 		}
 		return orderList;
 	};
-	
-	private static final RowMapper<Info> InfoRowMapper = (rs,i)->{
-		  Info info = new Info();
-		  info.setName(rs.getString("iName"));
-		  info.setPrice(rs.getInt("iPrice"));
-		  info.setQuantity(rs.getInt("oiQuantity"));
-		  info.setTotalPrice(rs.getInt("oTotal"));
-		  
-		  return info;
-		 };
+
+	private static final RowMapper<Info> InfoRowMapper = (rs, i) -> {
+		Info info = new Info();
+		info.setName(rs.getString("iName"));
+		info.setPrice(rs.getInt("iPrice"));
+		info.setQuantity(rs.getInt("oiQuantity"));
+		info.setTotalPrice(rs.getInt("oTotal"));
+
+		return info;
+	};
 
 	@Autowired
 	NamedParameterJdbcTemplate template;
@@ -127,7 +127,7 @@ public class OrderRepository {
 		Order order = template.queryForObject(sql, param, ORDER_ROW_MAPPER);
 		return order;
 	}
-	
+
 	public void insertNewOrder(Order order) {
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
@@ -136,8 +136,9 @@ public class OrderRepository {
 	}
 
 	/**
-	 * @param orderId オーダーID
-	 * @return　itemから取得しリストに返す
+	 * @param orderId
+	 *            オーダーID
+	 * @return itemから取得しリストに返す
 	 */
 	public List<Info> find(long orderId) {
 		  String sql="select i.price as iPrice,i.name as iName,oi.quantity as oiQuantity,o.total_price as oTotal "
@@ -147,6 +148,7 @@ public class OrderRepository {
 		  List<Info>list=template.query(sql,param,InfoRowMapper);
 		  return list;
 		 }
+
 
 	/**
 	 * ユーザIDとステータスから検索を行う.
@@ -182,7 +184,10 @@ public class OrderRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
 		template.update(updateSql, param);
 	}
+
 	
+	
+
 	public void updateUserId(long preUserId, long userId) {
 		String updateSql = "UPDATE " + TABLE_NAME + " SET user_id=:userId WHERE user_id=:preUserId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("preUserId", preUserId);
@@ -195,4 +200,19 @@ public class OrderRepository {
 		template.update(deleteSql, param);
 	}
 	
+
+	/**
+	 * 注文ステータスを変更する.
+	 * 
+	 * @param status 注文状況
+	 * @param id　注文状況を変更するid
+	 */
+	public void updateStatus(int status, Long id) {
+
+		SqlParameterSource param = new MapSqlParameterSource().addValue("status", status).addValue("id", id);
+		String sql = "UPDATE + TABLE_NAME + set status=:status WHERE id=:id";
+
+		template.update(sql, param);
+	}
+
 }

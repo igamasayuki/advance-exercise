@@ -23,7 +23,7 @@
 	<div align="center">
 		<h2>注文詳細</h2>
 	</div>
-	<table border="1" align="center">
+	<table border="1">
 		<tr>
 			<th>注文No</th>
 			<td><c:out value="${order.orderNumber}" /></td>
@@ -50,7 +50,7 @@
 
 	</table>
 	<br>
-	<table border="1" align="center">
+	<table border="1">
 		<tr>
 			<th>商品</th>
 			<th>価格</th>
@@ -71,7 +71,7 @@
 	</table>
 	<br>
 
-	<table border="1" align="center">
+	<table border="1">
 
 		<tr>
 			<th>小計</th>
@@ -103,10 +103,10 @@
 	</table>
 	<br>
 
-	<table border="1" align="center">
+	<table border="1">
 		<tr>
-			<th>現在のステータス</th>
-			<th>ステータス変更</th>
+			<th nowrap>現在のステータス</th>
+			<th nowrap>ステータス変更</th>
 		</tr>
 		<tr>
 			<td><c:choose>
@@ -116,16 +116,22 @@
 					<c:when test="${order.status == 3}">発送済み</c:when>
 					<c:when test="${order.status == 9}">キャンセル</c:when>
 				</c:choose></td>
-			<td><select name="birthMonth">
-					<option value="0">未購入</option>
-					<option value="1">未入金</option>
-					<option value="2">入金済み</option>
-					<option value="3">発送済み</option>
-					<option value="9">キャンセル</option>
-			</select> <input class="btn" type="submit" value="更新"></td>
-		</tr>
+			<td><form:form modelAttribute="orderDetailForm"
+					action="${pageContext.request.contextPath}/admin/updateStatus?id=${order.id}">
+					<select name="status">
+						<option value="1">未入金</option>
+						<option value="2" selected>入金済み</option>
+						<option value="3">発送済み</option>
+						<option value="9">キャンセル</option>
+					</select>
 
+					<input type="hidden" name="id" value="">
+					<button type="submit" class="btn btn-info">更新</button>
+				</form:form></td>
+		</tr>
 	</table>
+	<br>
+	<c:out value="${update}" />
 	<br>
 
 	<a href="${pageContext.request.contextPath}/admin/viewOrderList">注文一覧に戻る
