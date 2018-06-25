@@ -17,35 +17,30 @@
 <body>
 <jsp:include page="administerMenu.jsp"/>
 <jsp:include page="adminHeader.jsp"/>
-<table>
-<form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/registerAdmin/registerAdminUser">
+<table border="1">
+<form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/admin/registerAdminUser">
 <tr>
 <td id="registerAdminUser"colspan="3">新規管理者登録</td>
 </tr>
 <tr>
-<td><form:errors path="name" cssStyle="color:red" /></td>
-<td>名前:</td>
+<td>名前:<br><form:errors path="name" cssStyle="color:red" /></td>
 <td><form:input path="name"/></td>
 </tr>
 <tr>
-<td><form:errors path="email" cssStyle="color:red"/></td>
-<td>メールアドレス:</td>
+<td>メールアドレス:<br><form:errors path="email" cssStyle="color:red"/></td>
 <td><form:input path="email"/></td>
 </tr>
 <tr>
-<td><form:errors path="password" cssStyle="color:red"/></td>
-<td>パスワード:</td>
+<td>パスワード:<br><form:errors path="password" cssStyle="color:red"/></td>
 <td><form:password path="password"/></td>
 </tr>
 <tr>
-<td><form:errors path="checkPassword" cssStyle="color:red" /></td>
-<td>確認パスワード:</td>
+<td>確認パスワード:<br><form:errors path="checkPassword" cssStyle="color:red" /></td>
 <td><form:password path="checkPassword"/></td>
 </tr>
 <tr>
-<td></td>
-<td><input type="submit" value="送信"></td>
-<td></td>
+<td><input type="submit" value="送信"><br><br><input type="reset" value="リセット"></td>
+<td><div style="color:red;"><c:out value="${succsess}"/></div></td>
 </tr>
 </form:form>
 </table>
