@@ -190,7 +190,7 @@ public class OrderRepository {
 	 * @param status 注文状況
 	 * @param id　注文状況を変更するid
 	 */
-	public void update(int status, Long id) {
+	public void updateStatus(int status, Long id) {
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("status", status).addValue("id", id);
 		String sql = "update orders set status=:status where id=:id";

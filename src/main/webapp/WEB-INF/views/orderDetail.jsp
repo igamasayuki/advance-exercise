@@ -116,7 +116,7 @@
 					<c:when test="${order.status == 3}">発送済み</c:when>
 					<c:when test="${order.status == 9}">キャンセル</c:when>
 				</c:choose></td>
-			<td><form:form modelAttribute="oderDetailForm"
+			<td><form:form modelAttribute="orderDetailForm"
 					action="${pageContext.request.contextPath}/admin/updateStatus?id=${order.id}">
 					<select name="status">
 						<option value="1">未入金</option>
