@@ -97,7 +97,7 @@ public class ItemRepository {
 	 * @param id ID
 	 * @return 選択された商品情報
 	 */
-	public Item load(int id) {
+	public Item load(long id) {
 		String sql ="SELECT id,name,description,price,imagepath,deleted FROM items WHERE id=:id";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);

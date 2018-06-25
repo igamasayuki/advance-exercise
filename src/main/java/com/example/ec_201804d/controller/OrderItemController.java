@@ -28,7 +28,7 @@ import com.example.ec_201804d.repository.OrderRepository;
 @RequestMapping("/user")
 public class OrderItemController {
 
-	@ModelAttribute(value= "itemForm")
+	@ModelAttribute
 	public ItemForm setupForm() {
 		return new ItemForm();
 	}
@@ -42,6 +42,9 @@ public class OrderItemController {
 	@Autowired
 	private OrderRepository orderRepository;
 	
+	@Autowired
+	private ItemDetailController itemDetailController;
+	
 	@RequestMapping("/view")
 	public String viewShoppingCart() {
 		return "redirect:/user/viewShoppingCart";
@@ -51,7 +54,10 @@ public class OrderItemController {
 	public String addItemToShoppingCart(@AuthenticationPrincipal LoginUser loginUser, @Validated ItemForm itemForm, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
 
 		if(result.hasErrors()) {
-			return "/user/item_detail?id=" + itemForm.getItemId();
+			System.out.println("ショッピングカート入力チェックif文");
+//			return "redirect:/user/item_detail?id=" + itemForm.getItemId();
+//			return "forward:/user/item_detail";
+			return itemDetailController.detail(itemForm.getId(), model);
 		}
 		
 		Order order;
@@ -81,9 +87,9 @@ public class OrderItemController {
 			long orderId = orders.get(0).getId();
 		
 		OrderItem orderItem = new OrderItem();
-		orderItem.setItemId(itemForm.getItemId());
+		orderItem.setItemId(itemForm.getId());
 		orderItem.setOrderId(orderId);
-		orderItem.setQuantity(itemForm.getQuantity());
+		orderItem.setQuantity(itemForm.getIntQuantity());
 		orderItemRepository.save(orderItem);
 		
 		return "forward:/user/view";
