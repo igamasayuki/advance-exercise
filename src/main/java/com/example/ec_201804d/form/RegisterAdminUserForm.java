@@ -9,20 +9,20 @@ import javax.validation.constraints.NotEmpty;
  */
 public class RegisterAdminUserForm {
 	/**名前*/
-	@NotEmpty(message="値を入力してください")
+	@NotEmpty(message="名前が未入力です")
 	private String name;
 	
 	/**eメール*/
 	@Email( message = "メールアドレスの形式ではありません" )
-	@NotEmpty( message = "値を入力してください")
+	@NotEmpty( message = "メールアドレスが未入力です")
 	private String email;
 	
 	/**パスワード*/
-	@NotEmpty( message = "値を入力してください")
+	@NotEmpty( message = "パスワードが未入力です")
 	private String password;
 	
 	/**確認用パスワード*/
-	@NotEmpty( message = "値を入力してください")
+	@NotEmpty( message = "確認パスワードが未入力です")
 	private String checkPassword;
 	
 	public String getName() {
