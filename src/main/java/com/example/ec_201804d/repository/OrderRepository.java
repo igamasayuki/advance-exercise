@@ -210,7 +210,7 @@ public class OrderRepository {
 	public void updateStatus(int status, Long id) {
 
 		SqlParameterSource param = new MapSqlParameterSource().addValue("status", status).addValue("id", id);
-		String sql = "UPDATE + TABLE_NAME + set status=:status WHERE id=:id";
+		String sql = "update " + TABLE_NAME + " set status=:status where id=:id";
 
 		template.update(sql, param);
 	}
