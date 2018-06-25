@@ -7,8 +7,9 @@
 <head>
 <style type="text/css">
 a{
-text-decoration: none;
+	text-decoration: none;
 }
+
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <meta charset="UTF-8">
@@ -17,14 +18,13 @@ text-decoration: none;
 <body>
 <jsp:include page="userHeader.jsp" />
 <div class="link-right" align="right">
-	<a href="${pageContext.request.contextPath}/user/viewShoppingCart">カートの中身を表示する</a>
 	</div>
 		<h3>商品詳細</h3>
 		<c:if test="${item != null}">
-			<table border="1">
+			<table border="1" style="width:800px;height:400px;">
 
 				<tr>
-					<td rowspan="3"><img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
+					<td rowspan="3"><img style="width:530px;height:394px;" src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
 					<td>商品名</td>
 					<td><c:out
 								value="${item.name}" /></td>
@@ -47,11 +47,19 @@ text-decoration: none;
 			個数　：<form:input path="quantity"/>
 			<form:errors path="quantity" cssStyle="color:red" element="div" />
 			<br> <br>
-		<input type="hidden" name="id" value="${item.id}">
-		<input type="submit" value="カートに入れる">
+
+
+		<input type="hidden" name="itemId" value="${item.id}">
+		
+		<input type="submit" value="カートに入れる" style="background-color:blue;
+		width:200px;height:40px;color:white;border-style:none;">
 		</form:form>
 		<br><br>
-			 <a href="${pageContext.request.contextPath}/user/viewItemList">商品一覧に戻る</a>
+		
+			 <a href="${pageContext.request.contextPath}/user/viewItemList"
+			 style="width:200px;height:40px;display:block;
+			 background-color:red;color:white;text-align:center;
+			 margin-right:auto;margin-left:auto;"> 商品一覧に戻る</a>
 </div>
 </body>
 </html>

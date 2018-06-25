@@ -56,7 +56,8 @@
 	電話番号:<c:out value="${order.deliveryTel}"/><br>
 	<form:form action="${pageContext.request.contextPath}/userPayment/closeOut">
 		<input type="hidden" name="orderId" value="${order.id}">
-		<input type="submit" value="確定">
+		<input type="submit" value="確定" style="background-color:red;color:white;
+		width:200px;height:40px;">
 	</form:form>
 </div>
 </body>
