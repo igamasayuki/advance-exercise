@@ -35,10 +35,11 @@
 			<div style="margin-right:auto;margin-left:auto;width:auto;height:800px;">
 				<c:forEach var="item" items="${itemList}">
 					<span style="float:left;padding-left:30px;">
+							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
+						<c:out value="${item.name}" /></a><br>
 						<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
 								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>">
 							</a><br>
-						<c:out value="${item.name}" /><br>
 						<fmt:formatNumber pattern="\###,###" value="${item.price}" />
 					</span>
 				</c:forEach>
