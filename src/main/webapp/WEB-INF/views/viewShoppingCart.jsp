@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
++
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,12 +43,11 @@
 							<td><fmt:formatNumber pattern="\###,###"
 									value="${orderItem.item.price}" /></td>
 							<td><c:out value="${orderItem.quantity}" /></td>
-							<td>
-								<form action="viewShoppingCart.html" method="post">
-									<input type="hidden" name="item.id" value="1"> <input
-										type="submit" value="削除">
-								</form>
-							</td>
+							<td><form:form
+									action="${pageContext.request.contextPath}/user/deleteOrderItem">
+									<input type="hidden" name="id" value="${orderItem.id}">
+									<input type="submit" value="削除">
+								</form:form></td>
 						</tr>
 					</c:forEach>
 				</table>
