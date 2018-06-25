@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.ec_201804d.domain.AdminUser;
 import com.example.ec_201804d.form.RegisterAdminUserForm;
@@ -24,6 +25,8 @@ import com.example.ec_201804d.repository.AdminUserRepository;
 @Controller
 @RequestMapping(value="/admin")
 public class RegisterAdminUserController {
+	private boolean isRagistration;
+	
 	@Autowired
 	private AdminUserRepository adminUserRepository;
 	
@@ -40,7 +43,11 @@ public class RegisterAdminUserController {
 	 * @return 管理者登録画面の表示
 	 */
 	@RequestMapping(value="/viewRegisterAdmin")
-	public String viewRegisterAdmin() {
+	public String viewRegisterAdmin(Model model){
+		if(isRagistration) {
+			model.addAttribute("succsess","登録成功");
+			isRagistration=false;
+		}
 		return "administerRegistration";
 	}
 	
@@ -54,7 +61,8 @@ public class RegisterAdminUserController {
 	@RequestMapping(value="/registerAdminUser")
 	public String registerAdminUser(@Validated RegisterAdminUserForm form,
 									BindingResult result,
-									Model model) {
+									Model model,
+									RedirectAttributes redirectAttributes) {
 		
 		AdminUser admin=new AdminUser();
 		
@@ -75,6 +83,7 @@ public class RegisterAdminUserController {
 		BeanUtils.copyProperties(form,admin);
 		admin.setPassword(passwordEncoder.encode(form.getPassword()));
 		adminUserRepository.insert(admin);
-		return "redirect:/adminMenu/viewAdminMenu";
+		isRagistration=!isRagistration;
+		return "redirect:/admin/viewRegisterAdmin";
 	}
 }
