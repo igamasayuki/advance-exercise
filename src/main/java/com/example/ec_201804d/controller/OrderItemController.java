@@ -85,7 +85,6 @@ public class OrderItemController {
 			orders = orderRepository.findByUserIdAndStatus(userId, 0);
 		}
 			long orderId = orders.get(0).getId();
-		
 		OrderItem orderItem = new OrderItem();
 		orderItem.setItemId(itemForm.getId());
 		orderItem.setOrderId(orderId);
