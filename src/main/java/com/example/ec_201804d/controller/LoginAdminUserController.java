@@ -1,8 +1,5 @@
 package com.example.ec_201804d.controller;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -13,26 +10,35 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.ec_201804d.domain.AdminUser;
 import com.example.ec_201804d.form.LoginAdminForm;
-import com.example.ec_201804d.repository.AdminUserRepository;
 
 
 
-
+/**
+ * 管理者のログイン処理を行うコントローラ.
+ *
+ * @author daiki.fujioka
+ *
+ */
 @Controller
 @RequestMapping(value="/admin")
 @SessionAttributes(types = {AdminUser.class})
 public class LoginAdminUserController {
-	@Autowired
-	private AdminUserRepository adminUserRepository;
-	
-	@Autowired
-	private HttpSession session;
-	
+	/**
+	 * 管理者のログインフォームの初期化.
+	 * @return 管理者のログイン入力フォーム
+	 */
 	@ModelAttribute
 	public LoginAdminForm setUpLoginForm() {
 		return new LoginAdminForm();
 	}
 	
+	/**
+	 * 管理者のログイン画面を表示する.
+	 * @param form 管理者のログイン入力フォーム
+	 * @param result　入力チェックの結果
+	 * @param error 入力チェックのエラー内容
+	 * @return 管理者のログイン画面
+	 */
 	@RequestMapping(value="/login")
 	public String viewLogin(@Validated LoginAdminForm form,
 			BindingResult result,
@@ -47,6 +53,10 @@ public class LoginAdminUserController {
 		return "administerLogin";
 	}
 	
+	/**
+	 * 管理者がログインする.
+	 * @return 管理者のトップ画面
+	 */
 	@RequestMapping(value="/fromLogintoMenu")
 	public String adminLogin(){
 		return "administerTop";
