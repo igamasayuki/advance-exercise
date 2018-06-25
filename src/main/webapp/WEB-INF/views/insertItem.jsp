@@ -29,8 +29,8 @@
 	<form:textarea path="description" cols="40" rows="5"/><br>
 	<form:errors path="description" cssStyle="color:red" element="div"/><br>
 	画像　:
-	<input type="file" name="imageFile"><br>
-	<c:out value="※ファイルはjpegファイルを選択してください"/><br>
+	<input type="file" name="imageFile" accept="image/jpeg"><br>
+	<c:out value="※ファイルはJPEGファイルを選択してください"/><br>
 	<form:errors path="imageFile" cssStyle="color:red" element="div"/><br>
 	<form:checkbox path="deleted"/>
 	<form:label path="deleted">削除</form:label><br>

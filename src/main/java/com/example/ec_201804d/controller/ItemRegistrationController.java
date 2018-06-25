@@ -2,6 +2,7 @@ package com.example.ec_201804d.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 
@@ -15,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.ec_201804d.domain.Item;
 import com.example.ec_201804d.form.ItemRegistrationForm;
@@ -62,21 +64,35 @@ public class ItemRegistrationController {
 	 * @param result 入力チェックの結果
 	 * @param model リクエストスコープ
 	 * @return 入力が正しければ管理者の商品一覧画面、入力チェックに引っかかれば商品登録画面を表示する
+	 * @throws IOException 
 	 */
 	@RequestMapping(value="/register")
-	public String registerItem(@Validated ItemRegistrationForm form, BindingResult result, Model model) {
+	public String registerItem(@Validated ItemRegistrationForm form, BindingResult result, Model model, RedirectAttributes redirect) throws IOException {
+		if(repository.countNumberOfSameName(form.getName()) > 0) {
+			System.out.println("名前重複");
+			result.rejectValue("name", null, "すでに同じ名前で商品が登録されています");
+		}
+		MultipartFile imageFile = form.getImageFile();
+		String fileName = imageFile.getOriginalFilename();
+		if (imageFile.isEmpty()) {
+			result.rejectValue("imageFile", null, "表示する商品画像を選択してください");
+		} else {
+			String extesion = fileName.split(Pattern.quote("."))[1];
+			if (!"jpg".equals(extesion) && !"jpeg".equals(extesion)) {
+				result.rejectValue("imageFile", null, "JPEGファイルを選択してください");
+			}
+			System.out.println("byte:" + imageFile.getBytes().length);
+			if (imageFile.getBytes().length >= 100000) {
+				result.rejectValue("imageFile", null, "100KB未満のJPEGファイルを選択してください");
+			}
+		}
 		if (result.hasErrors()) {
 			return showInsertItemView(model);
-		}
+		}			
 		Item item = new Item();
 		BeanUtils.copyProperties(form, item);
-		MultipartFile imageFile = form.getImageFile();
-		if (imageFile.isEmpty()) {
-			model.addAttribute("imageError", "表示する商品画像を選択してください");
-			return showInsertItemView(model);
-		}
+		item.setPrice(form.getIntPrice());
 		try {
-			String fileName = imageFile.getOriginalFilename();
 			String destPath = application.getRealPath("/img/" + fileName);
 			File destFile = new File(destPath);
 			imageFile.transferTo(destFile);
@@ -89,6 +105,7 @@ public class ItemRegistrationController {
 			return showInsertItemView(model);
 		}
 		repository.insert(item);
+		redirect.addFlashAttribute("message", "登録が完了しました。");
 		return "redirect:/admin/adminItemList";
 	}
 }
