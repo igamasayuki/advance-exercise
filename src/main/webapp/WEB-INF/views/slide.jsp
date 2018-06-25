@@ -10,10 +10,10 @@
   transition: transform 0.5s
 }
 .slide-enter {
-  transform: translateX(300px)
+  transform: translateX(50px)
 }
 .slide-leave-active {
-  transform: translateX(-300px);
+  transform: translateX(-50px);
 }
 
 p {
@@ -26,10 +26,9 @@ p {
 
 <body>
   <div id="app">
-  <button @click="nextSlide">次</button>
   <transition name="slide">
     <p :key="products[product]" style="text-align:center;margin">
-    <img v-bind:src='products[product]' style="width:50px;height:50px;text-align:center;"></p>
+    <img v-bind:src='products[product]' style="width:100px;height:100px;text-align:center;"></p>
   </transition>
 </div>
   <script>
