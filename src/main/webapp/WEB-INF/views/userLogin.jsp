@@ -18,10 +18,10 @@ background-size:cover;">
 	<div style="float:left;">
 		<form:form modelAttribute="userLoginForm"
 			action="${pageContext.request.contextPath}/user/login">
-		<form:errors path="email" cssStyle="color:red" element="div" />
 			<table border="1" style="position:absolute;top:100px;left:10px;">
 				<tr>
-					<th colspan="2">ログイン</th>
+					<th colspan="2">ログイン<br>
+					<form:errors path="email" cssStyle="color:red" element="div" /></th>
 				</tr>
 				<tr>
 					<th>メールアドレス:</th>
@@ -32,7 +32,9 @@ background-size:cover;">
 					<td><form:password path="password" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="ログイン"></td>
+					<td colspan="2"><input type="submit" value="ログイン"
+					style="background-color:navy;color:white;border-style:none;
+					width:200px;border-radius:10px;"></td>
 				</tr>
 				<tr>
 					<td colspan="2"><div class="center-block">
