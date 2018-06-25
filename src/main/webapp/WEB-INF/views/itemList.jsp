@@ -7,6 +7,11 @@
 <head>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <meta charset="UTF-8">
+<style type="text/css">
+a{
+text-decoration: none;
+}
+</style>
 <title>商品一覧</title>
 </head>
 <body>
@@ -34,7 +39,7 @@
 		<c:otherwise>
 			<div style="margin-right:auto;margin-left:auto;width:auto;height:800px;">
 				<c:forEach var="item" items="${itemList}">
-					<span style="float:left;padding-left:30px;">
+					<span style="float:left;padding-left:30px;margin-bottom:30px;">
 							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
 						<c:out value="${item.name}" /></a><br>
 						<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">

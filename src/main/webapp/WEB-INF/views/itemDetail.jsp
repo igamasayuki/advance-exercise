@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+a{
+text-decoration: none;
+}
+</style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <meta charset="UTF-8">
 <title>商品詳細</title>
