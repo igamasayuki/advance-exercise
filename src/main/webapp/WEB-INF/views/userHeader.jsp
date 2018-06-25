@@ -12,7 +12,6 @@
 </head>
 <body>
 
-
 <div style="width:auto;height:80px;background-color:orange">
 <div style="float:right">
 <a href="${pageContext.request.contextPath}/user/logout">ログアウト</a>
@@ -23,8 +22,6 @@
 							<sec:authentication var="userName" property="principal.user.name" />
 								<c:out value="${userName}" />&nbsp;さんこんにちは
 						</sec:authorize>
-	<p><a href="${pageContext.request.contextPath}/user/logout">ログアウト</a></p>
-	<p><a href="${pageContext.request.contextPath}/user/login">ログイン</a></p>
 </div>
 <div style="float:right;">
 <a href="${pageContext.request.contextPath}/user/viewShoppingCart" style="padding-right:30px;">カートの中身を表示する</a>
