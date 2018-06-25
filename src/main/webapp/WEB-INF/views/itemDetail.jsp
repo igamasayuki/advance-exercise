@@ -43,9 +43,11 @@ text-decoration: none;
 
 		<div class="center-block">
 		<form:form modelAttribute="itemForm" action="${pageContext.request.contextPath}/user/addItem">
+			<form:errors path="itemForm.*" />
 			個数　：<form:input path="quantity"/>
+			<form:errors path="quantity" cssStyle="color:red" element="div" />
 			<br> <br>
-		<input type="hidden" name="itemId" value="${item.id}">
+		<input type="hidden" name="id" value="${item.id}">
 		<input type="submit" value="カートに入れる">
 		</form:form>
 		<br><br>
