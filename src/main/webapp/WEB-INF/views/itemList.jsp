@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <style type="text/css">
 a{
-text-decoration: none;
+	text-decoration: none;
 }
 </style>
 <title>商品一覧</title>
@@ -25,8 +25,11 @@ text-decoration: none;
 	<div class="center-block">
 		<form:form action="${pageContext.request.contextPath}/user/findItem"
 			method="post">
-			<input type="text" name="word"> <input type="submit"
-				value="検索する">
+			<input type="text" name="word"> 
+			<input type="submit"
+			value="" 
+			style="background-image:url(${pageContext.request.contextPath}/img/serch2.jpeg);
+			background-size:cover;width:30px;height:30px;">
 		</form:form>
 	<hr>
 </div>
