@@ -118,16 +118,55 @@
 				</c:choose></td>
 			<td><form:form modelAttribute="orderDetailForm"
 					action="${pageContext.request.contextPath}/admin/updateStatus?id=${order.id}">
-					<select name="status">
-						<option value="1">未入金</option>
-						<option value="2" selected>入金済み</option>
-						<option value="3">発送済み</option>
-						<option value="9">キャンセル</option>
-					</select>
 
-					<input type="hidden" name="id" value="">
-					<button type="submit" class="btn btn-info">更新</button>
+					<c:if test="${order.status == 0}" var="flg" />
+					<c:if test="${flg}">
+						<c:out value="未購入のため変更できません" />
+					</c:if>
+
+					<c:if test="${order.status == 1}" var="flg" />
+					<c:if test="${flg}">
+						<select name="status">
+							<option value="2" selected>入金済み</option>
+							<option value="3">発送済み</option>
+							<option value="9">キャンセル</option>
+						</select>
+
+						<button type="submit" class="btn btn-info">更新</button>
+					</c:if>
+
+					<c:if test="${order.status == 2}" var="flg" />
+					<c:if test="${flg}">
+						<select name="status">
+							<option value="3">発送済み</option>
+							<option value="9">キャンセル</option>
+						</select>
+
+						<button type="submit" class="btn btn-info">更新</button>
+					</c:if>
+
+					<c:if test="${order.status == 3}" var="flg" />
+					<c:if test="${flg}">
+						<select name="status">
+							<option value="9">キャンセル</option>
+						</select>
+
+						<button type="submit" class="btn btn-info">更新</button>
+					</c:if>
+
+					<c:if test="${order.status == 9}" var="flg" />
+					<c:if test="${flg}">
+						<select name="status">
+							<option value="1">未入金</option>
+							<option value="2">入金済み</option>
+							<option value="3">発送済み</option>
+							<option value="9">キャンセル</option>
+						</select>
+						<button type="submit" class="btn btn-info">更新</button>
+
+					</c:if>
 				</form:form></td>
+
 		</tr>
 	</table>
 	<br>
