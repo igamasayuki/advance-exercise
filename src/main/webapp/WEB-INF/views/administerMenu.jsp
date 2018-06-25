@@ -6,8 +6,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
+<style type="text/css">
+a{
+text-decoration: none;
+}
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -15,7 +18,7 @@
 
 <div id="menu">
     <h2>管理者メニュー画面</h2>
-		<a class="menuLink" href="${pageContext.request.contextPath}/adminMenu/viewAdminTop">TOP</a><br><br>
+		<a class="menuLink" href="${pageContext.request.contextPath}/admin/viewAdminTop">TOP</a><br><br>
         <a class="menuLink" href="${pageContext.request.contextPath}/admin/show_view">商品を登録</a><br><br>
         <a class="menuLink" href="${pageContext.request.contextPath}/admin/adminItemList">商品一覧</a><br><br>
         <a class="menuLink" href="${pageContext.request.contextPath}/admin/viewOrderList">注文一覧</a><br><br>

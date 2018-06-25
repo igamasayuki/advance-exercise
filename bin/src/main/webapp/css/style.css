@@ -1,24 +1,52 @@
-@CHARSET "UTF-8";
+@charset "UTF-8";
 
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
+h1{
+	width:800px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	
 }
 
 h3{
-	color:#4A9DFB;
-	background-color:#F1F8F8;
-	width:635px;
-	border-left:#4A9DFB solid 4px;
-	text-indent:1em;
+
+	width:800px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	
 }
 
-ul.error{
-	color:#ff0000;
-	font-size:15px;
-	font-weight:bold;
+.link-right{
+	
+	float:right;
+	margin-bottom:30px;
+	
 }
 
-a#toInsertMember{
-	margin:0 160px;
+.center-block{
+
+	width:100%;
+	text-align:center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom:30px;
+	
 }
+
+
+table{
+	background-color:aquamarine;
+	width:500px;
+	height:100px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 30px;
+}
+
+td{
+	
+	text-align:center;
+}
+
+

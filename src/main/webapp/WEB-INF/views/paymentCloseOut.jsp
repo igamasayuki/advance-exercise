@@ -6,11 +6,13 @@
 <title>決済完了画面</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"></head>
 </head>
+<style type="text/css">
+a{
+	text-decoration: none;
+}
+</style>
 <body>
 <jsp:include page="userHeader.jsp"/>
-	<div class="link-right" align="right">
-	<a href="${pageContext.request.contextPath}/user/viewShoppingCart">カートの中身を表示する</a>
-	</div>
 <h1>決済が完了しました!</h1>
 <h3>この度はご注文ありがとうございます。</h3>
 <h3>お支払先は、お送りしたメールに記載しありますのでご確認してください。</h3>

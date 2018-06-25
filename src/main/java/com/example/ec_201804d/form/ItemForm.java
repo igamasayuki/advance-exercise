@@ -12,26 +12,38 @@ import javax.validation.constraints.Pattern;
 public class ItemForm {
 
 	/** 個数 */
-//	@NotNull(message="個数を入力してください")
-//	@Pattern(regexp = "^[1-9][0-9]*+$",message="自然数で入力してください")
-	private Integer quantity;
+	@NotNull(message = "個数を入力してください")
+	@Pattern(regexp = "^[1-9][0-9]*+$", message = "自然数で入力してください")
+	private String quantity;
 	/** 商品のID */
-	private Long itemId;
+	private Long id;
 
-	/** 以下setter,getter */
-	public Integer getQuantity() {
+	// /** 以下setter,getter */
+	// public Integer getQuantity() {
+	// return quantity;
+	// }
+	//
+	// public void setQuantity(Integer quantity) {
+	// this.quantity = quantity;
+	// }
+	public Integer getIntQuantity() {
+		return Integer.parseInt(quantity);
+	}
+
+	public String getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 
-	public Long getItemId() {
-		return itemId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setItemId(Long itemId) {
-		this.itemId = itemId;
+	public void setId(Long id) {
+		this.id = id;
 	}
+
 }

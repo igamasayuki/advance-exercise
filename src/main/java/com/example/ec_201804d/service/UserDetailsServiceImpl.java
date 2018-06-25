@@ -63,7 +63,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			}
 			
 		}
-		orderRepository.updateUserId(preUserId, userId);		
+		orderRepository.updateUserId(preUserId, userId);
 		
 		return new LoginUser(user,authorityList);
 	}

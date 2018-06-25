@@ -6,26 +6,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="../css/adminHeader.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}css/bootstrap.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/adminRegister.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="administerMenu.jsp"/>
 <jsp:include page="adminHeader.jsp"/>
-<form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/kakiki/registerAdminUser">
-
-<form:errors path="name" cssStyle="color:red" />
-名前:<form:input path="name"/><br>
-
-<form:errors path="mailAddress" cssStyle="color:red"/><br>
-メールアドレス:<form:input path="mailAddress"/><br>
-
-<form:errors path="password" cssStyle="color:red"/><br>
-パスワード:<form:password path="password"/><br>
-
-<form:errors path="checkPassword" cssStyle="color:red" /><br>
-確認パスワード:<form:password path="checkPassword"/><br>
-<input type="submit" value="送信">
+<table>
+<form:form modelAttribute="registerAdminUserForm" action="${pageContext.request.contextPath}/registerAdmin/registerAdminUser">
+<tr>
+<td id="registerAdminUser"colspan="3">新規管理者登録</td>
+</tr>
+<tr>
+<td><form:errors path="name" cssStyle="color:red" /></td>
+<td>名前:</td>
+<td><form:input path="name"/></td>
+</tr>
+<tr>
+<td><form:errors path="email" cssStyle="color:red"/></td>
+<td>メールアドレス:</td>
+<td><form:input path="email"/></td>
+</tr>
+<tr>
+<td><form:errors path="password" cssStyle="color:red"/></td>
+<td>パスワード:</td>
+<td><form:password path="password"/></td>
+</tr>
+<tr>
+<td><form:errors path="checkPassword" cssStyle="color:red" /></td>
+<td>確認パスワード:</td>
+<td><form:password path="checkPassword"/></td>
+</tr>
+<tr>
+<td></td>
+<td><input type="submit" value="送信"></td>
+<td></td>
+</tr>
 </form:form>
+</table>
 </body>
 </html>
