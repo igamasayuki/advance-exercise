@@ -96,7 +96,7 @@ public class ItemRepository {
 	 * @param id ID
 	 * @return 選択された商品情報
 	 */
-	public Item load(int id) {
+	public Item load(long id) {
 		String sql ="SELECT id,name,description,price,imagepath,deleted FROM items WHERE id=:id";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
@@ -143,6 +143,11 @@ public class ItemRepository {
 		template.update(updateSql, param);
 	}
 	
+	/**
+	 * 同じ商品名の商品の数を数える.
+	 * @param name 商品名
+	 * @return 該当商品数
+	 */
 	public int countNumberOfSameName(String name) {
 		String countSql = "SELECT COUNT(id)"
 				+ " FROM " + TABLE_NAME
@@ -152,4 +157,18 @@ public class ItemRepository {
 		return count;
 	}
 	
+	/**
+	 * 同じ商品名であり、IDと異なる商品の数を数える.
+	 * @param name 商品名
+	 * @param id ID
+	 * @return　該当商品数
+	 */
+	public int countDifferentIdOfSameName(String name, long id) {
+		String countSql = "SELECT COUNT(id)"
+				+ " FROM " + TABLE_NAME
+				+ " WHERE name=:name AND id<>:id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", name).addValue("id", id);
+		int count = template.queryForObject(countSql, param, Integer.class);
+		return count;
+	}
 }

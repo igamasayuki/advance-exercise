@@ -1,7 +1,9 @@
 package com.example.ec_201804d.form;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,8 +20,10 @@ public class ItemEditingForm {
 	@NotBlank(message="商品名を入力してください")
 	private String name;
 	/** 価格 */
-	@NotNull(message="価格を入力してください")
-	private Integer price;
+	@NotBlank(message="価格を入力してください")
+	@Max(value=1000000, message="1~1,000,000の数字を入力してください")
+	@Pattern(regexp="^[1-9][0-9]*$", message="整数値を入力してください")
+	private String price;
 	/** 商品説明 */
 	@NotBlank(message="説明を入力してください")
 	private String description;
@@ -46,11 +50,15 @@ public class ItemEditingForm {
 		this.name = name;
 	}
 
-	public Integer getPrice() {
+	public String getPrice() {
 		return price;
 	}
+	
+	public Integer getIntPrice() {
+		return Integer.parseInt(price);
+	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 

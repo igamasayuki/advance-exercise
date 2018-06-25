@@ -69,7 +69,6 @@ public class ItemRegistrationController {
 	@RequestMapping(value="/register")
 	public String registerItem(@Validated ItemRegistrationForm form, BindingResult result, Model model, RedirectAttributes redirect) throws IOException {
 		if(repository.countNumberOfSameName(form.getName()) > 0) {
-			System.out.println("名前重複");
 			result.rejectValue("name", null, "すでに同じ名前で商品が登録されています");
 		}
 		MultipartFile imageFile = form.getImageFile();
@@ -81,7 +80,6 @@ public class ItemRegistrationController {
 			if (!"jpg".equals(extesion) && !"jpeg".equals(extesion)) {
 				result.rejectValue("imageFile", null, "JPEGファイルを選択してください");
 			}
-			System.out.println("byte:" + imageFile.getBytes().length);
 			if (imageFile.getBytes().length >= 100000) {
 				result.rejectValue("imageFile", null, "100KB未満のJPEGファイルを選択してください");
 			}
