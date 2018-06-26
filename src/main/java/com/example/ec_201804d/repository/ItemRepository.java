@@ -63,7 +63,7 @@ public class ItemRepository {
 	 * @return　検索された文字列を含む商品情報
 	 */
 	public List<Item> findByWord(String word){
-		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word"
+		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name ILIKE :word"
 				+ "  ORDER BY name";
 	
 		SqlParameterSource param = new MapSqlParameterSource().addValue("word","%" +  word + "%");
@@ -80,7 +80,7 @@ public class ItemRepository {
 	 * @return　検索された文字列を含む商品の情報
 	 */
 	public List<Item> findSaleItemsByWord(String word){
-		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name LIKE :word AND deleted IS FALSE"
+		String sql="SELECT id,name,description,price,imagepath,deleted FROM items WHERE name ILIKE :word AND deleted IS FALSE"
 				+ " ORDER BY name";
 	
 		SqlParameterSource param = new MapSqlParameterSource().addValue("word","%" +  word + "%");

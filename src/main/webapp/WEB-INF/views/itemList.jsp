@@ -30,6 +30,7 @@ a{
 			value="" 
 			style="background-image:url(${pageContext.request.contextPath}/img/serch2.jpeg);
 			background-size:cover;width:30px;height:30px;">
+			
 		</form:form>
 	<hr>
 </div>
