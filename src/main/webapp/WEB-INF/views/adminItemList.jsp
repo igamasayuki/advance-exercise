@@ -26,7 +26,7 @@
 
 <c:choose>
 	<c:when test="${items!=null}">
-		<table border="1">
+		<table border="1" style="width:900px;">
 			<tr>
 				<th colspan="2">商品名</th>
 				<th>価格</th>
@@ -35,7 +35,7 @@
 			</tr>
 			<c:forEach var="item" items="${items}">
 				<tr>
-					<td><img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
+					<td style="width:300px;height:300px;"><img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
 					<td><c:out value="${item.name}"/></td>
 					<td><fmt:formatNumber pattern="\###,###" value="${item.price}"/></td>
 					<td><c:out value="${item.description}"/></td>

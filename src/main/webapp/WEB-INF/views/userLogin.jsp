@@ -33,13 +33,15 @@ background-size:cover;">
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="ログイン"
-					style="background-color:navy;color:white;border-style:none;
+					style="background-color:navy;color:white;
 					width:200px;border-radius:10px;"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><div class="center-block">
-		<a href="${pageContext.request.contextPath}/user/toUserRegister">新規登録はこちら</a>
-	</div></td>
+					<td colspan="2">
+						<a href="${pageContext.request.contextPath}/user/toUserRegister"
+						style="background-color:green;color:white;
+					width:300px;border-radius:10px;">新規登録はこちら</a>
+					</td>
 				</tr>
 			</table>
 			
