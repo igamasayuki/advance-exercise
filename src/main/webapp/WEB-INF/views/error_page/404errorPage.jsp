@@ -17,8 +17,10 @@
 以下のリンクからログインし直してください。
 
 <br>
-<img src="${pageContext.request.contextPath}/img/cabbage.jpg"><br>
+<img src="${pageContext.request.contextPath}/img/king-kyabetu.png"><br>
 <a href="${pageContext.request.contextPath}/user/viewItemList">商品一覧へ</a>
 </div>
+
+<jsp:include page="../footter.jsp"/>
 </body>
 </html>
