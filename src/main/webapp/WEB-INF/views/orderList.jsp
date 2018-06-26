@@ -68,7 +68,7 @@
 	</c:choose>
 
 	<br>
-	<a href="${pageContext.request.contextPath}/adminMenu/viewAdminTop/">TOPに戻る
+	<a href="${pageContext.request.contextPath}/admin/fromLogintoMenu">TOPに戻る
 	</a>
 
 
