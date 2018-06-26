@@ -7,6 +7,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+
+</script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -21,6 +24,7 @@
 <sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
 							<sec:authentication var="userName" property="principal.user.name" />
 								<c:out value="${userName}" />&nbsp;さんこんにちは
+								
 						</sec:authorize>
 </div>
 <div style="float:right;">

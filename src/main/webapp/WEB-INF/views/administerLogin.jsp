@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/style.css" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>管理者ログイン</title>
 </head>
 <body>
 	<jsp:include page="adminHeader.jsp" /><br>

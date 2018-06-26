@@ -47,7 +47,7 @@ a{
 						<br><br>
 						<input type="hidden" name="id" value="${item.id}">
 						<input type="submit" value="カートに入れる" style="background-color:blue;
-						width:200px;height:40px;color:white;">
+						width:200px;height:40px;color:white;margin-bottom:30px;">
 						</form:form>
 					</td>
 				</tr>
