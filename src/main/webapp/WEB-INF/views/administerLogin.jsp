@@ -8,28 +8,39 @@
 <head>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/include.css" />
 <meta charset="UTF-8">
 <title>管理者ログイン画面</title>
 </head>
-<body>
+<body style="background-image:url(${pageContext.request.contextPath}/img/kyabetuK.jpg);
+background-size:cover;">
 	<jsp:include page="adminHeader.jsp" /><br>
-	<h3>ログイン</h3>
-	<form:form modelAttribute="loginAdminForm"
-		action="${pageContext.request.contextPath}/adminLogin">
-		<div class="center-block">
-			<form:errors path="email" cssStyle="color:red" element="div" />
-			<br> メールアドレス:
-			<form:input path="email" />
-			<br>
+	<div style="float:left;">
+		<form:form modelAttribute="loginAdminForm"
+			action="${pageContext.request.contextPath}/adminLogin">
+			<table border="1" style="position:absolute;top:150px;left:10px;">
+				<tr>
+					<th colspan="2">管理者ログイン<br>
+					<form:errors path="email" cssStyle="color:red" element="div" /></th>
+				</tr>
+				<tr>
+					<th>メールアドレス:</th>
+					<td><form:input path="email" /></td>
+				</tr>
+				<tr>
+					<th>パスワード：</th>
+					<td><form:password path="password" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="ログイン"
+					style="background-color:navy;color:white;
+					width:200px;border-radius:10px;"></td>
+				</tr>
+			</table>
 			
-			パスワード:
-			<form:password path="password" />
 			<br>
-		</div>
-		<div class="center-block">
-		<input type="submit" value="ログイン">
-		</div>
-	</form:form>
-
+		</form:form>
+	</div>
 </body>
 </html>

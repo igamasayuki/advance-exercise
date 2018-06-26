@@ -37,7 +37,7 @@
 	<input type="submit" value="登録" style="background-color:blue;color:white;
 	width:200px;height:40px;margin-bottom:30px;">
 </form:form>
-<a href="${pageContext.request.contextPath}/adminItemList/"
+<a href="${pageContext.request.contextPath}/admin/adminItemList/"
 style="background-color:red;color:white;width:200px;height:40px;
 border-style:outset;">商品一覧画面に戻る</a>
 </div>

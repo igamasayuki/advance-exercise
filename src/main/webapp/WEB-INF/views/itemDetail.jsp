@@ -21,25 +21,25 @@ a{
 	</div>
 		<h3>商品詳細</h3>
 		<c:if test="${item != null}">
-			<table border="1" style="width:800px;height:400px;">
+			<table  style="width:1000px;height:400px;
+			background-color:white;">
 
 				<tr>
 					<td rowspan="5"><img style="width:530px;height:394px;" src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
-					<td>商品名</td>
-					<td><c:out
+					<td style="text-align:left;">商品名</td>
+					<td style="text-align:left;"><c:out
 								value="${item.name}" /></td>
 				</tr>
 				<tr>
-					<td>価格</td>
-					<td><fmt:formatNumber pattern="\###,###" value="${item.price}"/></td>
+					<td style="text-align:left;">価格</td>
+					<td style="text-align:left;"><fmt:formatNumber pattern="\###,###" value="${item.price}"/></td>
 				</tr>
 				<tr>
-					<td>商品説明</td>
-					<td><c:out value="${item.description}" /></td>
+					<td style="text-align:left;">商品説明</td>
+					<td style="text-align:left;"><c:out value="${item.description}" /></td>
 				</tr>
 				<tr>
-					<td></td>
-					<td>
+					<td colspan="2" style="text-align:left;">
 						<form:form modelAttribute="itemForm" action="${pageContext.request.contextPath}/user/addItem">
 						<form:errors path="itemForm.*" />
 						個数　：<form:input path="quantity"/>
@@ -47,17 +47,15 @@ a{
 						<br><br>
 						<input type="hidden" name="id" value="${item.id}">
 						<input type="submit" value="カートに入れる" style="background-color:blue;
-						width:200px;height:40px;color:white;margin-bottom:30px;">
+						width:200px;height:40px;color:white;">
 						</form:form>
 					</td>
 				</tr>
 				<tr>
-					<td></td>
-					<td>
+					<td colspan="2" style="text-align:left;">
 						<a href="${pageContext.request.contextPath}/user/viewItemList"
 			 			style="width:200px;height:40px;display:block;
 			 			background-color:red;color:white;text-align:center;
-			 			margin-right:auto;margin-left:auto;
 			 			border-style:outset;border-color:buttonface;
 			 			border-image:initial;"> 商品一覧に戻る</a>
 					</td>
