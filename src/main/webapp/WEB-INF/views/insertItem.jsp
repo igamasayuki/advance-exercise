@@ -22,7 +22,7 @@
 	<form:label path="name">商品名:</form:label>
 	<form:input path="name"/><br>
 	<form:errors path="name" cssStyle="color:red" element="div"/><br>
-	<form:label path="price">価格　:</form:label>
+	<form:label path="price">価格　:<br>(半角数字上限100万円まで)</form:label>
 	<form:input path="price"/><br>
 	<form:errors path="price" cssStyle="color:red" element="div"/><br>
 	<form:label path="description">説明　:</form:label>
