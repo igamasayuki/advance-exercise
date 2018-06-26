@@ -76,5 +76,6 @@
 		</form:form>
 		<a href="${pageContext.request.contextPath}/user/viewItemList"></a>
 	</div>
+	<jsp:include page="footter.jsp"/>
 </body>
 </html>

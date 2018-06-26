@@ -88,6 +88,6 @@ span#payment{
 					 border-color:buttonface;">商品一覧へ</a>
 		</div>
 	</div>
-
+<jsp:include page="footter.jsp"/>
 </body>
 </html>
