@@ -8,6 +8,17 @@ spring:
     url: jdbc:postgresql://localhost:5432/ec-201804d
     username: postgres
     password: postgres
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: cas.niconico.acount@gmail.com
+    password: bdwvytvlxdotmsga
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true  
 server:
   servlet:
     context-path: /ec

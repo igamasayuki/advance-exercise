@@ -28,6 +28,8 @@ public class PaymentController {
 	private OrderRepository repository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	MailSendController mailSendController;
 	
 	@RequestMapping
 	public String showPaymentConfirmationView(@AuthenticationPrincipal LoginUser loginUser, Model model) {
@@ -62,10 +64,14 @@ public class PaymentController {
 	}
 	
 	@RequestMapping(value="/closeOut")
-	public String closeOutPayment(long orderId) {
+	public String closeOutPayment(long orderId,@AuthenticationPrincipal LoginUser loginUser) {
 		Order order = repository.load(orderId);
 		order.setStatus(1);
 		repository.update(order);
+		
+		String mailAddress = loginUser.getUser().getEmail();
+		mailSendController.sendOrderMail(mailAddress);
+		
 		return "redirect:showView";
 	}
 }
