@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/include.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/administerHeader.css" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>管理者新規登録</title>
 <script>
 function reset(){
 	document.form.name.value="";
@@ -57,8 +57,9 @@ style="width:200px;height:40px;background-color:red;color:white;border-style:out
 </tr>
 </form:form>
 <tr>
-<td><input type="button" value="test" onClick="reset();"></td>
-<td>aaa</td>
+<td><input type="button" value="リセット" onClick="reset();"
+style="width:200px;height:40px;background-color:blue;color:white;border-style:outset;"></td>
+<td></td>
 </tr>
 </table>
 

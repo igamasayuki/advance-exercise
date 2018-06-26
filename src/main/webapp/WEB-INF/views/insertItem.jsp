@@ -16,7 +16,7 @@
 <jsp:include page="administerMenu.jsp"/>
 <jsp:include page="adminHeader.jsp"/>
 <div class="padding">
-<h3>商品登録画面</h3>
+<h3 style="position:relative;left:130px;">商品登録画面</h3>
 <p>新規で登録したい商品の情報を入力してください。</p>
 <form:form modelAttribute="itemRegistrationForm" action="${pageContext.request.contextPath}/admin/register" enctype="multipart/form-data">
 	<form:label path="name">商品名:</form:label>
@@ -34,9 +34,12 @@
 	<form:errors path="imageFile" cssStyle="color:red" element="div"/><br>
 	<form:checkbox path="deleted"/>
 	<form:label path="deleted">削除</form:label><br>
-	<input type="submit" value="登録">
+	<input type="submit" value="登録" style="background-color:blue;color:white;
+	width:200px;height:40px;margin-bottom:30px;">
 </form:form>
-<a href="${pageContext.request.contextPath}/adminItemList/">商品一覧画面に戻る</a>
+<a href="${pageContext.request.contextPath}/adminItemList/"
+style="background-color:red;color:white;width:200px;height:40px;
+border-style:outset;">商品一覧画面に戻る</a>
 </div>
 </body>
 </html>

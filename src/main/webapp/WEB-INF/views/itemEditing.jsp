@@ -12,8 +12,8 @@
 <title>商品編集画面</title>
 </head>
 <body>
-<jsp:include page="adminHeader.jsp"/>
 <jsp:include page="administerMenu.jsp"/>
+<jsp:include page="adminHeader.jsp"/>
 <h3>商品編集画面</h3>
 <p>編集したい商品の情報を入力してください。</p>
 <form:form modelAttribute="itemEditingForm" action="${pageContext.request.contextPath}/admin/edit" enctype="multipart/form-data">
@@ -35,9 +35,13 @@
 	<form:errors path="imageFile" cssStyle="color:red" element="div"/><br>
 	<form:checkbox path="deleted"/>
 	<form:label path="deleted">削除</form:label><br>
-	<input type="submit" value="編集">
+	<input type="submit" value="編集"
+	style="width:200px;height:40px;background-color:blue;color:white;margin-bottom:30px;">
 </form:form>
-<div><a href="${pageContext.request.contextPath}/admin/adminItemList/">商品一覧画面に戻る</a></div>
+
+<a href="${pageContext.request.contextPath}/admin/adminItemList/"
+style="background-color:red;color:white;
+width:200px;height:40px;">商品一覧画面に戻る</a>
 
 </body>
 </html>

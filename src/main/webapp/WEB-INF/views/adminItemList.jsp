@@ -21,7 +21,8 @@
 
 <form:form action="${pageContext.request.contextPath}/admin/index">
 	<input type="text" name="keyword" value="${keyword}">
-	<input type="submit" value="検索する">
+	<input type="submit" value="検索する" style="background-color:navy;color:white;width:200px;
+	height:40px;">
 </form:form>
 
 <c:choose>
@@ -41,19 +42,24 @@
 					<td><c:out value="${item.description}"/></td>
 					<td>
 						<form:form action="${pageContext.request.contextPath}/admin/?id=${item.id}">
-							<input type="submit" value="編集">
+							<input type="submit" value="編集"
+							style="background-color:blue;color:white;width:200px;height:40px;
+							margin-bottom:30px;">
 						</form:form>
 						<c:choose>
 							<c:when test="${item.deleted}">
 								<form:form action="${pageContext.request.contextPath}/admin/redisplay?id=${item.id}">
 									<input type="hidden" name="deleted" value="false">
-									<input type="submit" value="再表示">
+									<input type="submit" value="再表示"
+									style="background-color:green;color:white;width:200px;height:40px;
+									margin-bottom:30px;">
 								</form:form>
 							</c:when>
 							<c:otherwise>
 								<form:form action="${pageContext.request.contextPath}/admin/itemDeletion?id=${item.id}">
 									<input type="hidden" name="deleted" value="true">
-									<input type="submit" value="削除">
+									<input type="submit" value="削除"
+									style="background-color:red;color:white;width:200px;height:40px;">
 								</form:form>
 							</c:otherwise>
 						</c:choose>
