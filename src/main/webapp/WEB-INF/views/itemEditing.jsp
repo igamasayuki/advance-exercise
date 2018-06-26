@@ -37,7 +37,7 @@
 	<form:label path="deleted">削除</form:label><br>
 	<input type="submit" value="編集">
 </form:form>
-<a href="${pageContext.request.contextPath}/adminItemList/">商品一覧画面に戻る</a>
+<div><a href="${pageContext.request.contextPath}/admin/adminItemList/">商品一覧画面に戻る</a></div>
 
 </body>
 </html>
