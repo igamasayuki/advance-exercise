@@ -55,7 +55,7 @@ function reset(){
 			</tr>
 			<tr>
 				<th>郵便番号<br>
-				(ハイフン抜き　例：123456)</th>
+				(ハイフン抜き・半角　例：123456)</th>
 				<td>〒<form:input path="zipCode"
 						onKeyUp="AjaxZip3.zip2addr(this,'','address1','address1');" /><br>
 					<form:errors path="zipCode" cssStyle="color:red" element="div" /></td>
