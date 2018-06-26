@@ -37,6 +37,8 @@ public class PaymentController {
 	/** 利用者DBを操作するリポジトリ */
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	MailSendController mailSendController;
 	
 	/**
 	 * 決済確認画面を表示する.
@@ -86,10 +88,14 @@ public class PaymentController {
 	 * @return 決済完了画面
 	 */
 	@RequestMapping(value="/closeOut")
-	public String closeOutPayment(long orderId) {
+	public String closeOutPayment(long orderId,@AuthenticationPrincipal LoginUser loginUser) {
 		Order order = repository.load(orderId);
 		order.setStatus(1);
 		repository.update(order);
+		
+		String mailAddress = loginUser.getUser().getEmail();
+		mailSendController.sendOrderMail(mailAddress);
+		
 		return "redirect:showView";
 	}
 }
