@@ -59,7 +59,7 @@ span#payment{
 									value="${orderItem.item.price}" /></td>
 							<td><c:out value="${orderItem.quantity}" /></td>
 							<td><form:form
-									action="${pageContext.request.contextPath}/user/deleteOrderItem">
+									action="${pageContext.request.contextPath}/user/deletionOrderItem">
 									<input type="hidden" name="id" value="${orderItem.id}">
 									<input type="submit" value="削除" style="background-color:blue;
 		width:60px;height:40px;color:white;">

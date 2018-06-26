@@ -26,8 +26,8 @@ public class OrderItemDeletionController {
 	 * @param id ID
 	 * @return ショッピングカートの中身一覧の画面
 	 */
-	@RequestMapping(value="/deleteOrderItem")
-	public String deleteOrderItem(long id) {
+	@RequestMapping(value="/deletionOrderItem")
+	public String deletionOrderItem(long id) {
 		repository.deleteById(id);
 		return "redirect:/user/viewShoppingCart";
 	}

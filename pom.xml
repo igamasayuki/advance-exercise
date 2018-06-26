@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>ecommerceD</artifactId>
+	<artifactId>ec-201804d</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
-	<name>ecommerceD</name>
+	<name>ec-201804d</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
