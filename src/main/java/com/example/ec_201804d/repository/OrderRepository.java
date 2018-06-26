@@ -228,4 +228,19 @@ public class OrderRepository {
 		template.update(sql, param);
 	}
 
+	/**
+	 * 引数で与えられた年内に注文された数を取得する.
+	 * @param year 年
+	 * @return　注文数
+	 */
+	public int countofTheYear(int year) {
+		System.out.println("year:" + year);
+		String countSql = "SELECT COUNT(id)"
+				+ " FROM " + TABLE_NAME
+				+ " WHERE order_date >= :date";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("date", year + "/01/01");
+		int num = template.queryForObject(countSql, param, Integer.class);
+		return num;
+	}
+
 }

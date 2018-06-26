@@ -24,34 +24,60 @@ import com.example.ec_201804d.form.ItemForm;
 import com.example.ec_201804d.repository.OrderItemRepository;
 import com.example.ec_201804d.repository.OrderRepository;
 
+/**
+ * 注文商品情報を扱うコントローラ.
+ *
+ * @author daiki.fujioka
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class OrderItemController {
 
+	/**
+	 * 商品情報のフォームを初期化する.
+	 * @return 商品情報のフォーム
+	 */
 	@ModelAttribute
 	public ItemForm setupForm() {
 		return new ItemForm();
 	}
 	
+	/** セッションスコープ */
 	@Autowired
 	private HttpSession session;
 	
+	/** 注文商品DBを操作するリポジトリ */
 	@Autowired
 	private OrderItemRepository orderItemRepository;
 	
+	/** 注文DBを操作するリポジトリ */
 	@Autowired
 	private OrderRepository orderRepository;
 	
+	/** 商品詳細を扱うコントローラ */
 	@Autowired
 	private ItemDetailController itemDetailController;
 	
+	/**
+	 * ショッピングカートを表示する.
+	 * @return
+	 */
 	@RequestMapping("/view")
 	public String viewShoppingCart() {
 		return "redirect:/user/viewShoppingCart";
 	}
 
+	/**
+	 * 商品をショッピングカートに追加する.
+	 * @param loginUser ログインしているユーザ
+	 * @param itemForm 商品情報フォーム
+	 * @param result 入力値チェックの結果
+	 * @param model リクエストスコープ
+	 * @return
+	 */
 	@RequestMapping("/addItem")
-	public String addItemToShoppingCart(@AuthenticationPrincipal LoginUser loginUser, @Validated ItemForm itemForm, BindingResult result, RedirectAttributes redirectAttributes, Model model) {
+	public String addItemToShoppingCart(@AuthenticationPrincipal LoginUser loginUser, @Validated ItemForm itemForm, BindingResult result, Model model) {
 
 		if(result.hasErrors()) {
 			System.out.println("ショッピングカート入力チェックif文");
@@ -75,7 +101,9 @@ public class OrderItemController {
 			LocalDate localDate = LocalDate.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 			Date date = Date.valueOf(localDate);
-			String orderNumber = (String)(localDate.format(formatter)) + "123456";
+			int year = localDate.getYear();
+			int number = orderRepository.countofTheYear(year) + 1;
+			String orderNumber = (String)(localDate.format(formatter)) + String.format("%06d", number);
 			order.setOrderNumber(orderNumber);
 			order.setUserId(userId);
 			order.setStatus(0);
