@@ -64,5 +64,6 @@ a{
 				</tr>
 			</table>
 		</c:if>
+		<jsp:include page="footter.jsp"/>
 </body>
 </html>

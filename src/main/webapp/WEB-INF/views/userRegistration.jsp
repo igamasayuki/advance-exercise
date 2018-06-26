@@ -87,5 +87,6 @@ function reset(){
 		border-style:outset;">
 	</form:form>
 	</div>
+	<jsp:include page="footter.jsp"/>
 </body>
 </html>

@@ -48,6 +48,6 @@ background-size:cover;">
 			<br>
 		</form:form>
 	</div>
-	
+	<!--<jsp:include page="footter.jsp"/>-->
 </body>
 </html>
