@@ -5,9 +5,25 @@
 <html lang="ja">
 <head>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<script>
+function reset(){
+	document.form.name.value="";
+	document.form.email.value="";
+	document.form.password.value="";
+	document.form.conPassword.value="";
+	document.form.zipCode.value="";
+	document.form.address1.value="";
+	document.form.address2.value="";
+	document.form.address3.value="";
+	document.form.telephone1.value="";
+	document.form.telephone2.value="";
+	document.form.telephone3.value="";
+}
+</script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <title>ユーザ登録画面</title>
+
 </head>
 <body>
 <jsp:include page="userHeader.jsp" />
@@ -15,7 +31,7 @@
 	<div class="center-block">
 	お客様の情報を入力し、「お客様情報を登録する」ボタンをクリックしてください。<br>
 	<form:form modelAttribute="userRegistrationForm"
-		action="${pageContext.request.contextPath}/user/register">
+		action="${pageContext.request.contextPath}/user/register" name="form">
 		<table border="1">
 			<tr>
 				<th>名前</th>
@@ -59,14 +75,14 @@
 			<tr>
 				<th>電話番号</th>
 				<td><form:input path="telephone1" />-<form:input
-						path="telephone2" />-<form:input path="telephone3" class="reset"/><br> <form:errors
+						path="telephone2" />-<form:input path="telephone3"/><br> <form:errors
 						path="telephone" cssStyle="color:red" element="div"/></td>
 			</tr>
 		</table>
 		<input type="submit" value="お客様情報を登録する"
 		style="width:200px;height:40px;background-color:red;color:white;
 		border-style:outset;">
-		<input type="reset" value="入力内容をクリアする"
+		<input type="button" value="入力内容をクリアする" onClick="reset();"
 		style="width:200px;height:40px;background-color:blue;color:white;
 		border-style:outset;">
 	</form:form>
