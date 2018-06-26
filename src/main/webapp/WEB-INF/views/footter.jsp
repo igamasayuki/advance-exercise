@@ -15,6 +15,5 @@
 <span style="margin-right:30px;position:relative; top:50px;">お問い合わせ</span>
 <h1 style="position:relative; top:50px;">キャベツ王国</h1>
 </div>
-
 </body>
 </html>
