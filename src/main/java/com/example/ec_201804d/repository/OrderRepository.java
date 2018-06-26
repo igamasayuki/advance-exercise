@@ -1,5 +1,6 @@
 package com.example.ec_201804d.repository;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -229,18 +230,31 @@ public class OrderRepository {
 	}
 
 	/**
-	 * 引数で与えられた年内に注文された数を取得する.
-	 * @param year 年
-	 * @return　注文数
+	 * numberシーケンスの次の値を取得する.
+	 * @param isSeqReset リセットする必要があるかの真偽値
+	 * @return　numberシーケンスの次の値
 	 */
-	public int countofTheYear(int year) {
-		System.out.println("year:" + year);
-		String countSql = "SELECT COUNT(id)"
-				+ " FROM " + TABLE_NAME
-				+ " WHERE order_date >= :date";
-		SqlParameterSource param = new MapSqlParameterSource().addValue("date", year + "/01/01");
-		int num = template.queryForObject(countSql, param, Integer.class);
+	public int nextNumberSeq(boolean isSeqReset) {
+		String seqSql;
+		if (isSeqReset) {
+			seqSql = "SELECT setval('number', 1)";
+		} else {
+			seqSql = "SELECT nextval('number')";			
+		}
+		SqlParameterSource param = new MapSqlParameterSource();
+		int num = template.queryForObject(seqSql, param, Integer.class);
 		return num;
+	}
+	
+	/**
+	 * 最新の注文の年を取得する.
+	 * @return 最新の注文の年
+	 */
+	public int findRecentOrderYear() {
+		String findSql = "SELECT MAX(order_date) FROM orders";
+		SqlParameterSource param = new MapSqlParameterSource();
+		Date recentDate = template.queryForObject(findSql, param, Date.class);
+		return recentDate.toLocalDate().getYear();
 	}
 
 }

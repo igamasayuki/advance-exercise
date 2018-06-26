@@ -101,8 +101,8 @@ public class OrderItemController {
 			LocalDate localDate = LocalDate.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 			Date date = Date.valueOf(localDate);
-			int year = localDate.getYear();
-			int number = orderRepository.countofTheYear(year) + 1;
+			boolean isSeqReset = (localDate.getYear() != orderRepository.findRecentOrderYear());
+			int number = orderRepository.nextNumberSeq(isSeqReset);
 			String orderNumber = (String)(localDate.format(formatter)) + String.format("%06d", number);
 			order.setOrderNumber(orderNumber);
 			order.setUserId(userId);
