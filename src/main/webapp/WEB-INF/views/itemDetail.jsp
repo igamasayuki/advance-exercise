@@ -24,7 +24,7 @@ a{
 			<table border="1" style="width:800px;height:400px;">
 
 				<tr>
-					<td rowspan="3"><img style="width:530px;height:394px;" src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
+					<td rowspan="5"><img style="width:530px;height:394px;" src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
 					<td>商品名</td>
 					<td><c:out
 								value="${item.name}" /></td>
@@ -37,29 +37,32 @@ a{
 					<td>商品説明</td>
 					<td><c:out value="${item.description}" /></td>
 				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<form:form modelAttribute="itemForm" action="${pageContext.request.contextPath}/user/addItem">
+						<form:errors path="itemForm.*" />
+						個数　：<form:input path="quantity"/>
+						<form:errors path="quantity" cssStyle="color:red" element="div" />
+						<br><br>
+						<input type="hidden" name="id" value="${item.id}">
+						<input type="submit" value="カートに入れる" style="background-color:blue;
+						width:200px;height:40px;color:white;">
+						</form:form>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<a href="${pageContext.request.contextPath}/user/viewItemList"
+			 			style="width:200px;height:40px;display:block;
+			 			background-color:red;color:white;text-align:center;
+			 			margin-right:auto;margin-left:auto;
+			 			border-style:outset;border-color:buttonface;
+			 			border-image:initial;"> 商品一覧に戻る</a>
+					</td>
+				</tr>
 			</table>
 		</c:if>
-		<br><br>
-
-		<div class="center-block">
-		<form:form modelAttribute="itemForm" action="${pageContext.request.contextPath}/user/addItem">
-			<form:errors path="itemForm.*" />
-			個数　：<form:input path="quantity"/>
-			<form:errors path="quantity" cssStyle="color:red" element="div" />
-			<br> <br>
-
-
-		<input type="hidden" name="id" value="${item.id}">
-		
-		<input type="submit" value="カートに入れる" style="background-color:blue;
-		width:200px;height:40px;color:white;border-style:none;">
-		</form:form>
-		<br><br>
-		
-			 <a href="${pageContext.request.contextPath}/user/viewItemList"
-			 style="width:200px;height:40px;display:block;
-			 background-color:red;color:white;text-align:center;
-			 margin-right:auto;margin-left:auto;"> 商品一覧に戻る</a>
-</div>
 </body>
 </html>

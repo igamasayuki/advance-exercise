@@ -59,12 +59,16 @@
 			<tr>
 				<th>電話番号</th>
 				<td><form:input path="telephone1" />-<form:input
-						path="telephone2" />-<form:input path="telephone3" /><br> <form:errors
-						path="telephone" cssStyle="color:red" element="div" /></td>
+						path="telephone2" />-<form:input path="telephone3" class="reset"/><br> <form:errors
+						path="telephone" cssStyle="color:red" element="div"/></td>
 			</tr>
 		</table>
-		<input type="submit" value="お客様情報を登録する">
-		<input type="reset" value="入力内容をクリアする">
+		<input type="submit" value="お客様情報を登録する"
+		style="width:200px;height:40px;background-color:red;color:white;
+		border-style:outset;">
+		<input type="reset" value="入力内容をクリアする"
+		style="width:200px;height:40px;background-color:blue;color:white;
+		border-style:outset;">
 	</form:form>
 	</div>
 </body>

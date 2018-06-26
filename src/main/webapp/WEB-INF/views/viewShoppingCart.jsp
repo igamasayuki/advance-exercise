@@ -72,7 +72,8 @@ span#payment{
 					<a href="${pageContext.request.contextPath}/userPayment/"
 					 style="width:200px;height:40px;background-color:lime;display:block;
 					 text-decoration:none;margin-right:auto;margin-left:auto;
-					 color:white;margin:auto;">
+					 color:white;margin:auto;border-style:outset;
+					 border-color:buttonface;">
 					決済へ</a>
 					</div>
 				
@@ -83,7 +84,8 @@ span#payment{
 			class="block" id="itemList"
 			style="width:200px;height:40px;background-color:red;display:block;
 					 text-decoration:none;margin-right:auto;margin-left:auto;
-					 color:white;">商品一覧へ</a>
+					 color:white;border-style:outset;
+					 border-color:buttonface;">商品一覧へ</a>
 		</div>
 	</div>
 
