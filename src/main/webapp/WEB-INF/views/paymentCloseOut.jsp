@@ -19,5 +19,6 @@ a{
 <div class="center-block">
 	<a href="${pageContext.request.contextPath}/user/viewItemList">一覧画面へ戻る</a>
 </div>
+<jsp:include page="footter.jsp"/>
 </body>
 </html>

@@ -13,7 +13,7 @@
 <span style="margin-right:30px;position:relative; top:50px;">プライバシーポリシー</span>
 <span style="margin-right:30px;position:relative; top:50px;">特定商取引法に基づく表記</span>
 <span style="margin-right:30px;position:relative; top:50px;">お問い合わせ</span>
-<h1 style="position:relative; top:50px;">キャベツ王国</h1>
+<h1 style="position:relative; top:50px;">きゃべつ王国</h1>
 </div>
 </body>
 </html>
