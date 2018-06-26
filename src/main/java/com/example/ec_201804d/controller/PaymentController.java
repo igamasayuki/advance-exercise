@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.ec_201804d.domain.Info;
 import com.example.ec_201804d.domain.LoginUser;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.domain.OrderItem;
@@ -38,7 +39,7 @@ public class PaymentController {
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
-	MailSendController mailSendController;
+	private MailSendController mailSendController;
 	
 	/**
 	 * 決済確認画面を表示する.
@@ -85,16 +86,19 @@ public class PaymentController {
 	/**
 	 * 決済を確定させる.
 	 * @param orderId 注文ID
+	 * @param loginUser ログインユーザの情報
 	 * @return 決済完了画面
 	 */
 	@RequestMapping(value="/closeOut")
 	public String closeOutPayment(long orderId,@AuthenticationPrincipal LoginUser loginUser) {
+		List<Info> orderList = repository.find(orderId);
+		
 		Order order = repository.load(orderId);
 		order.setStatus(1);
 		repository.update(order);
 		
 		String mailAddress = loginUser.getUser().getEmail();
-		mailSendController.sendOrderMail(mailAddress);
+		mailSendController.sendOrderMail(mailAddress,orderList);
 		
 		return "redirect:showView";
 	}
