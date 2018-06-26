@@ -19,7 +19,9 @@
 <div style="float:right">
 <a href="${pageContext.request.contextPath}/user/logout">ログアウト</a>
 <br>
-<a href="${pageContext.request.contextPath}/user/login">ログイン</a>
+
+<a href="${pageContext.request.contextPath}/user/login">ログイン・新規登録</a>
+
 <br>
 <sec:authorize access="hasRole('ROLE_USER') and isAuthenticated()">
 							<sec:authentication var="userName" property="principal.user.name" />
@@ -31,8 +33,8 @@
 <a href="${pageContext.request.contextPath}/user/viewShoppingCart" style="padding-right:30px;">カートの中身を表示する</a>
 </div>
 <div style="float:left">
-<h1><a href="${pageContext.request.contextPath}/user/viewItemList">
-<img src="${pageContext.request.contextPath}/img/rakus.jpg" width="50"height="50" alt="ロゴ画像">ＥＣサイトラクス</a></h1>
+<a href="${pageContext.request.contextPath}/user/viewItemList">
+<img src="${pageContext.request.contextPath}/img/king-kyabetu.png" alt="きゃべつ王国"></a>
 </div>
 </div>	
 </body>
