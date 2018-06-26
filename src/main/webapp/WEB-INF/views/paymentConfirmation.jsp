@@ -74,6 +74,7 @@
 			<input type="submit" value="確定"
 				style="background-color: red; color: white; width: 200px; height: 40px;">
 		</form:form>
+		<a href="${pageContext.request.contextPath}/user/viewItemList"></a>
 	</div>
 </body>
 </html>
