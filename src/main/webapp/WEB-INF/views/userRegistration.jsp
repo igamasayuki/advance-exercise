@@ -82,10 +82,10 @@ function reset(){
 		<input type="submit" value="お客様情報を登録する"
 		style="width:200px;height:40px;background-color:red;color:white;
 		border-style:outset;">
-		<input type="button" value="入力内容をクリアする" onClick="reset();"
+	</form:form>
+	<input type="button" value="入力内容をクリアする" onClick="reset();"
 		style="width:200px;height:40px;background-color:blue;color:white;
 		border-style:outset;">
-	</form:form>
 	</div>
 	<jsp:include page="footter.jsp"/>
 </body>
