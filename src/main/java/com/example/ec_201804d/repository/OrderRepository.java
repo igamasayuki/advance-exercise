@@ -248,12 +248,15 @@ public class OrderRepository {
 	
 	/**
 	 * 最新の注文の年を取得する.
-	 * @return 最新の注文の年
+	 * @return 最新の注文の年 1つも商品が存在しない場合は-1を返す
 	 */
 	public int findRecentOrderYear() {
 		String findSql = "SELECT MAX(order_date) FROM orders";
 		SqlParameterSource param = new MapSqlParameterSource();
 		Date recentDate = template.queryForObject(findSql, param, Date.class);
+		if (recentDate == null) {
+			return -1;
+		}
 		return recentDate.toLocalDate().getYear();
 	}
 
