@@ -16,9 +16,10 @@
 <div id="userHeader">
 <sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
 							<sec:authentication var="userName" property="principal.adminUser.name" />
-								<c:out value="${userName}" />&nbsp;さんこんにちは
+								<c:out value="${userName}" />&nbsp;さんこんにちは<br>
+								<p><a href="${pageContext.request.contextPath}/adminlogout">ログアウト</a></p>
 						</sec:authorize>
-	<p><a href="${pageContext.request.contextPath}/adminlogout">ログアウト</a></p>
+	
 	</div>
 	<a href="${pageContext.request.contextPath}/admin/viewAdminTop">
 	<img src="${pageContext.request.contextPath}/img/king-kyabetu.png" alt="きゃべつ王国"></a></div>
