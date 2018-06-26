@@ -26,7 +26,6 @@ a{
 <jsp:include page="userHeader.jsp" />
 <div class="link-right" align="right">
 	</div>
-		<h3>商品詳細</h3>
 		<c:if test="${item != null}">
 			<table  style="width:1000px;height:400px;
 			background-color:white;">
