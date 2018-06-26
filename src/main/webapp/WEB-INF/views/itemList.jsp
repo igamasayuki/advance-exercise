@@ -42,7 +42,8 @@ a{
 		<c:otherwise>
 			<div style="margin-right:auto;margin-left:auto;width:auto;height:800px;">
 				<c:forEach var="item" items="${itemList}">
-					<span style="float:left;padding-left:30px;margin-bottom:30px;">
+					<span style="float:left;padding-left:30px;margin-bottom:30px;
+					width:330px;height:280px;">
 							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
 						<c:out value="${item.name}" /></a><br>
 						<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">

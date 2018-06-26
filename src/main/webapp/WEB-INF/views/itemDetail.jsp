@@ -9,7 +9,14 @@
 a{
 	text-decoration: none;
 }
+.imgA:hover{
+	transform: scale(1.5);
+}
 
+.imgA{
+-webkit-transition: all 0.8s;
+	transition: all 0.8s;
+}
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <meta charset="UTF-8">
@@ -25,7 +32,9 @@ a{
 			background-color:white;">
 
 				<tr>
-					<td rowspan="5"><img style="width:530px;height:394px;" src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
+					<td rowspan="5" style="width:560px;height:400px;">
+					<img class="imgA"
+					src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
 					<td style="text-align:left;">商品名</td>
 					<td style="text-align:left;"><c:out
 								value="${item.name}" /></td>
