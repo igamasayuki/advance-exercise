@@ -17,6 +17,7 @@
 	</div>
 	<h3>ご注文内容</h3>
 <hr>
+<c:set var="sumPrice" value="0"/>
 <table border="1">
 	<tr>
 		<th>商品名</th>
@@ -31,12 +32,13 @@
 			<td><fmt:formatNumber pattern="\###,###" value="${orderItem.item.price}"/></td>
 			<td><c:out value="${orderItem.quantity}"/></td>
 			<td><fmt:formatNumber pattern="\###,###" value="${orderItem.item.price * orderItem.quantity}"/></td>
+			<c:set var="sumPrice" value="${sumPrice + orderItem.item.price * orderItem.quantity}"/>
 			<td><fmt:formatNumber pattern="\###,###" value="${orderItem.item.price * orderItem.quantity * (1.08)}"/></td>
 		</tr>
 	</c:forEach>
 	<tr>
 		<td>消費税</td>
-		<td colspan="4"><fmt:formatNumber pattern="\###,###" value="${order.totalPrice * 0.08}"/></td>
+		<td colspan="4"><fmt:formatNumber pattern="\###,###" value="${sumPrice * 0.08}"/></td>
 	</tr>
 	<tr>
 		<td>送料一律</td>
@@ -44,7 +46,7 @@
 	</tr>
 	<tr>
 		<td>総計</td>
-		<td colspan="4"><fmt:formatNumber pattern="\###,###" value="${order.totalPrice * (1.08) + 500}"/></td>
+		<td colspan="4"><fmt:formatNumber pattern="\###,###" value="${order.totalPrice}"/></td>
 	</tr>
 </table>
 <h3>お届け先</h3>

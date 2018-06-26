@@ -18,17 +18,32 @@ import com.example.ec_201804d.domain.User;
 import com.example.ec_201804d.repository.OrderRepository;
 import com.example.ec_201804d.repository.UserRepository;
 
+/**
+ * 決済を行うコントローラ.
+ *
+ * @author daiki.fujioka
+ *
+ */
 @Controller
 @Transactional
 @RequestMapping(value="/userPayment")
 public class PaymentController {
+	/** セッションスコープ */
 	@Autowired
 	HttpSession session;
+	/** 注文DBを操作するレポジトリ */
 	@Autowired
 	private OrderRepository repository;
+	/** 利用者DBを操作するリポジトリ */
 	@Autowired
 	private UserRepository userRepository;
 	
+	/**
+	 * 決済確認画面を表示する.
+	 * @param loginUser ログイン中のユーザ
+	 * @param model リクエストスコープ
+	 * @return 決済確認画面
+	 */
 	@RequestMapping
 	public String showPaymentConfirmationView(@AuthenticationPrincipal LoginUser loginUser, Model model) {
 		long userId = loginUser.getUser().getId();
@@ -39,11 +54,11 @@ public class PaymentController {
 		} else {
 			order = orders.get(0);
 		}
-		int totalPrice = 0;
+		int sumPrice = 0;
 		for (OrderItem orderItem : order.getOrderItemList()) {
-			totalPrice += orderItem.getItem().getPrice() * orderItem.getQuantity();
+			sumPrice += orderItem.getItem().getPrice() * orderItem.getQuantity();
 		}
-		order.setTotalPrice(totalPrice);
+		order.setTotalPrice((int)(sumPrice*1.08 + 500));
 		User user = userRepository.load(userId);
 		order.setDeliveryName(user.getName());
 		order.setDeliveryEmail(user.getEmail());
@@ -56,11 +71,20 @@ public class PaymentController {
 		return "paymentConfirmation";
 	}
 	
+	/**
+	 * 決済完了画面を表示する.
+	 * @return
+	 */
 	@RequestMapping(value="/showView")
 	public String showPaymentCloseOutView() {
 		return "paymentCloseOut";
 	}
 	
+	/**
+	 * 決済を確定させる.
+	 * @param orderId 注文ID
+	 * @return 決済完了画面
+	 */
 	@RequestMapping(value="/closeOut")
 	public String closeOutPayment(long orderId) {
 		Order order = repository.load(orderId);

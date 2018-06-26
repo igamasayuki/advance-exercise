@@ -27,6 +27,7 @@ import com.example.ec_201804d.domain.OrderItem;
 @Repository
 public class OrderRepository {
 	
+	/** 対象テーブル名 */
 	private String TABLE_NAME = "orders";
 
 	private static final RowMapper<Order> ORDER_ROW_MAPPER = (rs, i) -> {
@@ -128,6 +129,10 @@ public class OrderRepository {
 		return order;
 	}
 
+	/**
+	 * 新規注文を登録する.
+	 * @param order 注文情報
+	 */
 	public void insertNewOrder(Order order) {
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(order);
@@ -177,7 +182,6 @@ public class OrderRepository {
 	 *            更新するオーダー情報
 	 */
 	public void update(Order order) {
-		System.out.println("status:" + order.getStatus());
 		String updateSql = "UPDATE " + TABLE_NAME + " SET"
 				+ " order_number=:orderNumber, user_id=:userId, status=:status, total_price=:totalPrice, order_date=:orderDate, delivery_name=:deliveryName, delivery_email=:deliveryEmail, delivery_zip_code=:deliveryZipCode, delivery_address=:deliveryAddress, delivery_tel=:deliveryTel"
 				+ " WHERE id=:id";
@@ -188,12 +192,21 @@ public class OrderRepository {
 	
 	
 
+	/**
+	 * ユーザIDを変更する.
+	 * @param preUserId 変更前のユーザID
+	 * @param userId 変更後のユーザID
+	 */
 	public void updateUserId(long preUserId, long userId) {
 		String updateSql = "UPDATE " + TABLE_NAME + " SET user_id=:userId WHERE user_id=:preUserId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId).addValue("preUserId", preUserId);
 		template.update(updateSql, param);
 	}
 	
+	/**
+	 * 引数で与えられたユーザIDの注文を削除する.
+	 * @param userId ユーザID
+	 */
 	public void deleteByUserId(long userId) {
 		String deleteSql = "DELETE FROM " + TABLE_NAME + " WHERE user_id=:userId";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
