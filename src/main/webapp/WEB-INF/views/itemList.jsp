@@ -66,6 +66,9 @@ a{
 			
 		</c:otherwise>
 	</c:choose>
+	<div class="center-block">
+	<a href="javascript:history.go(-1)">[戻る]</a>
+	</div>
 <jsp:include page="footter.jsp"/>
 </body>
 </html>

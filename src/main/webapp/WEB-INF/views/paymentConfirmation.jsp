@@ -74,7 +74,8 @@
 			<input type="submit" value="確定"
 				style="background-color: red; color: white; width: 200px; height: 40px;">
 		</form:form>
-		<a href="${pageContext.request.contextPath}/user/viewItemList"></a>
+		
+		<a href="javascript:history.go(-1)">[戻る]</a>
 	</div>
 	<jsp:include page="footter.jsp"/>
 </body>
