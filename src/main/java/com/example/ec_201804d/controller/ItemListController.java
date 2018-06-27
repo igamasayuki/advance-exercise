@@ -8,8 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -86,12 +84,22 @@ public class ItemListController {
 	 * @return 該当する商品情報
 	 */
 	@RequestMapping("/findItem")
-	public String findItem(String word, Model model) {
+	public String findItem(String word, Model model,PagingForm form) {
 		List<Item> findItemList = repository.findSaleItemsByWord(word);
 		model.addAttribute("findItemList", findItemList);
 		if (findItemList.isEmpty()) {
 			return "/itemList";
 		}
+		if(form.getPaging()==null) {
+			form.setPaging(1);
+		}
+		ArrayList<Integer>numberList=new ArrayList<Integer>();
+		for(int i=0;i<=(int)(findItemList.size()/8);i++) {
+			numberList.add(i+1);
+		}
+		model.addAttribute("begin",(form.getPaging()-1)*8);
+		model.addAttribute("end",form.getPaging()*8-1);
+		model.addAttribute("numberList",numberList);
 		model.addAttribute("itemList", findItemList);
 		return "/itemList";
 	}
