@@ -28,7 +28,8 @@
 	<form:textarea path="description" cols="40" rows="5"/><br>
 	<form:errors path="description" cssStyle="color:red" element="div"/><br>
 	画像　:
-	<img src="${pageContext.request.contextPath}/img/${imagePath}">
+	<img src="${pageContext.request.contextPath}/img/${imagePath}"
+	style="max-width:300px;max-height:300px;">
 	<input type="hidden" name="beforeImagePath" value="${imagePath}">
 	<input type="file" name="imageFile"><br>
 	<c:out value="※ファイルはjpegファイルを選択してください"/><br>

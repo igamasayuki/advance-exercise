@@ -31,7 +31,7 @@
 		</c:when>
 		<c:otherwise>
 
-			<table border="1" align="center">
+			<table border="1" align="center" style="width:600px;">
 				<tr>
 					<th>注文番号</th>
 					<th>日付</th>

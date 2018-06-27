@@ -15,9 +15,16 @@ text-decoration: none;
 <title>Insert title here</title>
 </head>
 <body>
-
-<div id="menu">
-    <h2>管理者メニュー画面</h2>
+<script>
+function menu(){
+	alert(1);
+	alert(document.getElementById("menu").id);
+	document.getElementById("menu").id="non";
+}
+</script>
+<div id="menu" style="text-align:center;">
+    <h2><input type="button" onClick="alert(1);" value="メニュー"
+    style="background-color:black;color:white;border-style:none;"></h2>
 		<a class="menuLink" href="${pageContext.request.contextPath}/admin/viewAdminTop">TOP</a><br><br>
         <a class="menuLink" href="${pageContext.request.contextPath}/admin/show_view">商品を登録</a><br><br>
         <a class="menuLink" href="${pageContext.request.contextPath}/admin/adminItemList">商品一覧</a><br><br>

@@ -33,7 +33,8 @@ a{
 				<tr>
 					<td rowspan="5" style="width:560px;height:400px;">
 					<img class="imgA"
-					src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
+					src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"
+					style="max-width:300px;max-height:300px;"></td>
 					<td style="text-align:left;">商品名</td>
 					<td style="text-align:left;"><c:out
 								value="${item.name}" /></td>
