@@ -27,8 +27,8 @@ public class OrderItemHistory {
 	@RequestMapping(value="/index")
 	public String index(LoginUser loginUser, Model model) {
 		Long userId = loginUser.getUser().getId();
-//		List<Order> orderList = orderRepository.findByUserId(userId);
-//		model.addAttribute("orderList", orderList);
-		return "";
+		List<Order> orderList = orderRepository.findByUserId(userId);
+		model.addAttribute("orderList", orderList);
+		return "orderHistory";
 	}
 }
