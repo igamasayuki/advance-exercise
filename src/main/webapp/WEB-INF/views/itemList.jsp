@@ -55,16 +55,15 @@ a{
 					</span>
 				</c:forEach>
 			</div>
-			
-			
 			<c:forEach var="number" items="${numberList}">
 			<form:form action="${pageContext.request.contextPath}/user/viewItemList"
 			modelAttribute="pagingForm">
 			<form:hidden path="paging" value="${number}"/>
 			<input type="submit" value='<c:out value="${number}"/>'
-			style="background-color:palegreen;color:white;">
+			style="background-color:palegreen;color:white;float:left;">
 			</form:form>
 			</c:forEach>
+			
 		</c:otherwise>
 	</c:choose>
 <jsp:include page="footter.jsp"/>

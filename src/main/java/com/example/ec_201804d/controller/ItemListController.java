@@ -58,7 +58,7 @@ public class ItemListController {
 
 		List<Item> itemList = repository.findSaleItems();
 		ArrayList<Integer>numberList=new ArrayList<Integer>();
-		for(int i=0;i<=10;i++) {
+		for(int i=0;i<=(int)(itemList.size()/8);i++) {
 			numberList.add(i+1);
 		}
 		if (itemList.isEmpty()) {
