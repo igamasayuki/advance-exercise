@@ -50,7 +50,7 @@ a{
 								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"
 								style="max-width:300px;max-height:300px;">
 							</a><br>
-							<fmt:formatNumber value="${item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="true"/>
+							<fmt:formatNumber value="${item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="true" maxFractionDigits="0"/>
 					</td>
 				</c:forEach>
 				</tr>
@@ -65,7 +65,7 @@ a{
 								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"
 								style="max-width:300px;max-height:300px;">
 							</a><br>
-						<fmt:formatNumber value="${item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="true"/>
+						<fmt:formatNumber value="${item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="true" maxFractionDigits="0"/>
 					</td>
 				</c:forEach>
 				</tr>
