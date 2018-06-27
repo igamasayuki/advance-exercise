@@ -3,6 +3,7 @@ package com.example.ec_201804d.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class OrderItemHistory {
 	private OrderRepository orderRepository;
 	
 	@RequestMapping(value="/index")
-	public String index(LoginUser loginUser, Model model) {
+	public String index(@AuthenticationPrincipal LoginUser loginUser, Model model) {
 		Long userId = loginUser.getUser().getId();
 		List<Order> orderList = orderRepository.findByUserId(userId);
 		model.addAttribute("orderList", orderList);

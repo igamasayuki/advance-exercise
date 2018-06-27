@@ -31,28 +31,23 @@
 							<th>購入個数</th>
 							<th>総計(送料込)</th>
 						</tr>
-						<tr>
 							<c:forEach var="order" items="${orderList}">
-								<td rowspan="${order.itemListSize}">
-									<c:out value="${order.orderDate}"/>
-								</td>
-								<td rowspan="${order.itemListSize}">
-									<c:choose>
+							<tr>
+								<td rowspan="${order.itemListSize}"><c:out
+										value="${order.orderDate}" /></td>
+								<td rowspan="${order.itemListSize}"><c:choose>
 										<c:when test="${order.status==1}">未入金</c:when>
 										<c:when test="${order.status==2}">入金済</c:when>
 										<c:when test="${order.status==3}">発送済</c:when>
-									</c:choose>
-								</td>
+									</c:choose></td>
 								<c:forEach var="orderItem" items="${order.orderItemList}">
-									<td><c:out value="${orderItem.item.name}"/></td>
-									<td><c:out value="${orderItem.item.prce}"/></td>
-									<td><c:out value="${orderItem.quantity}"/></td>
+									<td><c:out value="${orderItem.item.name}" /></td>
+									<td><c:out value="${orderItem.item.price}" /></td>
+									<td><c:out value="${orderItem.quantity}" /></td>
 								</c:forEach>
-								<td>
-									<c:out value="${order.totalPrice}"/>
-								</td>
-							</c:forEach>
-						</tr>
+								<td><c:out value="${order.totalPrice}" /></td>
+							</tr>
+						</c:forEach>
 					</table>
 				</div>
 			</c:otherwise>
