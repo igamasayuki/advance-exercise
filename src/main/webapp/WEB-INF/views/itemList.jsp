@@ -20,7 +20,7 @@ a{
 	<jsp:include page="slide.jsp" />
 	</div>
 	<hr>
-	<h3>	<div class="center-block">
+		<div class="center-block">
 		<form:form action="${pageContext.request.contextPath}/user/findItem"
 			method="post">
 			<input type="text" name="word"> 
