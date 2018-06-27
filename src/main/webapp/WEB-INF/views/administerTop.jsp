@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="${pageContect.request.contextPath}/css/style.css">
 <style>
 div#menu{
 	float:left;
