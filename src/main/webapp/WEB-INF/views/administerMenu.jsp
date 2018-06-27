@@ -33,9 +33,9 @@ function menuClose(){
 	document.getElementById("menuClose").id="non";
 }
 </script>
-<div id="menu" style="text-align:center;">
+<div id="menu" style="text-align:center;width:170px;">
     <h2><input type="button" onClick="menu()" value="メニュー"
-    style="background-color:black;color:white;border-style:none;"></h2>
+    style="background-color:black;color:white;border-style:none;margin-bottom:50px;margin-top:40px;width:170px;"></h2>
 		<a class="menuLink" href="${pageContext.request.contextPath}/admin/viewAdminTop">TOP</a><br><br>
         <a class="menuLink" href="${pageContext.request.contextPath}/admin/show_view">商品を登録</a><br><br>
         <a class="menuLink" href="${pageContext.request.contextPath}/admin/adminItemList">商品一覧</a><br><br>
@@ -46,9 +46,10 @@ function menuClose(){
         <br>
         <a class="menuLink" href="${pageContext.request.contextPath}/adminlogout">ログアウト</a>
 </div>
-<div id="non" style="text-align:center;">
+<div id="non" style="text-align:center;width:170px;">
  <h2><input type="button" onClick="menuClose()" value="メニュー"
-    style="background-color:black;color:white;border-style:none;width:170px;height:100px;"></h2>
+    style="background-color:black;color:white;border-style:none;width:170px;height:100px;
+    "></h2>
 </div>
 
 </body>
