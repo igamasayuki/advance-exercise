@@ -21,7 +21,13 @@
 
 </pre>
 <br>
-<a href="${pageContext.request.contextPath}/user/viewItemList">商品一覧へ</a>
+<a href="${pageContext.request.contextPath}/user/viewItemList"
+			 			style="background-color:red;color:white;
+						width:200px;height:40px;border-style:outset;border-color:buttonface;
+			 			border-image:initial;">商品一覧画面に戻る</a>
+			 			<br>
+			 			<br>
+<a href="javascript:history.go(-1)">[前の画面に戻る]</a>
 </div>
 
 <jsp:include page="../footter.jsp"/>

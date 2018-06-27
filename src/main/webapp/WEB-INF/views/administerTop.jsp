@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="${pageContect.request.contextPath}/css/style.css">
 <style>
 div#menu{
 	float:left;
@@ -72,13 +73,81 @@ a.menuLink:hover{
 </style>
 <meta charset="UTF-8">
 <title>管理者TOPメニュー</title>
+
+ <style>
+      #base {
+        width: 300px;
+        height: 300px;
+        position: relative;
+      }
+      .clock {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+    </style>
+
 </head>
 <body>
 <jsp:include page="administerMenu.jsp"/>
 <jsp:include page="adminHeader.jsp"/>
 
-<div style="width:500px;margin-right:auto;margin-left:auto;font-size: 200%;">
+<div style="width:600px;margin-right:auto;margin-left:auto;font-size: 200%;">
 おかえりなさい<br>
+
+<div id="base" style="position:absolute;top:150px;right:100px">
+      <img src="${pageContext.request.contextPath}/img/dial.png" class="clock"><!--文字盤-->
+      <img src="${pageContext.request.contextPath}/img/hour.png" id="hour" class="clock"><!--短針-->
+      <img src="${pageContext.request.contextPath}/img/minute.png" id="minute" class="clock"><!--長針-->
+      <img src="${pageContext.request.contextPath}/img/second.png" id="second" class="clock"><!--秒針-->
+    </div>
+    <script>
+      var time;
+      var hour = document.getElementById("hour");
+      var minute = document.getElementById("minute");
+      var second = document.getElementById("second");
+      
+      function main() {
+        time = new Date();
+        
+        hour.style.transform = "rotate("+(time.getHours()*30+time.getMinutes()*0.5)+"deg)";
+        minute.style.transform = "rotate("+(time.getMinutes()*6)+"deg)";
+        second.style.transform = "rotate("+(time.getSeconds()*6)+"deg)";
+        
+        setTimeout(main, 1000-time.getMilliseconds());
+      }
+      
+      main();
+    </script>
+
+
+<p id="Clock1" style="display: inline"></p>
+<script type="text/javascript">
+setInterval('showClock1()',1000);
+function showClock1() {
+var DWs = new Array('Sun.','Mon.','Tue.','Wed.','Thu.','Fri.','Sat.');
+var Now = new Date();
+var YY = Now.getYear();
+if (YY < 2000) { YY += 1900; }
+var MM = set0( Now.getMonth() + 1 );
+var DD = set0( Now.getDate() );
+var DW = DWs[ Now.getDay() ];
+var hh = set0( Now.getHours() );
+var mm = set0( Now.getMinutes() );
+var ss = set0( Now.getSeconds() );
+var RTime1 = ' ' + YY + '.' + MM + '.' + DD + ' ' + DW + ' ' + hh + ':' + mm + ':' + ss + ' ';
+document.getElementById("Clock1").innerHTML = "現在は<br>"+RTime1+"です";
+}
+function set0(num) {
+var ret;
+if( num < 10 ) { ret = "0" + num; }
+else { ret = num; }
+return ret;
+}
+</script>
+
 
 <%
 int intNen; //表示年
