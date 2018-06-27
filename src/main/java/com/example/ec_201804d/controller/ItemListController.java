@@ -85,6 +85,9 @@ public class ItemListController {
 	 */
 	@RequestMapping("/findItem")
 	public String findItem(String word, Model model,PagingForm form) {
+		if(word == null) {
+			word = "";
+		}
 		List<Item> findItemList = repository.findSaleItemsByWord(word);
 		model.addAttribute("findItemList", findItemList);
 		if (findItemList.isEmpty()) {
