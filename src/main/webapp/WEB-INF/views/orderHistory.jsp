@@ -40,12 +40,13 @@
 										<c:when test="${order.status==2}">入金済</c:when>
 										<c:when test="${order.status==3}">発送済</c:when>
 									</c:choose></td>
+									<td rowspan="${order.itemListSize}" colspan="3"></td>
 								<c:forEach var="orderItem" items="${order.orderItemList}">
-									<td><c:out value="${orderItem.item.name}" /></td>
+								    <td><c:out value="${orderItem.item.name}" /></td>
 									<td><c:out value="${orderItem.item.price}" /></td>
 									<td><c:out value="${orderItem.quantity}" /></td>
 								</c:forEach>
-								<td><c:out value="${order.totalPrice}" /></td>
+								<td rowspan="${order.itemListSize}"><c:out value="${order.totalPrice}" /></td>
 							</tr>
 						</c:forEach>
 					</table>
