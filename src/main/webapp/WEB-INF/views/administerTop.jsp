@@ -71,34 +71,102 @@ a.menuLink:hover{
 </style>
 <meta charset="UTF-8">
 <title>管理者TOPメニュー</title>
+
+ <style>
+      #base {
+        width: 300px;
+        height: 300px;
+        position: relative;
+      }
+      .clock {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+      }
+    </style>
+
 </head>
 <body>
 <jsp:include page="administerMenu.jsp"/>
 <jsp:include page="adminHeader.jsp"/>
 
-<div style="width:500px;margin-right:auto;margin-left:auto;font-size: 200%;">
+<div style="width:600px;margin-right:auto;margin-left:auto;font-size: 200%;">
 おかえりなさい<br>
 
+<div id="base" style="position:absolute;top:150px;right:100px">
+      <img src="${pageContext.request.contextPath}/img/dial.png" class="clock"><!--文字盤-->
+      <img src="${pageContext.request.contextPath}/img/hour.png" id="hour" class="clock"><!--短針-->
+      <img src="${pageContext.request.contextPath}/img/minute.png" id="minute" class="clock"><!--長針-->
+      <img src="${pageContext.request.contextPath}/img/second.png" id="second" class="clock"><!--秒針-->
+    </div>
+    <script>
+      var time;
+      var hour = document.getElementById("hour");
+      var minute = document.getElementById("minute");
+      var second = document.getElementById("second");
+      
+      function main() {
+        time = new Date();
+        
+        hour.style.transform = "rotate("+(time.getHours()*30+time.getMinutes()*0.5)+"deg)";
+        minute.style.transform = "rotate("+(time.getMinutes()*6)+"deg)";
+        second.style.transform = "rotate("+(time.getSeconds()*6)+"deg)";
+        
+        setTimeout(main, 1000-time.getMilliseconds());
+      }
+      
+      main();
+    </script>
+
+
+<p id="Clock1" style="display: inline"></p>
+<script type="text/javascript">
+setInterval('showClock1()',1000);
+function showClock1() {
+var DWs = new Array('Sun.','Mon.','Tue.','Wed.','Thu.','Fri.','Sat.');
+var Now = new Date();
+var YY = Now.getYear();
+if (YY < 2000) { YY += 1900; }
+var MM = set0( Now.getMonth() + 1 );
+var DD = set0( Now.getDate() );
+var DW = DWs[ Now.getDay() ];
+var hh = set0( Now.getHours() );
+var mm = set0( Now.getMinutes() );
+var ss = set0( Now.getSeconds() );
+var RTime1 = ' ' + YY + '.' + MM + '.' + DD + ' ' + DW + ' ' + hh + ':' + mm + ':' + ss + ' ';
+document.getElementById("Clock1").innerHTML = "現在は<br>"+RTime1+"です";
+}
+function set0(num) {
+var ret;
+if( num < 10 ) { ret = "0" + num; }
+else { ret = num; }
+return ret;
+}
+</script>
+
+
 <%
-int year; //表示年
-int month; //表示月
+int intNen; //表示年
+int intTuki; //表示月
 
 Calendar cal = Calendar.getInstance();
 int intYear = cal.get(Calendar.YEAR); //システムの年
 int intMonth = cal.get(Calendar.MONTH); //システムの月
 int intDate = cal.get(Calendar.DATE); //システムの日
 
-year = intYear;
-month = intMonth;
+intNen = intYear;
+intTuki = intMonth;
 
-cal.set(year, month, 1); //表示月をセット
+cal.set(intNen, intTuki, 1); //表示月をセット
 int intLastDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH); //表示月の日数
 int intFirstDay = cal.get(Calendar.DAY_OF_WEEK); //表示月の１日の曜日
 int intLastDay = cal.get(Calendar.DATE);
 %>
 
 <% 
-out.println("<h2><u>"+year+"年"+(month+1)+"月</u></h2>");
+out.println("<h2><u>"+intNen+"年"+(intTuki+1)+"月</u></h2>");
 out.println("<font color=#FF0000>日</font>　月　火　水　木　金　<font color=#0000FF>土</font><br>");
 
 int intIchi = 0; //出力数　カウント用
@@ -126,7 +194,7 @@ out.println("<font color=#000000>");
 }
 
 //本日を太字
-if (year ==intYear && month==intMonth && i==intDate){
+if (intNen ==intYear && intTuki==intMonth && i==intDate){
 out.println("<b>");
 }
 
@@ -139,7 +207,7 @@ out.println( i+"&nbsp;");
 }
 
 
-if (year ==intYear && month==intMonth && i==intDate){
+if (intNen ==intYear && intTuki==intMonth && i==intDate){
 out.println("</b>");
 }
 
