@@ -69,7 +69,6 @@ a.menuLink:hover{
 	color:white;
 }
 
-
 </style>
 <meta charset="UTF-8">
 <title>管理者TOPメニュー</title>

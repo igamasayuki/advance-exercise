@@ -37,7 +37,6 @@
 		</c:when>
 		<c:otherwise>
 
-
 			<form:form modelAttribute="orderDetailForm"
 				action="${pageContext.request.contextPath}/admin/statussearch">
 				<form:select path="status" items="${statusMap}" />

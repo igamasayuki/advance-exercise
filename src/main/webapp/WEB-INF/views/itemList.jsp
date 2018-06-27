@@ -16,7 +16,7 @@ a{
 </head>
 <body>
 	<jsp:include page="userHeader.jsp" />
-	<div style="width:100px;height:100px;background-color:yellow;margin-right:auto;margin-left:auto;">
+	<div style="width:400px;height:300px;background-color:white;margin-right:auto;margin-left:auto;">
 	<jsp:include page="slide.jsp" />
 	</div>
 	<hr>
