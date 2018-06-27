@@ -21,4 +21,4 @@ spring:
             enable: true  
 server:
   servlet:
-    context-path: /ec
+    context-path: /ec-201804d
