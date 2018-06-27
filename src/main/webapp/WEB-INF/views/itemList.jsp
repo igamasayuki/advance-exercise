@@ -42,7 +42,8 @@ a{
 		</c:when>
 		<c:otherwise>
 			<div style="margin-right:auto;margin-left:auto;width:auto;height:800px;">
-				<c:forEach var="item" items="${itemList}">
+			
+				<c:forEach var="item" items="${itemList}" begin="${begin}" end="${end}">
 					<span style="float:left;padding-left:30px;margin-bottom:30px;
 					width:330px;height:280px;">
 							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
@@ -54,6 +55,16 @@ a{
 					</span>
 				</c:forEach>
 			</div>
+			
+			
+			<c:forEach var="number" items="${numberList}">
+			<form:form action="${pageContext.request.contextPath}/user/viewItemList"
+			modelAttribute="pagingForm">
+			<form:hidden path="paging" value="${number}"/>
+			<input type="submit" value='<c:out value="${number}"/>'
+			style="background-color:palegreen;color:white;">
+			</form:form>
+			</c:forEach>
 		</c:otherwise>
 	</c:choose>
 <jsp:include page="footter.jsp"/>
