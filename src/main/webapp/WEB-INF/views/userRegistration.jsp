@@ -30,6 +30,11 @@ function reset(){
 	<h3>新規利用者登録画面</h3>
 	<div class="center-block">
 	お客様の情報を入力し、「お客様情報を登録する」ボタンをクリックしてください。<br>
+	<div style="color: red">
+<br>
+※デモサイトのためメールアドレス以外は実際の情報を登録しないでください
+<br>
+</div>
 	<form:form modelAttribute="userRegistrationForm"
 		action="${pageContext.request.contextPath}/user/register" name="form">
 		<table border="1">

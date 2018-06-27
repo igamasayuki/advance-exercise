@@ -24,12 +24,24 @@
 		<h2>注文一覧画面</h2>
 	</div>
 	<c:choose>
+		<c:when test="${emptyOrderList}">
+			<font size="5" color="red"> <br> <c:out
+					value="該当する注文が存在しません" /> <br>
+			</font>
+		</c:when>
+	</c:choose>
+	<c:choose>
 		<c:when test="${orderCheck}">
-			<font size="5" color="red"> <br>
-			<c:out value="注文がありません" /><br>
+			<font size="5" color="red"> <br> <c:out value="注文がありません" /><br>
 			</font>
 		</c:when>
 		<c:otherwise>
+
+			<form:form modelAttribute="orderDetailForm"
+				action="${pageContext.request.contextPath}/admin/statussearch">
+				<form:select path="status" items="${statusMap}" />
+				<input type="submit" value="検索">
+			</form:form>
 
 			<table border="1" align="center">
 				<tr>

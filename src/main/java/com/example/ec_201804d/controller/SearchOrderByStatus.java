@@ -10,32 +10,40 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.ec_201804d.domain.Info;
 import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.form.OrderDetailForm;
 import com.example.ec_201804d.repository.OrderRepository;
 
 /**
- * 注文一覧を表示するコントローラ.
+ * 注文をステータスで検索するコントローラクラス.
  * 
- * @author takanori.noguchi
+ * @author hibiki.ono
  *
  */
 @Controller
-@RequestMapping("/admin")
-public class OrderListController {
+@RequestMapping(value="/admin")
+public class SearchOrderByStatus {
 
 	@Autowired
-	OrderRepository repository;
+	private OrderRepository orderRepository;
 	
 	@ModelAttribute
 	public OrderDetailForm setUpItemForm() {
 		return new OrderDetailForm();
 	}
-
-	@RequestMapping("/viewOrderList")
-	public String list(Model model) {
-		System.out.println("注文一覧表示メソッド開始");
+	
+	/**
+	 * 注文をステータスで検索
+	 * @param status 注文ステータス
+	 * @param model　リクエストスコープ
+	 * @return　注文一覧画面
+	 */
+	@RequestMapping(value="/statussearch")
+	public String searchOrderByStatus(String status, Model model) {
+		Integer orderStatus = Integer.parseInt(status);
+		if(orderStatus == -1) {
+			return "forward:/admin/viewOrderList";
+		}
 		Map<Integer,String> statusMap = new LinkedHashMap<>();
 		statusMap.put(-1, "");
 		statusMap.put(0, "未購入");
@@ -44,22 +52,10 @@ public class OrderListController {
 		statusMap.put(3, "発送済み");
 		statusMap.put(9, "キャンセル");
 		model.addAttribute("statusMap", statusMap);
-		System.out.println("プルダウン用意終了");
 		
-		List<Order> order = repository.findAll();
-		model.addAttribute("order", order);
-		model.addAttribute("orderCheck",order.isEmpty());
-		System.out.println("フォワード前");
-		
-		return "/orderList";
-	}
-
-	@RequestMapping("/orderDetail")
-	public String execute(long id, Model model) {
-		Order order = repository.load(id);
-		List<Info> list = repository.find(id);
-		model.addAttribute("order", order);
-		model.addAttribute("list", list);
-		return "/orderDetail";
+		List<Order> orderList = orderRepository.findByOrderStatus(orderStatus);
+		model.addAttribute("order", orderList);
+		model.addAttribute("emptyOrderList", orderList.isEmpty());
+		return "orderList";
 	}
 }

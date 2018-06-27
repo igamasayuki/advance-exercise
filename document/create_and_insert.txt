@@ -72,33 +72,25 @@ create table admin_users (
  CREATE SEQUENCE number START 1;
  
 -- 管理者の追加
-
- DROP EXTENSION IF EXISTS pgcrypto;
- CREATE EXTENSION pgcrypto;
- INSERT INTO 
- 	admin_users (name,email,password) 
- VALUES 
-	('admin','admin@gmail.com',crypt('admin',gen_salt('bf',10)))
- ;
+DROP EXTENSION IF EXISTS pgcrypto;
+CREATE EXTENSION pgcrypto;
+INSERT INTO admin_users (name,email,password) VALUES ('admin','admin@gmail.com',crypt('admin',gen_salt('bf',10)));
 
 -- 商品の追加
-
- INSERT INTO
-	items(name, description, price, imagepath, deleted)
- VALUES
-	('キャベツ', '群馬県産。', 250, 'kyabetu.jpg', FALSE),
-	('きゅうり', '宮崎県産。', 50, 'kyuri.jpg', FALSE),
-	('ナス', '高知県産。', 50, 'nasu.jpg', FALSE),
-	('にんじん', '北海道産。', 50, 'ninzin.jpg', FALSE),
-	('にら', '高知県産。', 150, 'nira.jpg', FALSE),
-	('ピーマン', '宮崎県産。', 30, 'piman.jpg', FALSE),
-	('トマト', '熊本県産。', 100, 'tomato.jpg', FALSE),
-	('トウモロコシ', '北海道産。', 300, 'toumorokosi.jpg', FALSE),
-	('レモン', '広島県産。', 300, '.jpg', FALSE),
-	('さつまいも', '鹿児島県産。', 300, '.jpg', FALSE),
-	('しょうが', '高知県産。', 300, '.jpg', FALSE),
-	('たまねぎ', '北海道産。', 300, '.jpg', FALSE),
-	('にんにく', '青森県産。', 300, '.jpg', FALSE),
-	('じゃがいも', '北海道産。', 300, '.jpg', FALSE),
-	('ゆず', '高知県産。', 300, '.jpg', FALSE),
+INSERT INTO items(name, description, price, imagepath, deleted) VALUES
+ ('キャベツ', '群馬県産。', 250, 'kyabetu.jpg', FALSE),
+ ('きゅうり', '宮崎県産。', 50, 'kyuri.jpg', FALSE),
+ ('ナス', '高知県産。', 50, 'nasu.jpg', FALSE),
+ ('にんじん', '北海道産。', 50, 'ninzin.jpg', FALSE),
+ ('にら', '高知県産。', 150, 'nira.jpg', FALSE),
+ ('ピーマン', '宮崎県産。', 30, 'piman.jpg', FALSE),
+ ('トマト', '熊本県産。', 100, 'tomato.jpg', FALSE),
+ ('トウモロコシ', '北海道産。', 300, 'toumorokosi.jpg', FALSE),
+ ('レモン', '広島県産。', 300, '.jpg', FALSE),
+ ('さつまいも', '鹿児島県産。', 300, '.jpg', FALSE),
+ ('しょうが', '高知県産。', 300, '.jpg', FALSE),
+ ('たまねぎ', '北海道産。', 300, '.jpg', FALSE),
+ ('にんにく', '青森県産。', 300, '.jpg', FALSE),
+ ('じゃがいも', '北海道産。', 300, '.jpg', FALSE),
+ ('ゆず', '高知県産。', 300, '.jpg', FALSE)
  ;

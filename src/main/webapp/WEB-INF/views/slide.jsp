@@ -10,10 +10,10 @@
   transition: transform 0.5s
 }
 .slide-enter {
-  transform: translateX(50px)
+  transform: translateX(100px)
 }
 .slide-leave-active {
-  transform: translateX(-50px);
+  transform: translateX(-100px);
 }
 
 p {
@@ -27,8 +27,8 @@ p {
 <body>
   <div id="app">
   <transition name="slide">
-    <p :key="products[product]" style="text-align:center;margin">
-    <img v-bind:src='products[product]' style="width:100px;height:100px;text-align:center;"></p>
+    <p :key="products[product]" style="text-align:center">
+    <img v-bind:src='products[product]' style="width:400px;height:300px;text-align:center;"></p>
   </transition>
 </div>
   <script>
@@ -36,8 +36,10 @@ new Vue({
     el: '#app',
   data: {
     product: 0,
-    products: ['/ec/img/kyabetu.jpg','/ec/img/piman.jpg','/ec/img/ninzin.jpg',
-    	'/ec/img/tomato.jpg','/ec/img/nasu.jpg'],
+    products: ['/ec-201804d/img/kyabetu.jpg','/ec-201804d/img/piman.jpg','/ec-201804d/img/ninzin.jpg',
+   	'/ec-201804d/img/tomato.jpg','/ec-201804d/img/nasu.jpg','/ec-201804d/img/jagaimo.jpg','/ec-201804d/img/kyuri.jpg',
+   	'/ec-201804d/img/ninniku.jpg','/ec-201804d/img/nira.jpg','/ec-201804d/img/remon.jpg','/ec-201804d/img/satumaimo.jpg',
+   	'/ec-201804d/img/syouga.jpg','/ec-201804d/img/tamanegi.jpg','/ec-201804d/img/toumorokosi.jpg','/ec-201804d/img/yuzu.jpg'],
     timer: null
   },
   computed: {
