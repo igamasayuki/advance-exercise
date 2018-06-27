@@ -86,12 +86,19 @@ create table admin_users (
  INSERT INTO
 	items(name, description, price, imagepath, deleted)
  VALUES
-	('キャベツ', '群馬県産。アブラナ科アブラナ属の多年草。', 250, 'kyabetu.jpg', FALSE),
-	('きゅうり', '宮崎県産。ウリ科キュウリ属のつる性一年草、およびその果実。', 50, 'kyuri.jpg', FALSE),
-	('ナス', '高知県産。ナス科ナス属の植物。また、その果実。', 50, 'nasu.jpg', FALSE),
-	('にんじん', '北海道産。セリ科ニンジン属の2年草。', 50, 'ninzin.jpg', FALSE),
-	('にら', '高知県産。ネギ属に属する多年草。', 150, 'nira.jpg', FALSE),
-	('ピーマン', '宮崎県産。ナス科の一年草、およびその果実。', 30, 'piman.jpg', FALSE),
-	('トマト', '熊本県産。ナス科ナス属の植物、およびその果実。', 100, 'tomato.jpg', FALSE),
-	('トウモロコシ', '北海道産。イネ科の一年生植物。', 300, 'toumorokosi.jpg', FALSE)
+	('キャベツ', '群馬県産。', 250, 'kyabetu.jpg', FALSE),
+	('きゅうり', '宮崎県産。', 50, 'kyuri.jpg', FALSE),
+	('ナス', '高知県産。', 50, 'nasu.jpg', FALSE),
+	('にんじん', '北海道産。', 50, 'ninzin.jpg', FALSE),
+	('にら', '高知県産。', 150, 'nira.jpg', FALSE),
+	('ピーマン', '宮崎県産。', 30, 'piman.jpg', FALSE),
+	('トマト', '熊本県産。', 100, 'tomato.jpg', FALSE),
+	('トウモロコシ', '北海道産。', 300, 'toumorokosi.jpg', FALSE),
+	('レモン', '広島県産。', 300, '.jpg', FALSE),
+	('さつまいも', '鹿児島県産。', 300, '.jpg', FALSE),
+	('しょうが', '高知県産。', 300, '.jpg', FALSE),
+	('たまねぎ', '北海道産。', 300, '.jpg', FALSE),
+	('にんにく', '青森県産。', 300, '.jpg', FALSE),
+	('じゃがいも', '北海道産。', 300, '.jpg', FALSE),
+	('ゆず', '高知県産。', 300, '.jpg', FALSE),
  ;
