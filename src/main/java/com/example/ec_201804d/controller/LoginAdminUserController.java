@@ -20,7 +20,7 @@ import com.example.ec_201804d.form.LoginAdminForm;
  *
  */
 @Controller
-@RequestMapping(value="/admin")
+@RequestMapping(value="/adminuserlogin")
 @SessionAttributes(types = {AdminUser.class})
 public class LoginAdminUserController {
 	/**
@@ -39,7 +39,7 @@ public class LoginAdminUserController {
 	 * @param error 入力チェックのエラー内容
 	 * @return 管理者のログイン画面
 	 */
-	@RequestMapping(value="/login")
+	@RequestMapping(value="/index")
 	public String viewLogin(@Validated LoginAdminForm form,
 			BindingResult result,
 			@RequestParam(required = false) String error) {

@@ -99,22 +99,22 @@ public class SecurityConfig {
 			http
 			    .antMatcher("/admin**/**")
 			    .authorizeRequests()
-			    .antMatchers("/admin/login").permitAll()
+			    .antMatchers("/adminuserlogin/index").permitAll()
 			    .antMatchers("/admin**/**").hasRole("ADMIN")
 			    .anyRequest()
 			    .authenticated();
 			
 			http.formLogin()
-			    .loginPage("/admin/login")
+			    .loginPage("/adminuserlogin/index")
 			    .loginProcessingUrl("/adminLogin")
-			    .failureUrl("/admin/login?error=true")
-			    .defaultSuccessUrl("/admin/fromLogintoMenu", false)
+			    .failureUrl("/adminuserlogin/index?error=true")
+			    .defaultSuccessUrl("/adminuserlogin/fromLogintoMenu", false)
 			    .usernameParameter("email")
 			    .passwordParameter("password");
 			
 			http.logout()
 			    .logoutRequestMatcher(new AntPathRequestMatcher("/adminlogout/**"))
-			    .logoutSuccessUrl("/admin/login")
+			    .logoutSuccessUrl("/adminuserlogin/index")
 			    .deleteCookies("JSESSIONID")
 			    .invalidateHttpSession(true);
 		}
