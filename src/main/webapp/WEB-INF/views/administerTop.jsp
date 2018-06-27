@@ -80,25 +80,25 @@ a.menuLink:hover{
 おかえりなさい<br>
 
 <%
-int intNen; //表示年
-int intTuki; //表示月
+int year; //表示年
+int month; //表示月
 
 Calendar cal = Calendar.getInstance();
 int intYear = cal.get(Calendar.YEAR); //システムの年
 int intMonth = cal.get(Calendar.MONTH); //システムの月
 int intDate = cal.get(Calendar.DATE); //システムの日
 
-intNen = intYear;
-intTuki = intMonth;
+year = intYear;
+month = intMonth;
 
-cal.set(intNen, intTuki, 1); //表示月をセット
+cal.set(year, month, 1); //表示月をセット
 int intLastDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH); //表示月の日数
 int intFirstDay = cal.get(Calendar.DAY_OF_WEEK); //表示月の１日の曜日
 int intLastDay = cal.get(Calendar.DATE);
 %>
 
 <% 
-out.println("<h2><u>"+intNen+"年"+(intTuki+1)+"月</u></h2>");
+out.println("<h2><u>"+year+"年"+(month+1)+"月</u></h2>");
 out.println("<font color=#FF0000>日</font>　月　火　水　木　金　<font color=#0000FF>土</font><br>");
 
 int intIchi = 0; //出力数　カウント用
@@ -126,7 +126,7 @@ out.println("<font color=#000000>");
 }
 
 //本日を太字
-if (intNen ==intYear && intTuki==intMonth && i==intDate){
+if (year ==intYear && month==intMonth && i==intDate){
 out.println("<b>");
 }
 
@@ -139,7 +139,7 @@ out.println( i+"&nbsp;");
 }
 
 
-if (intNen ==intYear && intTuki==intMonth && i==intDate){
+if (year ==intYear && month==intMonth && i==intDate){
 out.println("</b>");
 }
 
