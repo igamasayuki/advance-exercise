@@ -64,8 +64,7 @@
 				<td><fmt:formatNumber pattern="\###,###" value="${list.price}" /></td>
 				<td>×</td>
 				<td><c:out value="${list.quantity}" /></td>
-				<td><fmt:formatNumber pattern="\###,###"
-						value="${list.price*list.quantity}" />円</td>
+				<td><fmt:formatNumber value="${list.price*list.quantity}" type="CURRENCY" currencySymbol="¥" groupingUsed="true"/>円</td>
 			</tr>
 		</c:forEach>
 	</table>

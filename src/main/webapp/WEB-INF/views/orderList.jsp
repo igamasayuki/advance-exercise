@@ -68,8 +68,7 @@
 								<c:when test="${order.status == 3}">発送済み</c:when>
 								<c:when test="${order.status == 9}">キャンセル</c:when>
 							</c:choose></td>
-						<td><fmt:formatNumber pattern="\###,###"
-								value="${order.totalPrice}" /></td>
+						<td><fmt:formatNumber value="${order.totalPrice}" type="CURRENCY" currencySymbol="¥" groupingUsed="true"/></td>
 					</tr>
 				</c:forEach>
 			</table>
