@@ -50,7 +50,8 @@ function changeLoginout(){
 		
 </div>
 <div style="float:right;">
-<a href="${pageContext.request.contextPath}/user/viewShoppingCart" style="padding-right:30px;">カートの中身を表示する</a>
+<a href="${pageContext.request.contextPath}/user/viewShoppingCart" style="padding-right:30px;">カートの中身を表示する</a><br>
+<a href="${pageContext.request.contextPath}/userorderhistory/index">購入履歴を確認する</a>
 </div>
 <div style="float:left">
 <a href="${pageContext.request.contextPath}/user/viewItemList">
