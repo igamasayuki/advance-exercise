@@ -116,6 +116,20 @@ public class OrderRepository {
 		List<Order> orderList = template.query(sql, ORDER_ROW_MAPPER);
 		return orderList;
 	}
+	
+	/**
+	 * ステータスで注文を検索する
+	 * @param status　注文ステータス
+	 * @return　該当する注文
+	 */
+	public List<Order> findByOrderStatus(Integer status) {
+		String sql = "SELECT id," + "order_number," + "user_id,status," + "total_price,"
+				+ "order_date,delivery_name,delivery_email,delivery_zip_code,delivery_address,delivery_tel "
+				+ "FROM " + TABLE_NAME + " WHERE status=:status ORDER BY id";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("status", status);
+		List<Order> orderList = template.query(sql, param, ORDER_ROW_MAPPER);
+		return orderList;
+	}
 
 	/**
 	 * 注文詳細表示メソッド.

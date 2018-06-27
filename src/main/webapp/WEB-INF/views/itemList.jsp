@@ -42,18 +42,36 @@ a{
 		</c:when>
 		<c:otherwise>
 			<div style="margin-right:auto;margin-left:auto;width:auto;height:800px;">
-			
-				<c:forEach var="item" items="${itemList}" begin="${begin}" end="${end}">
-					<span style="float:left;padding-left:30px;margin-bottom:30px;
-					width:330px;height:280px;">
+			<table style="width:1250px;background-color:white;">
+			<tr>
+				<c:forEach var="item" items="${itemList}" begin="${begin}" end="${end/2}">
+					<td style="width:300px;">
 							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
 						<c:out value="${item.name}" /></a><br>
 						<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
-								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>">
+								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"
+								style="max-width:300px;max-height:300px;">
 							</a><br>
 						<fmt:formatNumber pattern="\###,###" value="${item.price}" />
-					</span>
+					</td>
 				</c:forEach>
+				</tr>
+			</table>
+			<table style="width:1250px;background-color:white">
+			<tr>
+				<c:forEach var="item" items="${itemList}" begin="${(end/2)+1}" end="${end}">
+					<td style="width:300px;">
+							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
+						<c:out value="${item.name}" /></a><br>
+						<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
+								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"
+								style="max-width:300px;max-height:300px;">
+							</a><br>
+						<fmt:formatNumber pattern="\###,###" value="${item.price}" />
+					</td>
+				</c:forEach>
+				</tr>
+			</table>
 			</div>
 			<c:forEach var="number" items="${numberList}">
 			<form:form action="${pageContext.request.contextPath}/user/viewItemList"

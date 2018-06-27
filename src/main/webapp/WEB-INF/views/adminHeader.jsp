@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div id="header">
+<div id="header" style="width:1200px;">
 <div id="userHeader">
 <sec:authorize access="hasRole('ROLE_ADMIN') and isAuthenticated()">
 							<sec:authentication var="userName" property="principal.adminUser.name" />

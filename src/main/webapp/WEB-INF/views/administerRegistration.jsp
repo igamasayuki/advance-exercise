@@ -26,7 +26,11 @@ function reset(){
 <body>
 <jsp:include page="administerMenu.jsp"/>
 <jsp:include page="adminHeader.jsp"/>
-
+<div style="color: red">
+<br>
+※デモサイトのためメールアドレス以外は実際の情報を登録しないでください
+<br>
+</div>
 <table border="1">
 <form:form modelAttribute="registerAdminUserForm" 
 action="${pageContext.request.contextPath}/admin/registerAdminUser" name="form">

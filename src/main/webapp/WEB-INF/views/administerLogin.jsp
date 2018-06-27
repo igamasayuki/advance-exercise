@@ -13,16 +13,17 @@
 <meta charset="UTF-8">
 <title>管理者ログイン画面</title>
 </head>
-<body style="background-image:url(${pageContext.request.contextPath}/img/kyabetuK.jpg);
+<body
+	style="background-image:url(${pageContext.request.contextPath}/img/kyabetuK.jpg);
 background-size:cover;">
 	<jsp:include page="adminHeader.jsp" /><br>
-	<div style="float:left;">
+	<div style="float: left;">
 		<form:form modelAttribute="loginAdminForm"
 			action="${pageContext.request.contextPath}/adminLogin">
-			<table border="1" style="position:absolute;top:150px;left:10px;">
+			<table border="1" style="position: absolute; top: 150px; left: 10px;">
 				<tr>
-					<th colspan="2">管理者ログイン<br>
-					<form:errors path="email" cssStyle="color:red" element="div" /></th>
+					<th colspan="2">管理者ログイン<br> <form:errors path="email"
+							cssStyle="color:red" element="div" /></th>
 				</tr>
 				<tr>
 					<th>メールアドレス:</th>
@@ -34,12 +35,18 @@ background-size:cover;">
 				</tr>
 				<tr>
 					<td colspan="2"><input type="submit" value="ログイン"
-					style="background-color:navy;color:white;
-					width:200px;border-radius:10px;"></td>
+						style="background-color: navy; color: white; width: 200px; border-radius: 10px;"></td>
+				</tr>
+				<tr>
+					<th>動作確認用<br>アカウント
+					</th>
+					<td>
+			         メール：admin@gmail.com<br>
+			         
+				パスワード： admin
+				</td>
 				</tr>
 			</table>
-			
-			<br>
 		</form:form>
 	</div>
 </body>

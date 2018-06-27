@@ -5,19 +5,22 @@
 <head>
 <meta charset="UTF-8">
 <title>404エラー画面</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 </head>
 <body>
-<jsp:include page="../userHeader.jsp" />
+
 
 <h3>404 Not Found</h3>
 <div class="center-block">
-申し訳ございません。お探しのページは見つかりませんでした。
-
-以下のリンクからログインし直してください。
-
-<br>
 <img src="${pageContext.request.contextPath}/img/king-kyabetu.png"><br>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+<pre>
+<h4>お探しのページは見つかりませんでした。</h4>
+
+お探しのページは一時的にアクセスができない状況にあるか、
+移動もしくは削除された可能性があります。
+
+</pre>
+<br>
 <a href="${pageContext.request.contextPath}/user/viewItemList">商品一覧へ</a>
 </div>
 
