@@ -41,7 +41,7 @@ a{
 				</tr>
 				<tr>
 					<td style="text-align:left;">価格</td>
-					<td style="text-align:left;"><fmt:formatNumber pattern="\###,###" value="${item.price}"/></td>
+					<td style="text-align:left;"><fmt:formatNumber value="${item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="true"/></td>
 				</tr>
 				<tr>
 					<td style="text-align:left;">商品説明</td>

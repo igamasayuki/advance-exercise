@@ -20,9 +20,7 @@ a{
 	<jsp:include page="slide.jsp" />
 	</div>
 	<hr>
-	<h3>商品一覧</h3>
-	
-	<div class="center-block">
+	<h3>	<div class="center-block">
 		<form:form action="${pageContext.request.contextPath}/user/findItem"
 			method="post">
 			<input type="text" name="word"> 
@@ -52,7 +50,7 @@ a{
 								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"
 								style="max-width:300px;max-height:300px;">
 							</a><br>
-						<fmt:formatNumber pattern="\###,###" value="${item.price}" />
+							<fmt:formatNumber value="${item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="true"/>
 					</td>
 				</c:forEach>
 				</tr>
@@ -67,7 +65,7 @@ a{
 								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"
 								style="max-width:300px;max-height:300px;">
 							</a><br>
-						<fmt:formatNumber pattern="\###,###" value="${item.price}" />
+						<fmt:formatNumber value="${item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="true"/>
 					</td>
 				</c:forEach>
 				</tr>
@@ -84,6 +82,9 @@ a{
 			
 		</c:otherwise>
 	</c:choose>
+	<div class="center-block">
+	<a href="javascript:history.go(-1)">[戻る]</a>
+	</div>
 <jsp:include page="footter.jsp"/>
 </body>
 </html>

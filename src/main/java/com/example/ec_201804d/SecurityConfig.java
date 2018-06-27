@@ -49,7 +49,7 @@ public class SecurityConfig {
 			    .antMatcher("/user**/**")
 			    .authorizeRequests()
 			    .antMatchers("/user/**").permitAll()
-			    .antMatchers("/userPayment/**").hasRole("USER")
+			    .antMatchers("/userPayment/**", "/userorderhistory/**").hasRole("USER")
 			    .anyRequest()
 			    .authenticated();
 			

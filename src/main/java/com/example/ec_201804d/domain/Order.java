@@ -112,5 +112,8 @@ public class Order {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public int getItemListSize() {
+		return orderItemList.size();
+	}
 	
 }
