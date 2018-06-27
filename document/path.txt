@@ -1,0 +1,7 @@
+ユーザー用トップページURL
+http://localhost:8080/ec-201804d/
+
+管理者用ログインページURL
+http://localhost:8080/ec-201804d/adminuserlogin/index
+email:admin@gmail.com
+pass:admin

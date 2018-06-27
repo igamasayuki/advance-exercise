@@ -1,0 +1,97 @@
+-- 商品
+DROP TABLE IF EXISTS items;
+create table items (
+  id bigserial not null
+  , name text not null unique
+  , description text not null
+  , price integer not null
+  , imagePath text not null
+  , deleted boolean default false not null
+  , constraint items_PKC primary key (id)
+) ;
+
+
+-- 注文詳細
+DROP TABLE IF EXISTS order_items;
+
+create table order_items (
+  id bigserial not null
+  , item_id bigint not null
+  , order_id bigint not null
+  , quantity integer not null
+  , constraint order_items_PKC primary key (id)
+) ;
+
+-- 注文　※ delivery_name以降５個のカラムを追加しました
+ DROP TABLE IF EXISTS orders;
+
+ create table orders (
+ id bigserial not null
+ , order_number text not null
+ , user_id bigint not null
+ , status integer not null
+ , total_price integer not null
+ , order_date date not null
+ , delivery_name varchar(100)
+ , delivery_email varchar(100)
+ , delivery_zip_code varchar(7)
+ , delivery_address varchar(200)
+ , delivery_tel varchar(15)
+ , constraint orders_PKC primary key (id)
+ ) ;
+
+-- 管理者
+DROP TABLE IF EXISTS admin_users;
+
+create table admin_users (
+  id bigserial not null
+  , name text not null
+  , email text not null unique
+  , password text not null
+  , constraint admin_users_PKC primary key (id)
+) ;
+
+-- 利用者テーブル　zipcodeを追加しました！
+
+ DROP TABLE IF EXISTS users;
+
+ create table users (
+   id bigserial not null
+   , name text not null
+   , email text not null unique
+   , password text not null
+   , zipcode text not null
+   , address text not null
+   , telephone text not null
+   , constraint users_PKC primary key (id)
+ ) ;
+ 
+-- numberシーケンス
+
+ DROP SEQUENCE IF EXISTS number;
+ CREATE SEQUENCE number START 1;
+ 
+-- 管理者の追加
+
+ DROP EXTENSION IF EXISTS pgcrypto;
+ CREATE EXTENSION pgcrypto;
+ INSERT INTO 
+ 	admin_users (name,email,password) 
+ VALUES 
+	('admin','admin@gmail.com',crypt('admin',gen_salt('bf',10)))
+ ;
+
+-- 商品の追加
+
+ INSERT INTO
+	items(name, description, price, imagepath, deleted)
+ VALUES
+	('キャベツ', '群馬県産。アブラナ科アブラナ属の多年草。', 250, 'kyabetu.jpg', FALSE),
+	('きゅうり', '宮崎県産。ウリ科キュウリ属のつる性一年草、およびその果実。', 50, 'kyuri.jpg', FALSE),
+	('ナス', '高知県産。ナス科ナス属の植物。また、その果実。', 50, 'nasu.jpg', FALSE),
+	('にんじん', '北海道産。セリ科ニンジン属の2年草。', 50, 'ninzin.jpg', FALSE),
+	('にら', '高知県産。ネギ属に属する多年草。', 150, 'nira.jpg', FALSE),
+	('ピーマン', '宮崎県産。ナス科の一年草、およびその果実。', 30, 'piman.jpg', FALSE),
+	('トマト', '熊本県産。ナス科ナス属の植物、およびその果実。', 100, 'tomato.jpg', FALSE),
+	('トウモロコシ', '北海道産。イネ科の一年生植物。', 300, 'toumorokosi.jpg', FALSE)
+ ;
