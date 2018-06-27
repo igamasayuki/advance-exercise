@@ -12,10 +12,12 @@ text-decoration: none;
 }
 div#non{
 	display:none;
+	
 }
 div#menuClose{
 	float:left;
-	background-color:yellow;
+	-webkit-transition: all 1.8s;
+	transition: all 1.8s;
 }
 </style>
 <meta charset="UTF-8">
