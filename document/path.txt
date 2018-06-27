@@ -1,5 +1,5 @@
-ユーザー用トップページURL
-http://localhost:8080/ec-201804d/user/login
+ユーザー用商品一覧ページURL
+http://localhost:8080/ec-201804d/user/viewItemList
 
 管理者用ログインページURL
 http://localhost:8080/ec-201804d/adminuserlogin/index
