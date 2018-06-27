@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.domain.OrderItem;
 
 /**
@@ -73,9 +74,9 @@ public class OrderItemRepository {
 	}
 	
 	/**
-	 * 
-	 * @param itemId
-	 * @return
+	 * 注文IDと商品IDから注文商品を検索する.
+	 * @param itemId 商品ID
+	 * @return　該当注文商品
 	 */
 	public OrderItem findByOrderIdAndItemId(long orderId, long itemId) {
 		String countSql = "SELECT id, item_id, order_id, quantity FROM " + TABLE_NAME + " WHERE item_id=:itemId AND order_id=:orderId";
@@ -87,6 +88,25 @@ public class OrderItemRepository {
 			return null;
 		}
 		return oi;
+	}
+
+	/**
+	 * 同一の注文商品を結合する.
+	 * 同一の注文商品の注文数を合計する。
+	 * 1つを残して同じ情報を持つデータを削除する。
+	 * @param orderItem 注文商品情報
+	 */
+	public void uniteSameItemOfOrder(OrderItem orderItem) {
+		System.out.println("orderId:" + orderItem.getOrderId() + ", itemId:" + orderItem.getItemId());
+		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderItem.getOrderId()).addValue("itemId", orderItem.getItemId());
+		String updateSql = "UPDATE " + TABLE_NAME + " SET quantity=(SELECT SUM(quantity) FROM " + TABLE_NAME + " WHERE order_id=:orderId AND item_id=:itemId) WHERE order_id=:orderId AND item_id=:itemId";
+//		template.update(updateSql, param);
+		int up = template.update(updateSql, param);
+		System.out.println("up:" + up);
+		String deleteSql = "DELETE FROM " + TABLE_NAME + " WHERE id<>(SELECT MIN(id) FROM " + TABLE_NAME + " WHERE order_id=:orderId AND item_id=:itemId) AND order_id=:orderId AND item_id=:itemId";
+//		template.update(deleteSql, param);		
+		int del = template.update(deleteSql, param);		
+		System.out.println("del:" + del);
 	}
 
 }

@@ -61,7 +61,6 @@ public class OrderRepository {
 				order.setUserId(rs.getLong("user_id"));
 				order.setStatus(rs.getInt("status"));
 				orderItemList = new LinkedList<>();
-				order.setOrderItemList(orderItemList);
 				order.setTotalPrice(rs.getInt("total_price"));
 				order.setOrderDate(rs.getDate("order_date"));
 				order.setDeliveryName(rs.getString("delivery_name"));
@@ -80,9 +79,12 @@ public class OrderRepository {
 			item.setPrice(rs.getInt("price"));
 			item.setImagePath(rs.getString("imagepath"));
 			item.setDeleted(rs.getBoolean("deleted"));
+			orderItem.setItemId(rs.getLong("item_id"));
 			orderItem.setItem(item);
+			orderItem.setOrderId(rs.getLong("ID"));
 			orderItem.setQuantity(rs.getInt("quantity"));
 			orderItemList.add(orderItem);
+			order.setOrderItemList(orderItemList);
 
 			beforeOrderId = order.getId();
 		}
