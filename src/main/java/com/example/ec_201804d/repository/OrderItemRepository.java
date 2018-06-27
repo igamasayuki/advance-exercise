@@ -1,12 +1,7 @@
 package com.example.ec_201804d.repository;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -14,8 +9,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.example.ec_201804d.domain.Item;
-import com.example.ec_201804d.domain.Order;
 import com.example.ec_201804d.domain.OrderItem;
 
 /**
@@ -38,53 +31,6 @@ public class OrderItemRepository {
 		oi.setOrderId(rs.getLong("order_id"));
 		oi.setQuantity(rs.getInt("quantity"));
 		return oi;
-	};
-
-
-	/**
-	 * 注文商品情報を追加する.
-	 * すでに同注文に同じ注文商品が存在する場合は量が加算される。
-	 * @param orderItem 新たに注文商品に追加する情報
-	 */
-	private static final ResultSetExtractor<List<Order>> ORDER_EXTRACTOR = (rs) -> {
-		List<Order> orderList = new ArrayList<>();
-		Order order = null;
-		List<OrderItem> orderItemList = null;
-		long beforeOrderId = 0;
-		while (rs.next()) {
-			if (rs.getInt("ID") != beforeOrderId) {
-				order = new Order();
-				order.setId(rs.getLong("ID"));
-				order.setOrderNumber(rs.getString("order_number"));
-				order.setUserId(rs.getLong("user_id"));
-				order.setStatus(rs.getInt("status"));
-				orderItemList = new LinkedList<>();
-				order.setOrderItemList(orderItemList);
-				order.setTotalPrice(rs.getInt("total_price"));
-				order.setOrderDate(rs.getDate("order_date"));
-				order.setDeliveryName(rs.getString("delivery_name"));
-				order.setDeliveryEmail(rs.getString("delivery_email"));
-				order.setDeliveryZipCode(rs.getString("delivery_zip_code"));
-				order.setDeliveryAddress(rs.getString("delivery_address"));
-				order.setDeliveryTel(rs.getString("delivery_tel"));
-				orderList.add(order);
-			}
-			OrderItem orderItem = new OrderItem();
-			orderItem.setId(rs.getLong("orderitem_id"));
-			Item item = new Item();
-			item.setId(rs.getLong("item_id"));
-			item.setName(rs.getString("item_name"));
-			item.setDescription(rs.getString("description"));
-			item.setPrice(rs.getInt("price"));
-			item.setImagePath(rs.getString("imagepath"));
-			item.setDeleted(rs.getBoolean("deleted"));
-			orderItem.setItem(item);
-			orderItem.setQuantity(rs.getInt("quantity"));
-			orderItemList.add(orderItem);
-
-			beforeOrderId = order.getId();
-		}
-		return orderList;
 	};
 
 	public void save(OrderItem orderItem) {
@@ -122,9 +68,9 @@ public class OrderItemRepository {
 	}
 	
 	/**
-	 * 
-	 * @param itemId
-	 * @return
+	 * 注文IDと商品IDから注文商品を検索する.
+	 * @param itemId 商品ID
+	 * @return　該当注文商品
 	 */
 	public OrderItem findByOrderIdAndItemId(long orderId, long itemId) {
 		String countSql = "SELECT id, item_id, order_id, quantity FROM " + TABLE_NAME + " WHERE item_id=:itemId AND order_id=:orderId";
@@ -136,6 +82,25 @@ public class OrderItemRepository {
 			return null;
 		}
 		return oi;
+	}
+
+	/**
+	 * 同一の注文商品を結合する.
+	 * 同一の注文商品の注文数を合計する。
+	 * 1つを残して同じ情報を持つデータを削除する。
+	 * @param orderItem 注文商品情報
+	 */
+	public void uniteSameItemOfOrder(OrderItem orderItem) {
+		System.out.println("orderId:" + orderItem.getOrderId() + ", itemId:" + orderItem.getItemId());
+		SqlParameterSource param = new MapSqlParameterSource().addValue("orderId", orderItem.getOrderId()).addValue("itemId", orderItem.getItemId());
+		String updateSql = "UPDATE " + TABLE_NAME + " SET quantity=(SELECT SUM(quantity) FROM " + TABLE_NAME + " WHERE order_id=:orderId AND item_id=:itemId) WHERE order_id=:orderId AND item_id=:itemId";
+//		template.update(updateSql, param);
+		int up = template.update(updateSql, param);
+		System.out.println("up:" + up);
+		String deleteSql = "DELETE FROM " + TABLE_NAME + " WHERE id<>(SELECT MIN(id) FROM " + TABLE_NAME + " WHERE order_id=:orderId AND item_id=:itemId) AND order_id=:orderId AND item_id=:itemId";
+//		template.update(deleteSql, param);		
+		int del = template.update(deleteSql, param);		
+		System.out.println("del:" + del);
 	}
 
 }
