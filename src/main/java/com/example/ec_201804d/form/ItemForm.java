@@ -1,8 +1,6 @@
 package com.example.ec_201804d.form;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
@@ -14,9 +12,8 @@ import javax.validation.constraints.Pattern;
 public class ItemForm {
 
 	/** 個数 */
-	@NotNull(message = "個数を入力してください")
-	@Pattern(regexp = "^[1-9][0-9]*+$", message = "自然数で入力してください")
-	@Max(value=10000, message="カートに入れられる個数は1~10,000個までです")
+	@NotBlank(message = "カートに入れる個数を入力してください")
+	@Pattern(regexp = "^[1-9][0-9]*+$", message = "正しい個数を入力してください")
 	private String quantity;
 	/** 商品のID */
 	private Long id;
