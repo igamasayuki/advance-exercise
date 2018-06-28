@@ -16,7 +16,7 @@
 <jsp:include page="administerMenu.jsp"/>
 <jsp:include page="adminHeader.jsp"/>
 <div class="padding">
-<h3 style="position:relative;left:130px;">商品登録画面</h3>
+<h3>商品登録画面</h3>
 <p>新規で登録したい商品の情報を入力してください。</p>
 <form:form modelAttribute="itemRegistrationForm" action="${pageContext.request.contextPath}/admin/register" enctype="multipart/form-data">
 	<form:label path="name">商品名:</form:label>
