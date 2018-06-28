@@ -99,7 +99,7 @@ a.menuLink:hover {
 
 	<div
 		style="width: 600px; margin-right: auto; margin-left: auto; font-size: 200%;">
-		おかえりなさい<br>
+		おかえりなさいませ、ご主人様<br>
 		<div id="base" style="position: absolute; top: 150px; right: 100px">
 			<img src="${pageContext.request.contextPath}/img/dial.png"
 				class="clock">
@@ -166,7 +166,7 @@ a.menuLink:hover {
 			}
 		</script>
 
-		<h1>
+		<h1 align="center">
 			<c:out value="${year}年 ${month}月" />
 		</h1>
 		<table border="1">
@@ -195,7 +195,10 @@ a.menuLink:hover {
 				</tr>
 			</c:forEach>
 		</table>
-
+	</div>
+	<div id="base" style="position: absolute; top: 300px; right: 1000px">
+	<img src="${pageContext.request.contextPath}/img/character_cabbage.png" id="person"
+				class="vegetable">
 	</div>
 </body>
 </html>
