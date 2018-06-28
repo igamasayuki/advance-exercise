@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table style="width:1500px;height:200px;background-color:#8080800f;margin-bottom:0px;padding-bottom:0px;">
+<table style="width:1200px;height:200px;background-color:#8080800f;margin-bottom:0px;padding-bottom:0px;">
 <tr>
 <td></td>
 <td></td>
