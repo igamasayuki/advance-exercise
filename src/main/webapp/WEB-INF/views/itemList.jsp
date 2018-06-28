@@ -16,13 +16,11 @@ a{
 </head>
 <body>
 	<jsp:include page="userHeader.jsp" />
-	<div style="width:100px;height:100px;background-color:yellow;margin-right:auto;margin-left:auto;">
+	<div style="width:400px;height:300px;background-color:white;margin-right:auto;margin-left:auto;">
 	<jsp:include page="slide.jsp" />
 	</div>
 	<hr>
-	<h3>商品一覧</h3>
-	
-	<div class="center-block">
+		<div class="center-block">
 		<form:form action="${pageContext.request.contextPath}/user/findItem"
 			method="post">
 			<input type="text" name="word"> 
@@ -42,18 +40,36 @@ a{
 		</c:when>
 		<c:otherwise>
 			<div style="margin-right:auto;margin-left:auto;width:auto;height:800px;">
-			
-				<c:forEach var="item" items="${itemList}" begin="${begin}" end="${end}">
-					<span style="float:left;padding-left:30px;margin-bottom:30px;
-					width:330px;height:280px;">
+			<table style="width:1250px;background-color:white;">
+			<tr>
+				<c:forEach var="item" items="${itemList}" begin="${begin}" end="${begin+3}">
+					<td style="width:300px;">
 							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
 						<c:out value="${item.name}" /></a><br>
 						<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
-								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>">
+								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"
+								style="max-width:300px;max-height:300px;">
 							</a><br>
-						<fmt:formatNumber pattern="\###,###" value="${item.price}" />
-					</span>
+							<fmt:formatNumber value="${item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="true" maxFractionDigits="0"/>
+					</td>
 				</c:forEach>
+				</tr>
+			</table>
+			<table style="width:1250px;background-color:white">
+			<tr>
+				<c:forEach var="item" items="${itemList}" begin="${begin+4}" end="${end}">
+					<td style="width:300px;">
+							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
+						<c:out value="${item.name}" /></a><br>
+						<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
+								<img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"
+								style="max-width:300px;max-height:300px;">
+							</a><br>
+						<fmt:formatNumber value="${item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="true" maxFractionDigits="0"/>
+					</td>
+				</c:forEach>
+				</tr>
+			</table>
 			</div>
 			<c:forEach var="number" items="${numberList}">
 			<form:form action="${pageContext.request.contextPath}/user/viewItemList"
@@ -66,6 +82,9 @@ a{
 			
 		</c:otherwise>
 	</c:choose>
+	<div class="center-block">
+	<a href="javascript:history.go(-1)">[戻る]</a>
+	</div>
 <jsp:include page="footter.jsp"/>
 </body>
 </html>

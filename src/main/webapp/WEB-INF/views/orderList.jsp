@@ -24,12 +24,24 @@
 		<h2>注文一覧画面</h2>
 	</div>
 	<c:choose>
+		<c:when test="${emptyOrderList}">
+			<font size="5" color="red"> <br> <c:out
+					value="該当する注文が存在しません" /> <br>
+			</font>
+		</c:when>
+	</c:choose>
+	<c:choose>
 		<c:when test="${orderCheck}">
-			<font size="5" color="red"> <br>
-			<c:out value="注文がありません" /><br>
+			<font size="5" color="red"> <br> <c:out value="注文がありません" /><br>
 			</font>
 		</c:when>
 		<c:otherwise>
+
+			<form:form modelAttribute="orderDetailForm"
+				action="${pageContext.request.contextPath}/admin/statussearch">
+				<form:select path="status" items="${statusMap}" />
+				<input type="submit" value="検索">
+			</form:form>
 
 			<table border="1" align="center">
 				<tr>
@@ -56,8 +68,7 @@
 								<c:when test="${order.status == 3}">発送済み</c:when>
 								<c:when test="${order.status == 9}">キャンセル</c:when>
 							</c:choose></td>
-						<td><fmt:formatNumber pattern="\###,###"
-								value="${order.totalPrice}" /></td>
+						<td><fmt:formatNumber value="${order.totalPrice}" type="CURRENCY" currencySymbol="¥" groupingUsed="true" maxFractionDigits="0"/></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -66,10 +77,7 @@
 
 		</c:otherwise>
 	</c:choose>
-
-	<br>
-	<a href="${pageContext.request.contextPath}/admin/fromLogintoMenu">TOPに戻る
-	</a>
+<br>
 
 
 </body>

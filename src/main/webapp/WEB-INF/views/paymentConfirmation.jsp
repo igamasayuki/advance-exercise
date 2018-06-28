@@ -28,31 +28,38 @@
 			<c:forEach var="orderItem" items="${order.orderItemList}">
 				<tr>
 					<td><c:out value="${orderItem.item.name}" /></td>
-					<td><fmt:formatNumber pattern="\###,###"
-							value="${orderItem.item.price}" /></td>
+					<td><fmt:formatNumber value="${orderItem.item.price}"
+							type="CURRENCY" currencySymbol="¥" groupingUsed="true"
+							maxFractionDigits="0" /></td>
 					<td><c:out value="${orderItem.quantity}" /></td>
-					<td><fmt:formatNumber pattern="\###,###"
-							value="${orderItem.item.price * orderItem.quantity}" /></td>
+					<td><fmt:formatNumber
+							value="${orderItem.item.price * orderItem.quantity}"
+							type="CURRENCY" currencySymbol="¥" groupingUsed="true"
+							maxFractionDigits="0" /></td>
 					<c:set var="sumPrice"
 						value="${sumPrice + orderItem.item.price * orderItem.quantity}" />
-					<td><fmt:formatNumber pattern="\###,###"
-							value="${orderItem.item.price * orderItem.quantity * (1.08)}" /></td>
+					<td><fmt:formatNumber
+							value="${orderItem.item.price * orderItem.quantity * (1.08)}"
+							type="CURRENCY" currencySymbol="¥" groupingUsed="true"
+							maxFractionDigits="0" /></td>
 				</tr>
 			</c:forEach>
 			<tr>
 				<td>消費税</td>
-				<td colspan="4"><fmt:formatNumber pattern="\###,###"
-						value="${sumPrice * 0.08}" /></td>
+				<td colspan="4"><fmt:formatNumber value="${sumPrice * 0.08}"
+						type="CURRENCY" currencySymbol="¥" groupingUsed="true"
+						maxFractionDigits="0" /></td>
 			</tr>
 			<tr>
 				<td>送料一律</td>
-				<td colspan="4"><fmt:formatNumber pattern="\###,###"
-						value="${500}" /></td>
+				<td colspan="4"><fmt:formatNumber value="${500}"
+						type="CURRENCY" currencySymbol="¥" groupingUsed="true" /></td>
 			</tr>
 			<tr>
 				<td>総計</td>
-				<td colspan="4"><fmt:formatNumber pattern="\###,###"
-						value="${order.totalPrice}" /></td>
+				<td colspan="4"><fmt:formatNumber value="${order.totalPrice}"
+						type="CURRENCY" currencySymbol="¥" groupingUsed="true"
+						maxFractionDigits="0" /></td>
 			</tr>
 		</table>
 		<h3>お届け先</h3>
@@ -74,8 +81,9 @@
 			<input type="submit" value="確定"
 				style="background-color: red; color: white; width: 200px; height: 40px;">
 		</form:form>
-		<a href="${pageContext.request.contextPath}/user/viewItemList"></a>
+
+		<a href="javascript:history.go(-1)">[戻る]</a>
 	</div>
-	<jsp:include page="footter.jsp"/>
+	<jsp:include page="footter.jsp" />
 </body>
 </html>

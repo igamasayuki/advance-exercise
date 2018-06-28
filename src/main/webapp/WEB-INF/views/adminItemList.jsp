@@ -36,9 +36,11 @@
 			</tr>
 			<c:forEach var="item" items="${items}">
 				<tr>
-					<td style="width:300px;height:300px;"><img src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
+					<td style="width:300px;height:300px;"><img style="max-width:300px;max-height:300px;"src="${pageContext.request.contextPath}/img/<c:out value="${item.imagePath}"/>"></td>
 					<td><c:out value="${item.name}"/></td>
-					<td><fmt:formatNumber pattern="\###,###" value="${item.price}"/></td>
+					<td><fmt:formatNumber value="${item.price}"
+							type="CURRENCY" currencySymbol="¥" groupingUsed="true"
+							maxFractionDigits="0" /></td>
 					<td><c:out value="${item.description}"/></td>
 					<td>
 						<form:form action="${pageContext.request.contextPath}/admin/?id=${item.id}">

@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 
 import com.example.ec_201804d.domain.Info;
-import com.example.ec_201804d.domain.OrderItem;
 
 /**
  * 注文確定メール送信機能を扱うコントローラクラス.
@@ -41,11 +40,13 @@ public class MailSendController {
 			itemPrice = orderList.get(i).getPrice() * orderList.get(i).getQuantity();
 			itemQuantity = orderList.get(i).getQuantity();
 			sumPrice += itemPrice;
-			sumItemInfo += itemName + "" +String.valueOf(itemQuantity) + "個" + "" + String.valueOf(itemPrice) + "円\n";
+			sumItemInfo += itemName + " " +String.valueOf(itemQuantity) + "個" + " " + String.valueOf(itemPrice) + "円(税抜き)\n";
 		}
 		totalPrice = ((sumPrice*1.08) + 500);
 		String orderMail = "ご注文ありがとうございます。\nお客様がご注文された商品は以下の通りでございます。\n";
-		String mailText = orderMail + sumItemInfo + "合計：" + (int)totalPrice + "円";
+		String body = "==============================\n";
+		String body2 = "-------------------------------------------\n";
+		String mailText = orderMail + body + sumItemInfo + body2 + "合計：" + (int)totalPrice + "円(税込み・送料込み)\n" + body;
 
 		SimpleMailMessage orderMessage = new SimpleMailMessage();
 		orderMessage.setTo(mailAddress);

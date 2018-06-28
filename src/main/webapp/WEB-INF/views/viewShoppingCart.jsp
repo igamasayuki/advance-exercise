@@ -57,13 +57,13 @@ span#payment{
 								href="${pageContext.request.contextPath}/user/item_detail?id=${orderItem.item.id}">
 									<img
 									src="${pageContext.request.contextPath}/img/<c:out value="${orderItem.item.imagePath}"/>"
-									alt="商品画像">
+									alt="商品画像"
+									style="max-width:300px;max-height:300px;">
 							</a></td>
 							<td style="width:230px;font-size:32px;"><a
 								href="${pageContext.request.contextPath}/user/item_detail?id=${orderItem.item.id}"><c:out
 										value="${orderItem.item.name}" /></a></td>
-							<td style="width:170px;font-size:32px;"><fmt:formatNumber pattern="\###,###"
-									value="${orderItem.item.price}" /></td>
+							<td style="width:170px;font-size:32px;"><fmt:formatNumber value="${orderItem.item.price}" type="CURRENCY" currencySymbol="￥" groupingUsed="true" maxFractionDigits="0"/></td>
 							<td style="width:110px;font-size:32px;"><c:out value="${orderItem.quantity}" /></td>
 							<td style="width:60px;font-size:32px;"><form:form
 									action="${pageContext.request.contextPath}/user/deletionOrderItem">
