@@ -275,5 +275,15 @@ public class OrderRepository {
 		}
 		return recentDate.toLocalDate().getYear();
 	}
+	
+	public List<Order> findByUserId(long userId) {
+		String findSql = "SELECT o.id AS ID, order_number, user_id, status, "
+				+ "oi.id AS orderitem_id, oi.item_id AS item_id, i.name AS item_name, description, price, imagepath, deleted, quantity, total_price, order_date, "
+				+ "delivery_name, delivery_email, delivery_zip_code, delivery_address, delivery_tel "
+				+ "FROM " + TABLE_NAME + " o LEFT OUTER JOIN order_items oi ON o.id = oi.order_id LEFT OUTER JOIN items i ON oi.item_id = i.id "
+				+ "WHERE user_id=:userId AND status<>0 AND status<>9 ORDER BY order_date, status";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("userId", userId);
+		return template.query(findSql, param, ORDER_EXTRACTOR);
+	}
 
 }
