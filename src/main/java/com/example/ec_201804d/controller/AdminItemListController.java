@@ -1,5 +1,6 @@
 package com.example.ec_201804d.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +47,14 @@ public class AdminItemListController {
 	 */
 	@RequestMapping(value="/index")
 	public String index(String keyword, Model model) {
+		if (keyword == null) {
+			keyword = "";
+		}
 		model.addAttribute("keyword", keyword);
-		List<Item> filterdItemList = repository.findByWord(keyword);
-		System.out.println(filterdItemList);
+		List<Item> filterdItemList = new ArrayList<>();
+		for (String word : KanaChangeService.changeWord(keyword)) {
+			filterdItemList.addAll(repository.findSaleItemsByWord(word));
+		}
 		if (filterdItemList.isEmpty()) return "adminItemList";
 		model.addAttribute("items", filterdItemList);
 		return "adminItemList";

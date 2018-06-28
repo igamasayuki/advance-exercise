@@ -88,7 +88,11 @@ public class ItemListController {
 		if(word == null) {
 			word = "";
 		}
-		List<Item> findItemList = repository.findSaleItemsByWord(word);
+		model.addAttribute("word", word);
+		List<Item> findItemList = new ArrayList<>();
+		for (String keyword : KanaChangeService.changeWord(word)) {
+			findItemList.addAll(repository.findSaleItemsByWord(keyword));
+		}
 		model.addAttribute("findItemList", findItemList);
 		if (findItemList.isEmpty()) {
 			return "/itemList";

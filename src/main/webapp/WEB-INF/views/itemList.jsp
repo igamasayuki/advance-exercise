@@ -23,7 +23,7 @@ a{
 		<div class="center-block">
 		<form:form action="${pageContext.request.contextPath}/user/findItem"
 			method="post">
-			<input type="text" name="word"> 
+			<input type="text" name="word" value="${word}"> 
 			<input type="submit"
 			value="" 
 			style="background-image:url(${pageContext.request.contextPath}/img/serch2.jpeg);
