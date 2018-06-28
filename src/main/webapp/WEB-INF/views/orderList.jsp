@@ -77,10 +77,7 @@
 
 		</c:otherwise>
 	</c:choose>
-
-	<br>
-	<a href="${pageContext.request.contextPath}/admin/fromLogintoMenu">TOPに戻る
-	</a>
+<br>
 
 
 </body>
