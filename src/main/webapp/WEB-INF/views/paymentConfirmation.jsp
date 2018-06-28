@@ -53,7 +53,8 @@
 			<tr>
 				<td>送料一律</td>
 				<td colspan="4"><fmt:formatNumber value="${500}"
-						type="CURRENCY" currencySymbol="¥" groupingUsed="true" /></td>
+						type="CURRENCY" currencySymbol="¥" groupingUsed="true" 
+						maxFractionDigits="0"/></td>
 			</tr>
 			<tr>
 				<td>総計</td>
