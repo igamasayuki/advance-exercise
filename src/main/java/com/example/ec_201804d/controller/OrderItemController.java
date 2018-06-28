@@ -113,6 +113,20 @@ public class OrderItemController {
 		}
 			long orderId = orders.get(0).getId();
 		OrderItem orderItem = new OrderItem();
+		
+		List<OrderItem> orderItemList = orders.get(0).getOrderItemList();
+		int sumQuantity = 0;
+		for (OrderItem orderItem2 : orderItemList) {
+			sumQuantity += orderItem2.getQuantity();
+		}
+		int itemQuantity = itemForm.getIntQuantity();
+		sumQuantity = sumQuantity + itemQuantity;
+		if(sumQuantity >= 1001) {
+			result.rejectValue("quantity", null, "カートに入れられる個数は1,000個までです");
+			String text = "現在、カートにないっている商品の個数は" + (sumQuantity-itemQuantity) + "個です";
+			result.rejectValue("quantity", null, text);
+			return itemDetailController.detail(itemForm.getId(), model);
+		}
 		orderItem.setItemId(itemForm.getId());
 		orderItem.setOrderId(orderId);
 		orderItem.setQuantity(itemForm.getIntQuantity());
