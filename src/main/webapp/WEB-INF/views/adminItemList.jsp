@@ -53,8 +53,7 @@
 								<form:form action="${pageContext.request.contextPath}/admin/redisplay?id=${item.id}">
 									<input type="hidden" name="deleted" value="false">
 									<input type="submit" value="再表示"
-									style="background-color:green;color:white;width:200px;height:40px;
-									margin-bottom:30px;">
+									style="background-color:green;color:white;width:200px;height:40px;">
 								</form:form>
 							</c:when>
 							<c:otherwise>
