@@ -4,8 +4,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%@ page import="java.util.Calendar" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,79 +77,34 @@ a.menuLink:hover{
 <div style="width:500px;margin-right:auto;margin-left:auto;font-size: 200%;">
 おかえりなさい<br>
 
-<%
-int intNen; //表示年
-int intTuki; //表示月
+<h1>
+<c:out value="${year}年 ${month}月" />
+</h1>
+<table border="1">
+<tr>
+	<th style="color:red">日</th>
+	<th>月</th>
+	<th>火</th>
+	<th>水</th>
+	<th>木</th>
+	<th>金</th>
+	<th style="color:blue">土</th>
+</tr>
+<c:forEach var="week" items="${weekList}">
+	<tr>
+		<c:forEach var="day" items="${week}" end="0">
+			<td style="text-align:right;color:red"><c:out value="${day}" /></td>
+		</c:forEach>
+		<c:forEach var="day" items="${week}" begin="1" end="5">
+			<td style="text-align:right;"><c:out value="${day}" /></td>
+		</c:forEach>
+		<c:forEach var="day" items="${week}" begin="6">
+			<td style="text-align:right;color:blue"><c:out value="${day}" /></td>
+		</c:forEach>
+	</tr>
+</c:forEach>
+</table>
 
-Calendar cal = Calendar.getInstance();
-int intYear = cal.get(Calendar.YEAR); //システムの年
-int intMonth = cal.get(Calendar.MONTH); //システムの月
-int intDate = cal.get(Calendar.DATE); //システムの日
-
-intNen = intYear;
-intTuki = intMonth;
-
-cal.set(intNen, intTuki, 1); //表示月をセット
-int intLastDate = cal.getActualMaximum(Calendar.DAY_OF_MONTH); //表示月の日数
-int intFirstDay = cal.get(Calendar.DAY_OF_WEEK); //表示月の１日の曜日
-int intLastDay = cal.get(Calendar.DATE);
-%>
-
-<% 
-out.println("<h2><u>"+intNen+"年"+(intTuki+1)+"月</u></h2>");
-out.println("<font color=#FF0000>日</font>　月　火　水　木　金　<font color=#0000FF>土</font><br>");
-
-int intIchi = 0; //出力数　カウント用
-
-//１行目の空白出力
-for (int i=1; i < intFirstDay; i++){
-intIchi++; 
-out.println("&nbsp;&nbsp;&nbsp;&nbsp;&thinsp;");
-} 
-
-// ７で割った余りが1なら赤、0なら青と改行
-for (int i=1; i <=intLastDate ;i++){
-intIchi++;
-
-//曜日の色づけ
-switch ( intIchi % 7) {
-case 0:
-out.println("<font color=#0000FF>");
-break;
-case 1:
-out.println("<font color=#FF0000>");
-break;
-default:
-out.println("<font color=#000000>");
-}
-
-//本日を太字
-if (intNen ==intYear && intTuki==intMonth && i==intDate){
-out.println("<b>");
-}
-
-//１桁のとき空白を前に挿入 　　出力
-if (i < 10){ 
-out.println("&nbsp;&thinsp;"+i+"&nbsp;");
-}
-else { 
-out.println( i+"&nbsp;");
-}
-
-
-if (intNen ==intYear && intTuki==intMonth && i==intDate){
-out.println("</b>");
-}
-
-out.println("</font>");
-
-//土曜日なら改行
-if (intIchi % 7 == 0) {
-out.println("<br>");
-}	
-}
-
-%>
 </div>
 </body>
 </html>
