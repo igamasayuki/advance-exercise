@@ -42,7 +42,7 @@ a{
 			<div style="margin-right:auto;margin-left:auto;width:auto;height:800px;">
 			<table style="width:1250px;background-color:white;">
 			<tr>
-				<c:forEach var="item" items="${itemList}" begin="${begin}" end="${end/2}">
+				<c:forEach var="item" items="${itemList}" begin="${begin}" end="${begin+3}">
 					<td style="width:300px;">
 							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
 						<c:out value="${item.name}" /></a><br>
@@ -57,7 +57,7 @@ a{
 			</table>
 			<table style="width:1250px;background-color:white">
 			<tr>
-				<c:forEach var="item" items="${itemList}" begin="${(end/2)+1}" end="${end}">
+				<c:forEach var="item" items="${itemList}" begin="${begin+4}" end="${end}">
 					<td style="width:300px;">
 							<a href="${pageContext.request.contextPath}/user/item_detail?id=${item.id}">
 						<c:out value="${item.name}" /></a><br>
