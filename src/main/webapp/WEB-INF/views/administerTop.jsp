@@ -11,6 +11,9 @@
 <head>
 <link rel="stylesheet" href="${pageContect.request.contextPath}/css/style.css">
 <style>
+body{
+	background-color:lavender;
+}
 div#menu{
 	float:left;
 	width:250px;
