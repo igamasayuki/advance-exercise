@@ -19,6 +19,8 @@ spring:
           auth: true
           starttls:
             enable: true  
+  jmx:
+    default-domain: ec-201804d #複数のアプリを１つのサーバ上で動かす際に必要な設定
 server:
   servlet:
     context-path: /ec-201804d
