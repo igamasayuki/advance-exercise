@@ -5,8 +5,11 @@
 <head>
 <script>
 function com(x){
-	alert(x);
 	if(x==null){
+		document.getElementById("admin").id="non";
+	}
+	
+	if(x=='admin'){
 		document.getElementById("user").id="non";
 	}
 }
@@ -16,16 +19,17 @@ function com(x){
  display:none;
 }
 </style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
 <meta charset="UTF-8">
 <title>404エラー画面</title>
 </head>
-<body>
+<body onLoad="com(location.pathname.match(/admin/));">
 
 
 <h3>404 Not Found</h3>
 <div class="center-block">
 <img src="${pageContext.request.contextPath}/img/king-kyabetu.png"><br>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+
 <pre>
 <h4>お探しのページは見つかりませんでした。</h4>
 
@@ -43,8 +47,9 @@ function com(x){
 <a id="admin" href="${pageContext.request.contextPath}/adminuserlogin/index"
 			 			style="background-color:red;color:white;
 						width:200px;height:40px;border-style:outset;border-color:buttonface;
-			 			border-image:initial;">商品一覧画面に戻る</a>
-<input type="button" onClick="com(location.pathname.match(/admin/));">
+			 			border-image:initial;">管理画面TOP</a>
+			 			<br>
+			 			<br>
 <a href="javascript:history.go(-1)">[前の画面に戻る]</a>
 </div>
 

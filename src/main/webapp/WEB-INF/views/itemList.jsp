@@ -71,14 +71,19 @@ a{
 				</tr>
 			</table>
 			</div>
+			<table  style="width:120px;background-color:white;"><tr>
 			<c:forEach var="number" items="${numberList}">
+			<td style="width:70px;height:70px;">
 			<form:form action="${pageContext.request.contextPath}/user/viewItemList"
 			modelAttribute="pagingForm">
 			<form:hidden path="paging" value="${number}"/>
 			<input type="submit" value='<c:out value="${number}"/>'
-			style="background-color:palegreen;color:white;float:left;">
+			style="width:50px;height:50px;
+			background-color:palegreen;color:white;margin-right:auto;margin-left:auto;">
 			</form:form>
+			</td>
 			</c:forEach>
+			</tr></table>
 			
 		</c:otherwise>
 	</c:choose>
