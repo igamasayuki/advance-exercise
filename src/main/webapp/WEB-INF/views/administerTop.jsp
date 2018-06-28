@@ -196,7 +196,7 @@ a.menuLink:hover {
 			</c:forEach>
 		</table>
 	</div>
-	<div id="base" style="position: absolute; top: 300px; right: 1000px">
+	<div id="base" style="position:relative;bottom:500px;left:200px;">
 	<img src="${pageContext.request.contextPath}/img/character_cabbage.png" id="person"
 				class="vegetable">
 	</div>
