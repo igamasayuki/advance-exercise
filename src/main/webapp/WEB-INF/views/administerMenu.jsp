@@ -48,10 +48,11 @@ function menuClose(){
         <br>
         <a class="menuLink" href="${pageContext.request.contextPath}/adminlogout">ログアウト</a>
 </div>
-<div id="non" style="text-align:center;width:170px;">
+<div id="non" style="text-align:center;width:170px;height:800px;">
  <h2><input type="button" onClick="menuClose()" value="メニュー"
     style="background-color:black;color:white;border-style:none;width:170px;height:100px;
     "></h2>
+    <div id="non" style="width:170px;height:700px;background-color:red;">hello</div>
 </div>
 
 </body>
