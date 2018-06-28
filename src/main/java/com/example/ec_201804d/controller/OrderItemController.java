@@ -123,7 +123,7 @@ public class OrderItemController {
 		sumQuantity = sumQuantity + itemQuantity;
 		if(sumQuantity >= 1001) {
 			result.rejectValue("quantity", null, "カートに入れられる個数は1,000個までです");
-			String text = "現在、カートにないっている商品の個数は" + (sumQuantity-itemQuantity) + "個です";
+			String text = "現在、カートに入っている商品の個数は" + (sumQuantity-itemQuantity) + "個です";
 			result.rejectValue("quantity", null, text);
 			return itemDetailController.detail(itemForm.getId(), model);
 		}
