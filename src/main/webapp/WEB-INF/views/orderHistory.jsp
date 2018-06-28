@@ -47,11 +47,11 @@
 											</td>
 										</c:if>
 											<td><c:out value="${orderItem.item.name}" /></td>
-											<td><fmt:formatNumber value="${orderItem.item.price}" type="CURRENCY" currencySymbol="¥" groupingUsed="ture" maxFractionDigits="0"/></td>
+											<td><fmt:formatNumber value="${orderItem.item.price}" type="CURRENCY" currencySymbol="￥" groupingUsed="true" maxFractionDigits="0"/></td>
 											<td><c:out value="${orderItem.quantity}" /></td>												
 										<c:if test="${num.index==0}">
 											<td rowspan="${order.itemListSize}">
-												<fmt:formatNumber value="${order.totalPrice}" type="CURRENCY" currencySymbol="¥" groupingUsed="ture" maxFractionDigits="0"/>
+												<fmt:formatNumber value="${order.totalPrice}" type="CURRENCY" currencySymbol="￥" groupingUsed="true" maxFractionDigits="0"/>
 											</td>
 										</c:if>
 									</tr>
@@ -68,7 +68,9 @@
 					 text-decoration:none;margin-right:auto;margin-left:auto;
 					 color:white;border-style:outset;
 					 border-color:buttonface;">商品一覧へ</a>
+		<a href="javascript:history.go(-1)">[戻る]</a>
 		</div>
+		
 	</div>
 </body>
 </html>

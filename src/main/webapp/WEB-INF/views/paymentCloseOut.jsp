@@ -17,7 +17,12 @@ a{
 <h3>この度はご注文ありがとうございます。</h3>
 <h3>お支払先は、お送りしたメールに記載してありますのでご確認してください。</h3>
 <div class="center-block">
-	<a href="${pageContext.request.contextPath}/user/viewItemList">一覧画面へ戻る</a>
+	<a href="${pageContext.request.contextPath}/user/viewItemList"
+	class="block" id="itemList"
+	style="width:200px;height:40px;background-color:red;display:block;
+			 text-decoration:none;margin-right:auto;margin-left:auto;
+			 color:white;border-style:outset;
+			 border-color:buttonface;">商品一覧へ戻る</a>
 </div>
 <jsp:include page="footter.jsp"/>
 </body>
