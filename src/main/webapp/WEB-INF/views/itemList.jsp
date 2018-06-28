@@ -23,6 +23,7 @@ a{
 		<div class="center-block">
 		<form:form action="${pageContext.request.contextPath}/user/findItem"
 			method="post">
+			<h3>商品検索</h3>
 			<input type="text" name="word"> 
 			<input type="submit"
 			value="" 
