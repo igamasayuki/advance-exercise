@@ -76,6 +76,11 @@ DROP EXTENSION IF EXISTS pgcrypto;
 CREATE EXTENSION pgcrypto;
 INSERT INTO admin_users (name,email,password) VALUES ('admin','admin@gmail.com',crypt('admin',gen_salt('bf',10)));
 
+-- 利用者の追加
+DROP EXTENSION IF EXISTS pgcrypto;
+CREATE EXTENSION pgcrypto;
+INSERT INTO users (name,email,password,zipcode,address,telephone) VALUES ('user','reo.yasukawa@rakus.co.jp',crypt('user',gen_salt('bf',10)),'1510051','東京都渋谷区千駄ヶ谷1-1-1','03-1111-2222');
+
 -- 商品の追加
 INSERT INTO items(name, description, price, imagepath, deleted) VALUES
  ('キャベツ', '群馬県産。', 250, 'kyabetu.jpg', FALSE),
