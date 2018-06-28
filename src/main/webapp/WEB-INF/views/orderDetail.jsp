@@ -61,10 +61,10 @@
 		<c:forEach var="list" items="${list}">
 			<tr>
 				<td><c:out value="${list.name}" /></td>
-				<td><fmt:formatNumber  value="${list.price}" type="CURRENCY" currencySymbol="￥" groupingUsed="true"/></td>
+				<td><fmt:formatNumber  value="${list.price}" type="CURRENCY" currencySymbol="" groupingUsed="true" maxFractionDigits="0"/>円</td>
 				<td>×</td>
 				<td><c:out value="${list.quantity}" /></td>
-				<td><fmt:formatNumber value="${list.price*list.quantity}" type="CURRENCY" currencySymbol="¥" groupingUsed="true" maxFractionDigits="0"/>円</td>
+				<td><fmt:formatNumber value="${list.price*list.quantity}" type="CURRENCY" currencySymbol="" groupingUsed="true" maxFractionDigits="0"/>円</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -80,11 +80,11 @@
 				<c:set var="sum" value="${list.price*list.quantity}" />
 				<c:set var="total" value="${sum+total}" />
 			</c:forEach>
-			<td><fmt:formatNumber  value="${total}" type="CURRENCY" currencySymbol="¥"　groupingUsed="true"/>円</td>
+			<td><fmt:formatNumber  value="${total}" type="CURRENCY" currencySymbol="" groupingUsed="true" maxFractionDigits="0"/>円</td>
 		</tr>
 		<tr>
 			<th>税</th>
-			<td><fmt:formatNumber value="${total*0.08}" type="CURRENCY" currencySymbol="￥" groupingUsed="true"/>円</td>
+			<td><fmt:formatNumber value="${total*0.08}" type="CURRENCY" currencySymbol="" groupingUsed="true" maxFractionDigits="0"/>円</td>
 		</tr>
 		<tr>
 			<th>支払方法</th>
@@ -92,11 +92,11 @@
 		</tr>
 		<tr>
 			<th>送料一律</th>
-			<td><fmt:formatNumber value="500" type="CURRENCY" currencySymbol="￥" groupingUsed="true"/>円</td>
+			<td><fmt:formatNumber value="500" type="CURRENCY" currencySymbol="" groupingUsed="true" maxFractionDigits="0"/>円</td>
 		</tr>
 		<tr>
 			<th>総計</th>
-			<td><fmt:formatNumber value="${order.totalPrice}" type="CURRENCY" currencySymbol="￥" groupingUsed="true"/>円</td>
+			<td><fmt:formatNumber value="${order.totalPrice}" type="CURRENCY" currencySymbol="" groupingUsed="true" maxFractionDigits="0"/>円</td>
 		</tr>
 	</table>
 	<br>
