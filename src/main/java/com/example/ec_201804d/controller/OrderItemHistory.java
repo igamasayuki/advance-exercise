@@ -29,6 +29,9 @@ public class OrderItemHistory {
 	public String index(@AuthenticationPrincipal LoginUser loginUser, Model model) {
 		Long userId = loginUser.getUser().getId();
 		List<Order> orderList = orderRepository.findByUserId(userId);
+		if (orderList.isEmpty()) {
+			return "orderHistory";
+		}
 		model.addAttribute("orderList", orderList);
 		return "orderHistory";
 	}

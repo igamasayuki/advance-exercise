@@ -15,7 +15,7 @@
 	
 	<div>
 		<c:choose>
-			<c:when test="${orderItemList == null}">
+			<c:when test="${orderList == null}">
 				<div class="center-block">
 					<c:out value="購入履歴がありません。"/>
 				</div>
