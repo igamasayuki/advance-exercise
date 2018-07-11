@@ -91,7 +91,6 @@ public class ItemEditingController {
 					result.rejectValue("imageFile", null, "100KB未満のJPEGファイルを選択してください");
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (!result.hasErrors()) {				
@@ -100,7 +99,6 @@ public class ItemEditingController {
 				try {
 					imageFile.transferTo(destFile);
 				} catch (IllegalStateException | IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				item.setImagePath(fileName);

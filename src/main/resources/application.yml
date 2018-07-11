@@ -1,6 +1,10 @@
-spring:
+spring: 
+  batch: 
+    initialize-schema: always
+    job:
+      enabled: false
   mvc:
-    view:
+    view:  
       prefix: /WEB-INF/views/
       suffix: .jsp
   datasource:
@@ -8,11 +12,13 @@ spring:
     url: jdbc:postgresql://localhost:5432/ec-201804d
     username: postgres
     password: postgres
+    tomcat: 
+      default-auto-commit: false
   mail:
     host: smtp.gmail.com
     port: 587
     username: cas.niconico.acount@gmail.com
-    password: bdwvytvlxdotmsga
+    password: bdwvytvlxdotmsg#a
     properties:
       mail:
         smtp:

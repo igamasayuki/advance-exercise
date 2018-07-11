@@ -2,11 +2,13 @@ package com.example.ec_201804d.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.ec_201804d.domain.Info;
 
@@ -15,6 +17,7 @@ import com.example.ec_201804d.domain.Info;
  * @author hibiki.ono
  *
  */
+@Transactional
 @Controller
 public class MailSendController {
 

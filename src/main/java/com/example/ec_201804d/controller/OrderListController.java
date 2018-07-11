@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import com.example.ec_201804d.repository.OrderRepository;
  * @author takanori.noguchi
  *
  */
+@Transactional
 @Controller
 @RequestMapping("/admin")
 public class OrderListController {
@@ -35,7 +37,6 @@ public class OrderListController {
 
 	@RequestMapping("/viewOrderList")
 	public String list(Model model) {
-		System.out.println("注文一覧表示メソッド開始");
 		Map<Integer,String> statusMap = new LinkedHashMap<>();
 		statusMap.put(-1, "");
 		statusMap.put(0, "未購入");
@@ -44,12 +45,10 @@ public class OrderListController {
 		statusMap.put(3, "発送済み");
 		statusMap.put(9, "キャンセル");
 		model.addAttribute("statusMap", statusMap);
-		System.out.println("プルダウン用意終了");
 		
 		List<Order> order = repository.findAll();
 		model.addAttribute("order", order);
 		model.addAttribute("orderCheck",order.isEmpty());
-		System.out.println("フォワード前");
 		
 		return "/orderList";
 	}

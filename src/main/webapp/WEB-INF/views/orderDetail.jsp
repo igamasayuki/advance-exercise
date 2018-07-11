@@ -116,6 +116,7 @@
 				</c:choose></td>
 			<td><form:form modelAttribute="orderDetailForm"
 					action="${pageContext.request.contextPath}/admin/updateStatus?id=${order.id}">
+					<input type="hidden" name="orderNumber" value="${order.orderNumber}">
 
 					<c:if test="${order.status == 0}" var="flg" />
 					<c:if test="${flg}">

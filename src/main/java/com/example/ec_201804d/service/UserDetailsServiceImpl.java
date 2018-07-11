@@ -1,6 +1,7 @@
 package com.example.ec_201804d.service;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -44,37 +45,42 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	OrderItemRepository orderItemRepository;
 
-	/* (non-Javadoc)
-	 * @see org.springframework.security.core.userdetails.UserDetailsService#loadUserByUsername(java.lang.String)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.security.core.userdetails.UserDetailsService#
+	 * loadUserByUsername(java.lang.String)
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmailAddress(email);
 		Collection<GrantedAuthority> authorityList = new ArrayList<>();
-		
-		if(user == null) {
+
+		if (user == null) {
 			throw new UsernameNotFoundException("そのEmailは登録されていません");
 		}
 		authorityList.add(new SimpleGrantedAuthority("ROLE_USER"));
-		
+
 		updateOrder(user);
-		
-		return new LoginUser(user,authorityList);
+
+		return new LoginUser(user, authorityList);
 	}
-	
+
 	/**
-	 * 注文情報を更新する.
-	 * ログアウト状態でショッピングカートに商品が存在しログインした場合に、注文情報を更新する。
-	 * @param user ログインしたユーザの情報
+	 * 注文情報を更新する. ログアウト状態でショッピングカートに商品が存在しログインした場合に、注文情報を更新する。
+	 * 
+	 * @param user
+	 *            ログインしたユーザの情報
 	 */
 	private void updateOrder(User user) {
 		long preUserId = session.getId().hashCode();
 		long userId = user.getId();
 		List<Order> orderList = orderRepository.findByUserIdAndStatus(userId, 0);
-		if(!orderList.isEmpty()) {
+
+		if (!orderList.isEmpty()) {
 			Order order = orderList.get(0);
-			List<Order> preOrderList =  orderRepository.findByUserIdAndStatus(preUserId, 0);
-			if(!preOrderList.isEmpty()) {
+			List<Order> preOrderList = orderRepository.findByUserIdAndStatus(preUserId, 0);
+			if (!preOrderList.isEmpty()) {
 				Order preOrder = preOrderList.get(0);
 				orderItemRepository.updateOrderId(preOrder.getId(), order.getId());
 				for (OrderItem orderItem : order.getOrderItemList()) {
@@ -83,7 +89,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				}
 				orderRepository.deleteByUserId(preUserId);
 			}
-			
 		}
 		orderRepository.updateUserId(preUserId, userId);
 	}

@@ -7,11 +7,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.example.ec_201804d.domain.LoginUser;
 import com.example.ec_201804d.domain.Order;
+import com.example.ec_201804d.domain.OrderItem;
 import com.example.ec_201804d.repository.OrderRepository;
 
 /**
@@ -20,8 +23,10 @@ import com.example.ec_201804d.repository.OrderRepository;
  * @author minori.matsuoka
  *
  */
+@Transactional
 @Controller
 @RequestMapping("/user")
+@SessionAttributes(types= {OrderItem.class})
 public class ShowShoppingCartController {
 
 	@Autowired
@@ -49,15 +54,12 @@ public class ShowShoppingCartController {
 		
 		List<Order> orderList = repository.findByUserIdAndStatus(id,0);
 		if(orderList.isEmpty()) {
-			System.out.println("ショッピングカートがありません");
 			return  "viewShoppingCart";
 		}
 		Order order = orderList.get(0);
 		if (order.getOrderItemList().get(0).getId()==0) {
-			System.out.println("ショッピングカートの中身がありません");
 			return  "viewShoppingCart";			
 		}
-		System.out.println("ショッピングカートの中身があります。" +order.getOrderItemList().size());
 		model.addAttribute("orderItemList", order.getOrderItemList());
 		return "viewShoppingCart";
 	}

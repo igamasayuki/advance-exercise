@@ -45,7 +45,6 @@ public class LoginAdminUserController {
 	@RequestMapping(value = "/index")
 	public String viewLogin(@Validated LoginAdminForm form, BindingResult result,
 			@RequestParam(required = false) String error) {
-		System.err.println("adminLogin error:" + error);
 		if (error != null) {
 			System.err.println("adminUser: login failed");
 			result.rejectValue("email", null, "メールアドレスまたはパスワードが違います");

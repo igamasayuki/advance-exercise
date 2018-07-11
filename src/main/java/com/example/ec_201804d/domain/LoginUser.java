@@ -23,5 +23,10 @@ public class LoginUser extends org.springframework.security.core.userdetails.Use
 	public User getUser() {
 		return user;
 	}
+	// ユーザ情報を利用したいとき
+	// メソッドの引数で　@AuthenticationPrinpal LoginUser loginUser
+	// loginUser.getUser().getId()
+	//                    .getEmail()
+	//                    .getPassword()
 
 }

@@ -20,6 +20,7 @@ public class UserRegistrationForm {
 	private String email;
 	/** パスワード */
 	@NotBlank(message = "パスワードを入力してください")
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z\\d]{8,16}$", message="パスワードは8~48字の小文字大文字の半角アルファベット、半角数字を使用して設定してください")
 	private String password;
 	/** 確認用パスワード */
 	@NotBlank(message = "確認用パスワードを入力してください")

@@ -28,9 +28,16 @@ public class LoginUserController {
 		return new UserLoginForm();
 	}
 	
+	/**
+	 * 利用者がログインする
+	 * 
+	 * @param form　利用者のメールアドレス、パスワードが格納されているリクエストパラメータ
+	 * @param result　入力チェックが格納されているパラメータ
+	 * @param error　ログイン失敗時に格納されるパラメータ
+	 * @return　ログイン画面
+	 */
 	@RequestMapping(value="/login")
 	public String showUserLogin(@Validated UserLoginForm form, BindingResult result, @RequestParam(required = false) String error) {
-		System.err.println("login error:" + error);
 		if(error != null) {
 			System.err.println("member: login failed");
 			result.rejectValue("email", null, "メールアドレスまたはパスワードが違います");

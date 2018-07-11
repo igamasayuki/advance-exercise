@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import com.example.ec_201804d.repository.ItemRepository;
  * @author minori.matsuoka
  *
  */
+@Transactional
 @Controller
 @RequestMapping("/user")
 public class ItemListController {
@@ -47,12 +49,6 @@ public class ItemListController {
 	 */
 	@RequestMapping("/viewItemList")
 	public String list(Model model,PagingForm form) {
-
-		// sessionIDを数値に変換する
-		// System.err.println("ItemControllerのsessionID:" + session.getId());
-		// String sessionStr = session.getId();
-		// long sessionId = sessionStr.hashCode();
-		// System.out.println("sessionIdをハッシュ化後" + sessionId);
 
 		List<Item> itemList = repository.findSaleItems();
 		ArrayList<Integer>numberList=new ArrayList<Integer>();
