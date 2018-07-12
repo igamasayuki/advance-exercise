@@ -21,7 +21,8 @@ public class CallCancelApiService {
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	private static final String URL = "http://153.126.174.131:8080/web-api-sample/credit-card/cancel";
+	// 社内サーバで動いているWEB-APIのURL
+	private static final String URL = "http://172.16.0.13:8080/web-api-sample/credit-card/cancel";
 
 	/**
 	 * キャンセルWebAPIを呼び出してレスポンスを返す.

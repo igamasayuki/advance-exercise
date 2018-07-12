@@ -20,8 +20,8 @@ public class CardPaymentApiCallService {
 	@Autowired
 	private RestTemplate restTemplate;
 
-//	private static final String URL = "http://153.126.174.131:8080/web-api-sample/credit-card/payment";  //伊賀さんが作成
-	private static final String URL = "http://172.16.100.36:8080/card-payment-api/usercredit-card/cardpayment"; //自作のWebAPI(デプロイ)
+	// 社内サーバで動いているWEB-APIのURL
+	private static final String URL = "http://172.16.0.13:8080/web-api-sample/credit-card/payment"; 
 
 	/**
 	 * カード決済WebAPIを呼び出し、レスポンスを返す.
