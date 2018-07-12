@@ -103,17 +103,6 @@ public class DoBatch {
 		return readerDB;
 	}
 
-	// Processor
-	/**
-	 * 商品データを加工.
-	 * 
-	 * @return
-	 */
-	@Bean
-	public ItemProcessoritem processor() {
-		return new ItemProcessoritem();
-	}
-
 	// Writer
 	/**
 	 * 商品情報をINSERT.
@@ -167,7 +156,6 @@ public class DoBatch {
 				.get("step1")
 				.<Item, Item>chunk(10)
 				.reader(reader())
-				.processor(processor())
 				.writer(writerDB())
 				.build();
 	}

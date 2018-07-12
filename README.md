@@ -20,7 +20,6 @@
 #### CSV→DB, DB→CSV
 * com.example.ec_201804d.DoBatch.java
 * com.example.ec_201804d.ECAggregator.java
-* com.example.ec_201804d.ItemProcessoritem.java
 * com.example.ec_201804d.JobStartEndListner.java
 
 - - -
