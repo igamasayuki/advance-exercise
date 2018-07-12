@@ -33,7 +33,9 @@ import com.example.ec_201804d.domain.Item;
 import com.example.ec_201804d.domain.Order;
 
 /**
- * 商品をDBに登録するバッチ処理を行うコントローラクラス.
+ * 商品をDBに登録するバッチ処理<br>
+ * DBから注文情報をCSVファイルに出力するバッチ処理<br>
+ * を行うコントローラクラス.
  * 
  * @author hibiki.ono
  *
@@ -41,7 +43,7 @@ import com.example.ec_201804d.domain.Order;
 @Transactional
 @Configuration
 @EnableBatchProcessing
-public class DoBatchItemRegister {
+public class DoBatch {
 
 	@Autowired
 	public JobBuilderFactory jobBuilderFactory;
@@ -155,6 +157,10 @@ public class DoBatchItemRegister {
 	}
 
 	// ステップ１
+	/**
+	 * csvファイルからデータを取得し。DBに登録するステップ.
+	 * @return
+	 */
 	@Bean
 	public Step step1() {
 		return stepBuilderFactory
@@ -167,6 +173,10 @@ public class DoBatchItemRegister {
 	}
 
 	// ステップ２
+	/**
+	 * DBから注文情報を取得し、csvファイルに書き出すステップ.
+	 * @return
+	 */
 	@Bean
 	public Step step2() {
 		return stepBuilderFactory

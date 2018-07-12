@@ -18,7 +18,7 @@
 
 ### ~課題1,課題2　解答例~
 #### CSV→DB, DB→CSV
-* com.example.ec_201804d.DoBatchItemRegister.java
+* com.example.ec_201804d.DoBatch.java
 * com.example.ec_201804d.ECAggregator.java
 * com.example.ec_201804d.ItemProcessoritem.java
 * com.example.ec_201804d.JobStartEndListner.java
